@@ -1,7 +1,6 @@
-<div>
+<div class="container">
   <div  *ngFor="let card of courseCard">
     <app-simple-card  routerLink="/learn/{{param}}" (click)="getParamCard(card.nameCard)" [card] = "card">
     </app-simple-card>
   </div>
-
 </div>
