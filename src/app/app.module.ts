@@ -12,6 +12,7 @@ import {UserModule} from '@app/modules/user/user.module';
 import {JwtInterceptor, ErrorInterceptor} from './modules/auth/helpers';
 import {AdminComponent} from './modules/admin/components/admin';
 import {LoginComponent} from './modules/auth/components/login';
+
 @NgModule({
   imports: [
     UserModule,
