@@ -1,8 +1,8 @@
 <div class="wrap-topic">
   <div class="row">
-    <div class="wrap-topic-item col-3" *ngFor="let topic of topics">
-      {{topic.topicName}}
+    <div (click)="goToListWord(topic.id)" class="wrap-topic-item col-3" *ngFor="let topic of topics">
+     <div> {{topic.topicName}}</div>
+      <div>{{topic.id}}</div>
     </div>
   </div>
-
 </div>

@@ -31,3 +31,4 @@ export class WordModel {
     Object.assign(this, init);
   }
 }
+

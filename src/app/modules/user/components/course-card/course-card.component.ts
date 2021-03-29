@@ -25,4 +25,5 @@ export class CourseCardComponent implements OnInit {
   getParamCard(nameCard: string): any {
     this.param = nameCard.toLowerCase().trim().split(/\s+/).join('-');
   }
+
 }
