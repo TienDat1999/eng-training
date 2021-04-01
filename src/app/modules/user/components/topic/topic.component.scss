@@ -1,11 +1,44 @@
 .wrap-topic {
   display: flex;
+  background-color:#FFF8DC;
   &-item {
-    background-color: aqua;
+
     cursor: pointer;
-    height: 100px;
-    color: black;
+    height: 250px;
+    width: 50%;
     margin: 20px;
+    padding: 0px 10px 60px 10px;
+    border: 1px initial ;
+    boder-radius: 5px;
+    box-shadow:  2px 2px 2px 2px #888888;
+    background-color:#FFFFFF;
   }
+
+}
+.icon{
+  background-color:#DCDCDC;
+  height: 100%;
+  width: 100%;
+}
+.id{
+  text-align: center;
+  color : #C0C0C0;
+  background-color: #FFFFFF;
+}
+.learn{
+  position: relative;
+  top: 70%;
+  text-align: center;
+}
+.name{
+  position: relative;
+  top: 50%;
+  left: 10%;
+  font-size:small;
+}
+.fa.fa-graduation-cap{
+  position: relative;
+  top: 25%;
+  left: 25%;
 }
 
