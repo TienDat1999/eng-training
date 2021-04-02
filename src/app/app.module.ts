@@ -5,13 +5,14 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 // used to create fake backend
 import {fakeBackendProvider} from './modules/auth/helpers';
-
+import {CommonModule} from '@angular/common';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {UserModule} from '@app/modules/user/user.module';
 import {JwtInterceptor, ErrorInterceptor} from './modules/auth/helpers';
 import {AdminComponent} from './modules/admin/components/admin';
 import {LoginComponent} from './modules/auth/components/login';
+import { HeaderComponent } from './theme/layouts/header/header.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import {LoginComponent} from './modules/auth/components/login';
     AppComponent,
     AdminComponent,
     LoginComponent,
+    HeaderComponent,
   ],
   exports: [AppComponent],
   providers: [

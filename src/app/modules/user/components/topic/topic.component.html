@@ -1,14 +1,12 @@
 <div class="wrap-topic">
-  <div class="row">
-    <div  class="wrap-topic-item col-1 " *ngFor="let topic of topics">
-      <div class="icon">
+  <div class="row space-topic">
+    <div (click)="goToListWord(topic.id)" class="col-3 " *ngFor="let topic of topics">
+      <div class="wrap-topic-item ">
         <div class="id">{{topic.id}}</div>
         <div class="learn"> Learn</div>
         <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:50px"></i>
         <div class="name">{{topic.topicName}}</div>
-
       </div>
-
     </div>
   </div>
 
