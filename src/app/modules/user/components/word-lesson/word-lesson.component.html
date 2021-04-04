@@ -1,5 +1,35 @@
-<div>
-  <div *ngFor="let word of words">
-   {{word.word}}
+<div class="wrap-lesson ">
+  <div class="wrap-btn-action">
+
   </div>
+  <div *ngIf="istrue" class="btn btn-warning btn-previous">
+    <i class="fas fa-angle-left"></i>
+    <span>Cấp độ {{levelParam}}</span>
+  </div>
+
+  <div (click)="goToNextPage()" class="btn btn-info btn-after">
+    <span>Cấp độ {{nextLevelParam}}</span>
+    <i class="fas fa-angle-right"></i>
+  </div>
+  <div class="container">
+    <div class="progress-box">
+      <div class="title-level">Level {{levelParam}}</div>
+      <div>
+        <div class="title-lesson">title</div>
+        <div class="progress progress-cus">
+          <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-success btn-learn">Học những từ này</button>
+    </div>
+    <div class="mt-5">
+      <div *ngFor="let word of words">
+        <div class="word-line">
+          <div class="word-line-left">{{word.word}}</div>
+          <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
