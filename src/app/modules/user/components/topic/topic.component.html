@@ -2,12 +2,13 @@
   <div class="row space-topic">
     <div (click)="goToListWord(topic.id)" class="col-3 " *ngFor="let topic of topics">
       <div class="wrap-topic-item ">
-        <div class="id">{{topic.id}}</div>
-        <div class="learn"> Learn</div>
-        <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:50px"></i>
-        <div class="name">{{topic.topicName}}</div>
+        <div class="wrap-topic-item-number">{{topic.id}}</div>
+        <div class="wrap-topic-item-icon" ><i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:60px"></i></div>
+<!--        <div>-->
+<!--          <i class="far fa-check-circle" aria-hidden="true" style="font-size:50px"></i>-->
+<!--        </div>-->
+        <div class="wrap-topic-item-name">{{topic.topicName}}</div>
       </div>
     </div>
   </div>
-
 </div>
