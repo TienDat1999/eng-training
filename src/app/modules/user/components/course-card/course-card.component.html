@@ -3,4 +3,31 @@
     <app-simple-card  routerLink="/learn/{{param}}" (click)="getParamCard(card.nameCard)" [card] = "card">
     </app-simple-card>
   </div>
+
+  <div class="learn-word">
+    <div class="user-info">
+      <div class="avatar">
+        <img class="user-avatar" src="http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144" alt="avt">
+      </div>
+    </div>
+    <div class="learn-target">
+      <div class="title">600 essential words for TOEIC</div>
+      <div class="range">
+<!--        <input type="range" id="vol" name="vol" min="0" max="50">-->
+        <dx-progress-bar
+          [min]="0"
+          [max]="100"
+          [value]="49">
+        </dx-progress-bar>
+      </div>
+      <div class="target-button">
+        <div class="frequency">
+
+        </div>
+        <div class="continuity">
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

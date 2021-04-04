@@ -1,3 +1,36 @@
 .container-course{
   margin: 0 auto!important;
 }
+
+::ng-deep app-course-card {
+  .learn-word {
+    background-color: aquamarine;
+    display: flex;
+    padding: 15px;
+    border: 2px solid #20a3fb;
+
+    .user-info .avatar{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .user-avatar{
+        vertical-align: middle;
+        background-color: darkgray;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+      }
+    }
+    .learn-target{
+      padding-left: 10px;
+    }
+  }
+}
+
+::ng-deep #progress-bar-status {
+  display: inline-block;
+}
+::ng-deep .complete .dx-progressbar-range {
+  background-color: green;
+}
