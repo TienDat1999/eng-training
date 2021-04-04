@@ -1,20 +1,21 @@
-.container-course{
-  margin: 0 auto!important;
+.container-course {
+  margin: 0 auto !important;
 }
 
 ::ng-deep app-course-card {
   .learn-word {
-    background-color: aquamarine;
     display: flex;
     padding: 15px;
+    border-radius: 7px;
     border: 2px solid #20a3fb;
 
-    .user-info .avatar{
+    .user-info .avatar {
       display: flex;
       justify-content: center;
       align-items: center;
 
-      .user-avatar{
+      .user-avatar {
+        object-fit: cover;
         vertical-align: middle;
         background-color: darkgray;
         border-radius: 50%;
@@ -22,8 +23,46 @@
         height: 80px;
       }
     }
-    .learn-target{
+
+    .learn-target {
       padding-left: 10px;
+      width: 100%;
+
+      .title {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .progress .progress-target {
+        width: 100%;
+      }
+
+      .target-button {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        text-align: center;
+
+        .target {
+          background-color: #e6f7ff;
+          width: 45%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          border-radius: 7px;
+          cursor: pointer;
+
+          .highlight {
+            color: #0085ff;
+            font-weight: bold;
+          }
+          &.frequency {
+          }
+          &.continuity {
+          }
+        }
+      }
     }
   }
 }
@@ -31,6 +70,7 @@
 ::ng-deep #progress-bar-status {
   display: inline-block;
 }
+
 ::ng-deep .complete .dx-progressbar-range {
   background-color: green;
 }
