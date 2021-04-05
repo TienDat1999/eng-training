@@ -6,32 +6,34 @@ import {SimpleCardComponent} from './components/simple-card/simple-card.componen
 import {TopicComponent} from './components/topic/topic.component';
 import { WordLessonComponent } from './components/word-lesson/word-lesson.component';
 import { CommonModule } from '@angular/common';
+import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [HomeComponent, CourseCardComponent, SimpleCardComponent, TopicComponent, WordLessonComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '', redirectTo: 'home', pathMatch: 'full'
-      },
-      {
-        path: 'home',
-        component: HomeComponent,
-      },
-      {
-        path: 'learn',
-        component: CourseCardComponent,
-      },
-      {
-        path: 'learn/:name',
-        component: TopicComponent,
-      },
-      {
-        path: 'learn/:name/:id',
-        component: WordLessonComponent,
-      }
-      ])
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '', redirectTo: 'home', pathMatch: 'full'
+            },
+            {
+                path: 'home',
+                component: HomeComponent,
+            },
+            {
+                path: 'learn',
+                component: CourseCardComponent,
+            },
+            {
+                path: 'learn/:name',
+                component: TopicComponent,
+            },
+            {
+                path: 'learn/:name/:id',
+                component: WordLessonComponent,
+            }
+        ]),
+        FormsModule
+    ]
 })
 export class UserModule {
 }
