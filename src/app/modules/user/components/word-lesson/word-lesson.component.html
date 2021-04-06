@@ -1,15 +1,19 @@
 <div class="wrap-lesson ">
   <div class="wrap-btn-action">
+    <div>
+      <div (click)="backToPrevious()" *ngIf="levelParam > 1" class="btn btn-warning btn-previous">
+        <i class="fas fa-angle-left"></i>
+        <span>Cấp độ {{levelParam}}</span>
+      </div>
+    </div>
 
-  </div>
-  <div *ngIf="istrue" class="btn btn-warning btn-previous">
-    <i class="fas fa-angle-left"></i>
-    <span>Cấp độ {{levelParam}}</span>
-  </div>
+    <div>
+      <div  (click)="goToNextPage()" class="btn btn-info btn-after">
+        <span>Cấp độ {{nextLevelParam}}</span>
+        <i class="fas fa-angle-right"></i>
+      </div>
+    </div>
 
-  <div (click)="goToNextPage()" class="btn btn-info btn-after">
-    <span>Cấp độ {{nextLevelParam}}</span>
-    <i class="fas fa-angle-right"></i>
   </div>
   <div class="container">
     <div class="progress-box">
@@ -17,10 +21,11 @@
       <div>
         <div class="title-lesson">title</div>
         <div class="progress progress-cus">
-          <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+               aria-valuemax="100"></div>
         </div>
       </div>
-      <button type="button" class="btn btn-success btn-learn">Học những từ này</button>
+      <button (click)="learnWord($event)" type="button" class="btn btn-success btn-learn">Học những từ này</button>
     </div>
     <div class="mt-5">
       <div *ngFor="let word of words">

@@ -13,7 +13,6 @@ import {JwtInterceptor, ErrorInterceptor} from './modules/auth/helpers';
 import {AdminComponent} from './modules/admin/components/admin';
 import {LoginComponent} from './modules/auth/components/login';
 import { HeaderComponent } from './theme/layouts/header/header.component';
-
 @NgModule({
   imports: [
     UserModule,

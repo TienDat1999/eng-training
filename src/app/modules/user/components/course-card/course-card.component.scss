@@ -1,9 +1,10 @@
-.container-course {
-  margin: 0 auto !important;
-}
 
 ::ng-deep app-course-card {
+  .space{
+    padding-top: 100px;
+  }
   .learn-word {
+    margin-top: 25px;
     display: flex;
     padding: 15px;
     border-radius: 7px;

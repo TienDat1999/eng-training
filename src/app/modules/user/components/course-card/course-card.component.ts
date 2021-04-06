@@ -15,10 +15,10 @@ export class CourseCardComponent implements OnInit {
   }
 
   param: any = null;
-
   ngOnInit(): void {
     this.courseService.getCourseCard().subscribe(value => {
       this.courseCard = value;
+      console.log(value);
     });
   }
 

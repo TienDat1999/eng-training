@@ -6,8 +6,17 @@ import {SimpleCardComponent} from './components/simple-card/simple-card.componen
 import {TopicComponent} from './components/topic/topic.component';
 import { WordLessonComponent } from './components/word-lesson/word-lesson.component';
 import { CommonModule } from '@angular/common';
+import { PracticeWordComponent } from './components/practice-word/practice-word.component';
+import {ChooseWordTypeComponent, DefaultWordTypeComponent,
+  InputWordTypeComponent, ListenWordTypeComponent} from '@app/theme/components';
+
+const COMPONENTS = [HomeComponent, CourseCardComponent, SimpleCardComponent,
+  TopicComponent, WordLessonComponent,
+  PracticeWordComponent, ChooseWordTypeComponent,
+  DefaultWordTypeComponent,
+  InputWordTypeComponent, ListenWordTypeComponent];
 @NgModule({
-  declarations: [HomeComponent, CourseCardComponent, SimpleCardComponent, TopicComponent, WordLessonComponent],
+  declarations: [...COMPONENTS],
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -27,10 +36,14 @@ import { CommonModule } from '@angular/common';
         component: TopicComponent,
       },
       {
+        path: 'detail',
+        component: PracticeWordComponent,
+      },
+      {
         path: 'learn/:name/:id',
         component: WordLessonComponent,
       }
-      ])
+    ]),
   ]
 })
 export class UserModule {

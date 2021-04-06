@@ -14,7 +14,6 @@ export class WordLessonComponent implements OnInit {
   levelParam: number;
   parentParam: string;
   nextLevelParam: any;
-  istrue = false;
   constructor(private wordService: CourseCardService, private route: ActivatedRoute,  private router: Router) { }
 
   ngOnInit(): void {
@@ -30,5 +29,17 @@ export class WordLessonComponent implements OnInit {
 
   goToNextPage(): void {
     this.router.navigate(['/learn', this.parentParam, this.nextLevelParam]);
+  }
+
+  backToPrevious(): void {
+    if(this.levelParam > 1){
+      this.levelParam = this.levelParam - 1;
+      this.router.navigate(['/learn', this.parentParam, this.levelParam]);
+    }
+  }
+
+
+  learnWord($event: MouseEvent): void {
+    this.router.navigate(['/detail']);
   }
 }

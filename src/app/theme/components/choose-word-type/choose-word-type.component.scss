@@ -1,0 +1,71 @@
+.choose-word{
+  .wrap-progress{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    .progress{
+      margin-left: 40px;
+      width: 75%;
+      height: 32px;
+      border-radius: 20px;
+    }
+    .item-score{
+      background: antiquewhite;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 25px;
+      line-height: 47px;
+      width: 50px;
+      height:50px;
+    }
+  }
+  .ping-word{
+    width: 75px;
+    height: 100px;
+    background: wheat;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-weight: 500;
+    margin-left: 33px;
+  }
+  .label-suggest{
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: 24px;
+    color: rgb(73, 74, 76);
+  }
+  .word-name{
+    font-size: 36px;
+    text-align: center;
+  }
+  .word-type{
+    text-align: center;
+    font-weight: 500;
+    width: 41px;
+    height: 41px;
+    line-height: 41px;
+    border-radius: 10px;
+    background-color: #41d4c9;
+    margin: 20px auto 40px auto;
+  }
+  .wrap-word{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 50px 50px;
+    .word-item{
+      // width: 20px;
+      text-align: center;
+      font-size: 30px;
+      // background-color: #caffee;
+      box-shadow: 0px 1px 15px 5px rgba(0,0,0,0.4);
+      border-radius: 10px;
+      height: 100px;
+      cursor: pointer;
+      max-width: 400px;
+      line-height: 98px;
+      margin-left: 62px;
+    }
+  }
+
+}

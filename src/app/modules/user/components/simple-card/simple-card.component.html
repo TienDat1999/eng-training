@@ -1,3 +1,31 @@
-<div>
-  <div>{{card.nameCard}}</div>
+<div class="learn-word">
+  <div class="user-info">
+    <div class="avatar">
+      <img
+        class="user-avatar"
+        src="{{card.imgUrl}}"
+        alt="avt">
+    </div>
+  </div>
+  <div class="learn-target">
+    <div class="title">{{card.nameCard}}</div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="target-button">
+      <div class="target frequency">
+        <div>
+          <span class="highlight">{{card.timeTarget}}</span>phut moi ngay
+        </div>
+        <div>
+          <i class="fas fa-history mr-1"></i>Thiet lap muc tieu hang ngay
+        </div>
+      </div>
+      <div class="target continuity">
+        <div>
+          <span class="highlight">{{card.continuityDay}}</span> ngay hoc lien tuc
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

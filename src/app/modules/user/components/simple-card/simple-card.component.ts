@@ -8,6 +8,7 @@ import {SimpleCardModel} from '@app/modules/user/models/userModel';
 })
 export class SimpleCardComponent implements OnInit {
 
+  cards: 21;
   @Input() card: SimpleCardModel;
   constructor() { }
 

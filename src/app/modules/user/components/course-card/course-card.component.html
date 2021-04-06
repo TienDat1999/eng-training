@@ -1,62 +1,7 @@
 <div class="container">
-  <div *ngFor="let card of courseCard">
-    <app-simple-card routerLink="/learn/{{param}}" (click)="getParamCard(card.nameCard)" [card]="card">
+  <div class="space"></div>
+  <div  *ngFor="let card of courseCard">
+    <app-simple-card  routerLink="/learn/{{param}}" (click)="getParamCard(card.nameCard)" [card] = "card">
     </app-simple-card>
-  </div>
-
-  <div class="learn-word">
-    <div class="user-info">
-      <div class="avatar">
-        <img
-          class="user-avatar"
-          src="http://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg?w=144"
-          alt="avt">
-      </div>
-    </div>
-    <div class="learn-target">
-      <div class="title">600 essential words for TOEIC</div>
-      <div class="progress" style="display: flex;align-items: center;height: 8px">
-        <div
-          class="progress-bar"
-          role="progressbar"
-          style="height: 8px; border-radius: 7px; margin: 2px"
-          [style.width.%]="25"
-        >
-        </div>
-      </div>
-      <div>#####</div>
-      <div class="progress">
-        <input
-          class="progress-target"
-          type="range"
-          id="vol"
-          min="0"
-          max="100"
-          step="10"
-          value="30"
-        >
-      </div>
-        <!--        <dx-progress-bar-->
-        <!--          [min]="0"-->
-        <!--          [max]="100"-->
-        <!--          [value]="49">-->
-        <!--        </dx-progress-bar>-->
-
-      <div class="target-button">
-        <div class="target frequency">
-          <div>
-            <span class="highlight">5</span>phut moi ngay
-          </div>
-          <div>
-            <i class="fas fa-history mr-1"></i>Thiet lap muc tieu hang ngay
-          </div>
-        </div>
-        <div class="target continuity">
-          <div>
-            <span class="highlight">0</span> ngay hoc lien tuc
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
