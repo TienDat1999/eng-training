@@ -15,10 +15,11 @@ const COMPONENTS = [HomeComponent, CourseCardComponent, SimpleCardComponent,
   PracticeWordComponent, ChooseWordTypeComponent,
   DefaultWordTypeComponent,
   InputWordTypeComponent, ListenWordTypeComponent];
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [
+    FormsModule,
     CommonModule,
     RouterModule.forChild([
       {
