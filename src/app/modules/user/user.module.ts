@@ -15,6 +15,7 @@ const COMPONENTS = [HomeComponent, CourseCardComponent, SimpleCardComponent,
   PracticeWordComponent, ChooseWordTypeComponent,
   DefaultWordTypeComponent,
   InputWordTypeComponent, ListenWordTypeComponent];
+import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [

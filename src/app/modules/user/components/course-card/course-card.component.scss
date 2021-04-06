@@ -75,3 +75,7 @@
 ::ng-deep .complete .dx-progressbar-range {
   background-color: green;
 }
+::ng-deep #modalTarget .grid-column-110px-1fr{
+  display: grid;
+  grid-template-columns: 120px 1fr;
+}
