@@ -1,0 +1,41 @@
+.wrap-default-type{
+  padding-left: 37px;
+  padding-top: 40px;
+  .btn-next{
+    float: right;
+    margin-top: 25px;
+    padding: 16px;
+    i{margin-left: 8px}
+  }
+  .des-word{
+    color: rgb(112, 116, 126);
+  }
+  .type-word{
+    margin-left: 38px;
+    line-height: 9px;
+    padding: 23px 23px;
+    background: #ccdcec;
+    border-radius: 11px;
+    font-weight: 600;
+  }
+  .api-transcription{
+
+  }
+  .btn-sound{
+    margin-left: 30px;
+    font-size: 26px;
+    padding: 9px 24px;
+    border: none;
+    border-radius: 10px;
+    background-color: #79e1e4;
+    &:focus{
+      outline: none;
+    }
+    &:hover{
+      -webkit-box-shadow: 1px 1px 15px 0px rgba(11,224,255,0.43);
+      box-shadow: 1px 1px 15px 0px rgba(11,224,255,0.43);
+    }
+
+  }
+
+}
