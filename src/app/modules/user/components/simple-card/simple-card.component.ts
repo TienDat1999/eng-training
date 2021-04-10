@@ -7,7 +7,6 @@ import {SimpleCardModel} from '@app/modules/user/models/userModel';
   styleUrls: ['./simple-card.component.scss']
 })
 export class SimpleCardComponent implements OnInit {
-
   cards: 21;
   @Input() card: SimpleCardModel;
   constructor() { }
@@ -15,4 +14,7 @@ export class SimpleCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showPopupTarget(event: MouseEvent): void {
+
+  }
 }

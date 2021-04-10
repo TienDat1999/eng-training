@@ -3,3 +3,8 @@ export * from './course-card/course-card.component';
 export * from './simple-card/simple-card.component';
 export * from './topic/topic.component';
 export * from './word-lesson/word-lesson.component';
+export * from './class/class.component';
+export * from './class/ranking/ranking.component';
+export * from './class/member/member.component';
+export * from './class/exercise/exercise.component';
+export * from './class/status-members/status-members.component';

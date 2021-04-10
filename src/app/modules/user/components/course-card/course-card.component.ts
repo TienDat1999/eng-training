@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
 import {SimpleCardModel} from '@app/modules/user/models/userModel';
 import {Router} from '@angular/router';
@@ -10,7 +10,6 @@ import {Router} from '@angular/router';
 })
 export class CourseCardComponent implements OnInit {
   courseCard: SimpleCardModel[] = [];
-  value = 5;
 
   constructor(private courseService: CourseCardService, private router: Router) {
   }
@@ -25,9 +24,5 @@ export class CourseCardComponent implements OnInit {
 
   getParamCard(nameCard: string): any {
     this.param = nameCard.toLowerCase().trim().split(/\s+/).join('-');
-  }
-
-  onSubmitTarget(): void {
-    document.getElementById('closeModal').click();
   }
 }
