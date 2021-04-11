@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class SimpleCardComponent implements OnInit {
   cards: 21;
-  isShow = false;
+  isShowModal = false;
   @Input() card: SimpleCardModel;
 
   constructor(private router: Router) {
@@ -19,8 +19,8 @@ export class SimpleCardComponent implements OnInit {
   }
 
   showPopupTarget(): void {
-    this.isShow = true;
-    console.log(this.isShow);
+    this.isShowModal = true;
+    console.log(this.isShowModal);
   }
 
   getParamCard(nameCard: string): void {
