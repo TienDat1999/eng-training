@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Member} from '@app/modules/user/models/class.model';
+import {ClassService} from '@app/modules/user/services/class.service';
 
 @Component({
   selector: 'app-ranking',
@@ -7,25 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RankingComponent implements OnInit {
 
-  members = [
-    {id: 1, name: 'Mark Otto', score: 12},
-    {id: 2, name: 'Jacob Thornton', score: 15},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-    {id: 3, name: 'Thornton Bird', score: 32},
-  ];
-  constructor() { }
+  members: Member[] = [];
 
-  ngOnInit(): void {
+  constructor(private classService: ClassService) {
   }
 
+  ngOnInit(): void {
+    this.getMembers();
+  }
+
+  private getMembers(): void {
+    this.classService.getRankingMember().subscribe((res) => {
+      this.members = res.data;
+    });
+  }
 }

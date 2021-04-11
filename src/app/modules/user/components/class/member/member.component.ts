@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ClassService} from '@app/modules/user/services/class.service';
-import {Member} from "@app/modules/user/models/class.model";
+import {Member} from '@app/modules/user/models/class.model';
 
 @Component({
   selector: 'app-member',
@@ -49,7 +49,7 @@ export class MemberComponent implements OnInit {
   }
 
   private getMembers(): void {
-    this.classService.getMemberInClass(10).subscribe((res) => {
+    this.classService.getMemberInClass(20).subscribe((res) => {
       this.count = res.count;
       this.members = res.data;
     });

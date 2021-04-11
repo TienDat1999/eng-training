@@ -12,7 +12,7 @@ export class ClassService {
   constructor() {
   }
 
-  getMemberInClass(size: number): Observable<ResponseClass> {
+  getMemberInClass(size: number = 10): Observable<ResponseClass> {
     if (environment.production) {
       console.log('get Member in class');
     }
@@ -29,5 +29,11 @@ export class ClassService {
       console.log(`remove member ${member.id}`);
     }
     return of(true);
+  }
+  getRankingMember(size: number = 10): Observable<ResponseClass>{
+    if (environment.production) {
+      console.log('get Member in class');
+    }
+    return of(getMockMemberInClass(size));
   }
 }
