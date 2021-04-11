@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-member',
@@ -7,9 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberComponent implements OnInit {
 
-  constructor() { }
+  members = [
+    {id: 1, name: 'Mark Otto'},
+    {id: 2, name: 'Jacob Thornton'},
+    {id: 3, name: 'Thornton Bird'},
+  ];
+  inputNameMember: string;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  addMember(): void {
+    const checkDuplicate = (this.members.some((item) => {
+      return item.name === this.inputNameMember;
+    }));
+    if (checkDuplicate || !this.inputNameMember) {
+      // show notification duplicate
+      return;
+    }
+    const maxId: number = this.members.length;
+    this.members.push({id: maxId + 1, name: this.inputNameMember});
+    this.inputNameMember = '';
+  }
 }
