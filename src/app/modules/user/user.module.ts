@@ -14,7 +14,13 @@ import {
   ListenWordTypeComponent
 } from '@app/theme/components';
 import {FormsModule} from '@angular/forms';
-import {ClassComponent, ExerciseComponent, MemberComponent, RankingComponent, StatusMembersComponent} from '@app/modules/user/components';
+import {
+  ClassComponent,
+  ExerciseComponent,
+  MemberComponent,
+  RankingComponent,
+  StatusMembersComponent
+} from '@app/modules/user/components';
 
 const COMPONENTS = [
   HomeComponent, CourseCardComponent, SimpleCardComponent,
@@ -58,7 +64,7 @@ const COMPONENTS = [
         component: ClassComponent,
       }
     ]),
-  ]
+  ],
 })
 export class UserModule {
 }
