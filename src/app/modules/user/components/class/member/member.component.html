@@ -1,6 +1,6 @@
 <div class="member__wrap">
   <div class="title">
-    50 thành viên
+    {{count}} thành viên
   </div>
   <div class="member-input py-2">
     <div class="input-group px-3">
@@ -21,12 +21,16 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Full Name</th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let member of members">
         <th scope="row">{{member.id}}</th>
-        <td>{{member.name}}</td>
+        <td>{{member.fullName}}</td>
+        <td (click)="removeMember(member)">
+          <i class="fas fa-minus-circle text-danger"></i>
+        </td>
       </tr>
       </tbody>
     </table>
