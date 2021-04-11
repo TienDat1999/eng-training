@@ -1,20 +1,28 @@
-::ng-deep app-ranking{
-  .wrap-ranking{
+::ng-deep app-ranking {
+  .wrap-ranking {
     border: 1px solid gray;
     border-radius: 7px;
     height: 100%;
 
-    .title{
+    .title {
       font-weight: bold;
       font-size: 18px;
       text-align: center;
       color: black;
     }
 
-    .ranking-table{
+    .ranking-table {
       overflow: auto;
       max-height: 290px;
-      //max-height: 100%;
+
+      .table {
+        position: relative;
+
+        & > thead th {
+          position: sticky;
+          top: -1px;
+        }
+      }
     }
   }
 }
