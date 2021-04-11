@@ -1,1 +1,24 @@
-<p>ranking works!</p>
+<div class="wrap-ranking">
+  <div class="title">
+    Ranking
+  </div>
+  <div class="ranking-table mt-2">
+    <table class="table">
+      <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Score</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let member of members">
+        <th scope="row">{{member.id}}</th>
+        <td>{{member.name}}</td>
+        <td>{{member.score}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
