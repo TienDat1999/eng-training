@@ -11,6 +11,23 @@ export class MemberComponent implements OnInit {
     {id: 1, name: 'Mark Otto'},
     {id: 2, name: 'Jacob Thornton'},
     {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
+    {id: 3, name: 'Thornton Bird'},
   ];
   inputNameMember: string;
 
