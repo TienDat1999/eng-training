@@ -6,14 +6,14 @@
     <table class="table">
       <thead class="thead-light">
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">Rnk</th>
         <th scope="col">Full name</th>
         <th scope="col">Score</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let member of members">
-        <th scope="row">{{member.id}}</th>
+        <th scope="row" class="text-center">{{member.rank}}</th>
         <td>{{member.fullName}}</td>
         <td>{{member.score}}</td>
       </tr>

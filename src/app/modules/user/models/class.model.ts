@@ -2,6 +2,7 @@ import {ExerciseStatusType} from '../../share/enum';
 
 export class Member {
   id: number;
+  rank: number;
   fullName: string;
   score: number;
   status: ExerciseStatusType;

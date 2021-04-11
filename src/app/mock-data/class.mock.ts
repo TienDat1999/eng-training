@@ -14,6 +14,7 @@ export function getMember(size: number): Member[] {
   return Array(size).fill({}).map((item: Member, index) => {
     return new Member({
       id: index + 1,
+      rank: index + 1,
       fullName: `${faker.name.firstName()} ${faker.name.lastName()}`,
       score: faker.random.number({min: 0, max: 100}),
       status: sample([ExerciseStatusType.Complete, ExerciseStatusType.Incomplete]),

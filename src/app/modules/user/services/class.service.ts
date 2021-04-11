@@ -32,7 +32,7 @@ export class ClassService {
   }
   getRankingMember(size: number = 10): Observable<ResponseClass>{
     if (environment.production) {
-      console.log('get Member in class');
+      console.log('get rank member');
     }
     return of(getMockMemberInClass(size));
   }
