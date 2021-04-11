@@ -7,6 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatusMembersComponent implements OnInit {
 
+  members = [
+    {id: 1, name: 'Mark Otto', status: true},
+    {id: 2, name: 'Jacob Thornton', status: true},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+    {id: 3, name: 'Thornton Bird', status: false},
+  ];
   constructor() { }
 
   ngOnInit(): void {
