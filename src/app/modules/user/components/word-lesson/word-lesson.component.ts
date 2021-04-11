@@ -22,24 +22,30 @@ export class WordLessonComponent implements OnInit {
       this.levelParam = +paramMap.get('id');
       this.nextLevelParam =  +paramMap.get('id') + 1;
     });
-    this.wordService.getWord().subscribe(value => {
-      this.words = value;
-    });
+    this.showWord();
   }
 
   goToNextPage(): void {
-    this.router.navigate(['/learn', this.parentParam, this.nextLevelParam]);
+    this.router.navigate(['/learn', this.parentParam, this.nextLevelParam])
+    this.showWord();
   }
 
   backToPrevious(): void {
     if(this.levelParam > 1){
       this.levelParam = this.levelParam - 1;
       this.router.navigate(['/learn', this.parentParam, this.levelParam]);
+      this.showWord();
     }
   }
 
 
   learnWord($event: MouseEvent): void {
     this.router.navigate(['/detail']);
+    this.wordService.sendParmaId(this.levelParam);
+  }
+  showWord(): void{
+    this.wordService.getWord(this.levelParam).subscribe(value => {
+      this.words = value;
+    });
   }
 }

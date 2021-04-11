@@ -8,8 +8,8 @@
     display: flex;
     padding: 15px;
     border-radius: 7px;
-    border: 2px solid #20a3fb;
-
+    -webkit-box-shadow: 3px -1px 15px -5px rgba(3,5,20,0.34);
+    box-shadow: 3px -1px 15px -5px rgba(3,5,20,0.34);
     .user-info .avatar {
       display: flex;
       justify-content: center;

@@ -25,10 +25,19 @@ export class WordModel {
   word: string;
   imgUrl: any;
   soundUrl: string;
-  type: number;
-  sentence: any;
+  typeWord: any;
+  example: any;
   public constructor(init?: Partial<WordModel>) {
     Object.assign(this, init);
   }
 }
-
+export class TypeWordModel extends WordModel{
+  wordRandom: any;
+  optionType: any;
+  status: any;
+  optionChoose: any;
+  public constructor(init?: Partial<TypeWordModel>) {
+    super();
+    Object.assign(this, init);
+  }
+}

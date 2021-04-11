@@ -51,12 +51,11 @@
 .wrap-btn-action {
   display: flex;
   justify-content: space-between;
-
   .btn-previous {
-    width: 127px;
+    width: 118px;
     top: 125px;
     height: 50px;
-    left: 255px;
+    left: 270px;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -74,10 +73,10 @@
 
   .btn-after {
     float: right;
-    width:  127px;
+    width: 118px;
     top: 125px;
     height: 50px;
-    right: 255px;
+    right: 270px;
     position: relative;
     display: flex;
     justify-content: flex-end;

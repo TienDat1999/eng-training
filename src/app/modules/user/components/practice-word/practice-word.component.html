@@ -11,7 +11,24 @@
         0
       </div>
     </div>
-<!--<app-choose-word-type></app-choose-word-type>-->
-    <app-default-word-type></app-default-word-type>
+    <div>
+      <button class="btn btn-check" *ngIf="option !== options.defaultOption" (click)="moveToDefaultOption()">
+        <i class="fad fa-question-circle"></i>
+        <div>Tôi không biết</div>
+      </button>
+      <button class="btn btn-check btn-check-next" *ngIf="option === options.defaultOption"
+              (click)="handleNextOption()">
+        <i class="fas fa-arrow-alt-circle-right"></i>
+        <div class="text-click-next">Tiếp</div>
+      </button>
+
+    </div>
+    <div [ngSwitch]="option">
+      <app-input-word-type *ngSwitchCase="options.inputOption"></app-input-word-type>
+      <app-default-word-type *ngSwitchCase="options.defaultOption"></app-default-word-type>
+      <app-choose-word-type *ngSwitchCase="options.ChooseOption"></app-choose-word-type>
+    </div>
+
+
   </div>
 </div>

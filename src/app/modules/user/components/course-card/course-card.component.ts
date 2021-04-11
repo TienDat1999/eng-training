@@ -10,19 +10,17 @@ import {Router} from '@angular/router';
 })
 export class CourseCardComponent implements OnInit {
   courseCard: SimpleCardModel[] = [];
-
-  constructor(private courseService: CourseCardService, private router: Router) {
+  value= '';
+  constructor(private courseService: CourseCardService) {
   }
 
-  param: any = null;
   ngOnInit(): void {
     this.courseService.getCourseCard().subscribe(value => {
       this.courseCard = value;
-      console.log(value);
     });
   }
 
-  getParamCard(nameCard: string): any {
-    this.param = nameCard.toLowerCase().trim().split(/\s+/).join('-');
+  onSubmitTarget() {
+
   }
 }

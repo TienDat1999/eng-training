@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class InputWordTypeComponent implements OnInit {
 
   constructor() { }
-
+  word = 'prepare';
+  val: any;
   ngOnInit(): void {
+    this.val = this.word.split('');
   }
 
 }

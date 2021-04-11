@@ -1,15 +1,4 @@
 .choose-word{
-
-  .ping-word{
-    width: 75px;
-    height: 100px;
-    background: wheat;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 12px;
-    font-weight: 500;
-    margin-left: 33px;
-  }
   .label-suggest{
     margin-top: 20px;
     margin-left: 40px;
@@ -19,6 +8,7 @@
   .word-name{
     font-size: 36px;
     text-align: center;
+    margin-left: 146px;
   }
   .word-type{
     text-align: center;
@@ -35,6 +25,10 @@
     grid-template-columns: auto auto;
     grid-gap: 50px 50px;
     .word-item{
+      &:hover{
+        background-color: #FFC312;
+        color: white;
+      }
       // width: 20px;
       text-align: center;
       font-size: 30px;

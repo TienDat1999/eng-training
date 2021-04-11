@@ -9,9 +9,15 @@ import {delay} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CourseCardService {
-  constructor() {
-  }
+  receiveParamId$: Observable<any>;
+  private getIdParam = new Subject<any>();
 
+  constructor() {
+    this.receiveParamId$ = this.getIdParam.asObservable();
+  }
+  sendParmaId(param): void{
+    this.getIdParam.next(param);
+  }
   getCourseCard(): Observable<SimpleCardModel[]> {
     if (environment.production) {
       console.log('get CourseCard');
@@ -24,11 +30,12 @@ export class CourseCardService {
     }
     return of(topicMock(40)).pipe(delay(500));
   }
-  getWord(): Observable<WordModel[]>{
+  getWord(id): Observable<WordModel[]>{
     if (environment.production) {
       console.log('get word');
     }
     return of(wordMock(15)).pipe(delay(500));
   }
+
 
 }
