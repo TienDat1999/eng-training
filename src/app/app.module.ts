@@ -12,8 +12,6 @@ import {AdminComponent} from './modules/admin/components/admin';
 import {LoginComponent} from './modules/auth/components/login';
 import {HeaderComponent} from './theme/layouts/header/header.component';
 
-;
-
 @NgModule({
   imports: [
     UserModule,
@@ -34,7 +32,7 @@ import {HeaderComponent} from './theme/layouts/header/header.component';
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 
     // provider used to create fake backend
-    fakeBackendProvider
+    fakeBackendProvider,
   ],
   bootstrap: [AppComponent]
 })
