@@ -19,7 +19,8 @@ export class PracticeWordComponent implements OnInit {
   paramIdl: number;
   indexWord = 0;
   wordPractice: WordModel[] = [];
-  wordSimple: TypeWordModel = new TypeWordModel();
+  // tslint:disable-next-line:max-line-length
+  wordSimple: { imgUrl: string; optionType: number[]; wordRandom: string[]; optionChoose: number; wordType: number; id: number; word: string; soundUrl: string; example: string; status: boolean } = new TypeWordModel();
   isTrue = false;
   increaseArrWord = [];
   arrWordCompleted = [];
@@ -39,7 +40,7 @@ export class PracticeWordComponent implements OnInit {
         word: value[0].word,
         imgUrl: value[0].imgUrl,
         soundUrl: value[0].soundUrl,
-        typeWord: value[0].typeWord,
+        wordType: value[0].wordType,
         example: value[0].example,
         wordRandom: ['assign', 'take', 'book', 'table', 'desk'],
         optionType: [0, 1, 2],
@@ -57,7 +58,7 @@ export class PracticeWordComponent implements OnInit {
         word: this.wordPractice[this.indexWord].word,
         imgUrl: this.wordPractice[this.indexWord].imgUrl,
         soundUrl: this.wordPractice[this.indexWord].soundUrl,
-        typeWord: this.wordPractice[this.indexWord].typeWord,
+        wordType: this.wordPractice[this.indexWord].wordType,
         example: this.wordPractice[this.indexWord].example,
         wordRandom: ['assign', 'take', 'book', 'table', 'desk'],
         optionType: [0, 1, 2],

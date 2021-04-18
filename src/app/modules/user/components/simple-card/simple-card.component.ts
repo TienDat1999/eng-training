@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {SimpleCardModel} from '@app/modules/user/models/userModel';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-simple-card',
   templateUrl: './simple-card.component.html',

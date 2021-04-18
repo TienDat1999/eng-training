@@ -7,7 +7,9 @@ import {TopicComponent} from './components/topic/topic.component';
 import {WordLessonComponent} from './components/word-lesson/word-lesson.component';
 import {CommonModule} from '@angular/common';
 import {PracticeWordComponent} from './components/practice-word/practice-word.component';
-import {ProgressBarModule} from 'angular-progress-bar'
+import {ProgressBarModule} from 'angular-progress-bar';
+import { HttpClientModule } from '@angular/common/http';
+
 import {
   ChooseWordTypeComponent,
   DefaultWordTypeComponent,
@@ -34,6 +36,7 @@ const COMPONENTS = [
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [
+    HttpClientModule,
     ProgressBarModule,
     FormsModule,
     CommonModule,

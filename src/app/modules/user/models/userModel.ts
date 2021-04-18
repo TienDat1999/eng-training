@@ -23,10 +23,12 @@ export class TopicModel {
 export class WordModel {
   id: number;
   word: string;
-  imgUrl: any;
+  imgUrl: string;
   soundUrl: string;
-  typeWord: any;
-  example: any;
+  wordType: number;
+  example: string;
+  diffWord: number;
+  ipa: string;
   public constructor(init?: Partial<WordModel>) {
     Object.assign(this, init);
   }

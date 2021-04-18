@@ -32,7 +32,7 @@ export function wordMock(count: number): WordModel[] {
       word: faker.hacker.noun(),
       imgUrl: faker.image.image(),
       soundUrl: '',
-      typeWord: 0,
+      wordType: 0,
     });
   });
 }
