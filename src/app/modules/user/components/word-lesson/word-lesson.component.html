@@ -14,7 +14,7 @@
           <progress-bar [progress]="80" [color]="'#488aff'">
           </progress-bar>
         </div>
-        <button (click)="learnWord($event)" type="button" class="btn btn-success btn-learn">Học những từ này</button>
+        <button (click)="learnWord($event)" type="button" class="btn btn-success btn-learn">Learn these words</button>
       </div>
       <button (click)="goToNextPage()" class="btn btn-warning btn-next">
         <div>
@@ -26,11 +26,19 @@
     <div class="mt-5">
       <div *ngFor="let word of words">
         <div class="word-line">
-          <div class="word-line-left">{{word.word}}</div>
-          <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry</div>
+          <div class="word-line-item word-item">
+            {{word.wordEng}}
+          </div>
+          <div class="word-line-item ipa-item">
+            {{word.ipa}}
+          </div>
+          <div class="word-line-item ex-item">
+            {{word.define}}
+          </div>
         </div>
       </div>
     </div>
+    <div class="space-height"></div>
   </div>
 
 </div>

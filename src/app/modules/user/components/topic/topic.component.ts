@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
 import {TopicModel} from '@app/modules/user/models/userModel';
 import { ActivatedRoute, Router } from '@angular/router';
+import {TopicService} from '@app/modules/user/services/topics/topic.service';
 
 @Component({
   selector: 'app-topic',
@@ -11,13 +12,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TopicComponent implements OnInit, OnDestroy  {
   param: string;
   private sub: any;
-  constructor(private topicService: CourseCardService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private topicService: CourseCardService, private router: Router,
+              private route: ActivatedRoute, private topicsS: TopicService) { }
   topics: TopicModel[] = [];
   ngOnInit(): void {
     this.topicService.getTopic().subscribe(value => {
       this.topics = value;
       console.log(value);
     });
+    this.topicsS.getTopics().subscribe(value => console.log(value));
+
   }
   ngOnDestroy(): void {
     // this.sub.unsubscribe();
@@ -28,6 +32,5 @@ export class TopicComponent implements OnInit, OnDestroy  {
       this.param =  params['name'];
       this.router.navigate(['/learn', this.param, id]);
     });
-
   }
 }

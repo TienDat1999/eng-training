@@ -16,29 +16,29 @@ export class TopicModel {
   topicName: string;
   imgUrl: string;
   status: boolean;
+  topicNo: number;
   public constructor(init?: Partial<TopicModel>) {
     Object.assign(this, init);
   }
 }
 export class WordModel {
   id: number;
-  word: string;
+  wordEng: string;
   imgUrl: string;
-  soundUrl: string;
+  audioUrl: string;
   wordType: number;
   example: string;
   diffWord: number;
   ipa: string;
+  define: string;
   public constructor(init?: Partial<WordModel>) {
     Object.assign(this, init);
   }
 }
-export class TypeWordModel extends WordModel{
-  wordRandom: any;
-  optionType: any;
+export class OptionWordModel extends WordModel{
+  repeatNumber: number;
   status: any;
-  optionChoose: any;
-  public constructor(init?: Partial<TypeWordModel>) {
+  public constructor(init?: Partial<OptionWordModel>) {
     super();
     Object.assign(this, init);
   }

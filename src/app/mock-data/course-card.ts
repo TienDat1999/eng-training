@@ -22,6 +22,7 @@ export function topicMock(count: number): TopicModel[] {
       topicName: faker.name.jobTitle(),
       imgUrl: faker.image.business(),
       status: false,
+      topicNo: index + 1,
     });
   });
 }
@@ -29,9 +30,9 @@ export function wordMock(count: number): WordModel[] {
   return Array(count).fill({}).map((item: WordModel, index) => {
     return new WordModel({
       id: index + 1,
-      word: faker.hacker.noun(),
+      wordEng: faker.hacker.noun(),
       imgUrl: faker.image.image(),
-      soundUrl: '',
+      audioUrl: '',
       wordType: 0,
     });
   });

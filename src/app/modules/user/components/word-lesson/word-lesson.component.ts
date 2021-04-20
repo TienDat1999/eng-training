@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
 import {WordModel} from '@app/modules/user/models/userModel';
 import {ActivatedRoute, Router} from '@angular/router';
+import {WordTopicsService} from '@app/modules/user/services/wordTopics/word-topics.service';
 
 @Component({
   selector: 'app-word-lesson',
@@ -14,7 +15,8 @@ export class WordLessonComponent implements OnInit {
   levelParam: number;
   parentParam: string;
   nextLevelParam: any;
-  constructor(private wordService: CourseCardService, private route: ActivatedRoute,  private router: Router) { }
+
+  constructor(private wordService: CourseCardService, private route: ActivatedRoute,  private router: Router, private wordsS: WordTopicsService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe( paramMap => {
@@ -23,15 +25,16 @@ export class WordLessonComponent implements OnInit {
       this.nextLevelParam =  +paramMap.get('id') + 1;
     });
     this.showWord();
+
   }
 
   goToNextPage(): void {
-    this.router.navigate(['/learn', this.parentParam, this.nextLevelParam])
+    this.router.navigate(['/learn', this.parentParam, this.nextLevelParam]);
     this.showWord();
   }
 
   backToPrevious(): void {
-    if(this.levelParam > 1){
+    if (this.levelParam > 1){
       this.levelParam = this.levelParam - 1;
       this.router.navigate(['/learn', this.parentParam, this.levelParam]);
       this.showWord();
@@ -44,7 +47,7 @@ export class WordLessonComponent implements OnInit {
     this.wordService.sendParmaId(this.levelParam);
   }
   showWord(): void{
-    this.wordService.getWord(this.levelParam).subscribe(value => {
+    this.wordsS.getWordList(this.levelParam).subscribe(value => {
       this.words = value;
     });
   }

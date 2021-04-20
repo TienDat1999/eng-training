@@ -6,25 +6,25 @@
              aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       <div class="item-score">
-        0
+        {{currentScore}}
       </div>
     </div>
     <div>
       <button class="btn btn-check" *ngIf="option !== options.defaultOption" (click)="moveToDefaultOption()">
         <i class="fad fa-question-circle"></i>
-        <div>Tôi không biết</div>
+        <div>I don't know</div>
       </button>
       <button class="btn btn-check btn-check-next" *ngIf="option === options.defaultOption"
               (click)="handleNextOption()">
         <i class="fas fa-arrow-alt-circle-right"></i>
-        <div class="text-click-next">Tiếp</div>
+        <div class="text-click-next">Next</div>
       </button>
 
     </div>
-    <div [ngSwitch]="option">
+    <div *ngIf="!!wordItem" [ngSwitch]="option">
       <app-input-word-type *ngSwitchCase="options.inputOption"></app-input-word-type>
-      <app-default-word-type *ngSwitchCase="options.defaultOption"></app-default-word-type>
-      <app-choose-word-type *ngSwitchCase="options.ChooseOption"></app-choose-word-type>
+      <app-default-1word-type *ngSwitchCase="options.defaultOption"></app-default-1word-type>
+      <app-choose-word-type *ngSwitchCase="options.ChooseOption" [word]="wordItem" [randomList]="wordRandom"></app-choose-word-type>
     </div>
 
 

@@ -1,12 +1,12 @@
 <div class="choose-word">
-  <div class="label-suggest">Chọn từ chính xác</div>
+  <div class="label-suggest">Choose the correct word</div>
   <div class="word-name">
-    tu tieng viet
+    {{word?.example}}
   </div>
   <div class="word-type">N</div>
   <div>
     <div class="wrap-word">
-      <div class="word-item" *ngFor="let word of chooseWord">
+      <div class="word-item" *ngFor="let word of randomWordList">
         {{word}}
       </div>
     </div>
