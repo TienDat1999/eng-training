@@ -1,44 +1,57 @@
-.wrap-practice-word{
-  .btn-check{
+.wrap-practice-word {
+  .btn-check {
     float: right;
     margin-top: 50px;
     background-color: #ffd55599;
     font-weight: 500;
-    i{
+
+    i {
       font-size: 39px;
       color: #ce9aff;
     }
   }
-  .btn-check-next{
-    .text-click-next{
+
+  .btn-check-next {
+    padding: 10px 25px;
+    .text-click-next {
       line-height: 36px;
       font-size: 17PX;
     }
-    .next-click{
+    i{
+      padding-top: 6px;
+    }
+    .next-click {
       font-size: 40px;
       margin-left: 10px;
       color: black;
+
     }
   }
 }
-.wrap-progress{
+
+.wrap-progress {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  .progress{
-    margin-left: 40px;
-    width: 75%;
-    height: 32px;
-    border-radius: 20px;
+
+  &::ng-deep .progress-score {
+    width: 100%;
+
+    .progress-outer {
+      .progress-inner {
+        background-color: #2068b5 !important;
+        min-height: 35px !important;
+        line-height: 35px !important;
+      }
+    }
   }
-  .item-score{
+
+  .item-score {
     background: antiquewhite;
     border-radius: 10px;
     text-align: center;
     font-size: 25px;
     line-height: 47px;
-    width: 50px;
-    height:50px;
-    margin-right: 30px;
+    padding: 4px 28px;
   }
 }

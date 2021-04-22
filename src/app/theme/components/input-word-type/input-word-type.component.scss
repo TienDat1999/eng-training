@@ -1,14 +1,18 @@
 .wrap-input-word {
   padding-left: 37px;
-  input {
-    margin-top: 50px;
-    width: 81%;
-    font-size: 16px;
-    padding: 12px;
-    border-radius: 10px;
-    outline: none;
-    border: 2px solid #fddb57;
+  .wrap-input{
+    display: flex;
+    input {
+      width: 50%;
+      font-size: 16px;
+      padding: 12px;
+      border-radius: 10px;
+      outline: none;
+      border: 2px solid #fddb57;
+      margin: 50px auto 50px auto;
+    }
   }
+
 
   .des-word {
     margin-top: 20px;
@@ -16,24 +20,34 @@
     color: #4476ab9e;
   }
 
-  h2 {
-    margin-left: 35%;
+  .word-type {
+    padding: 15px;
+    text-align: center;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin: auto;
+    width: 10%;
+    border: 3px solid #d6d2d2;
+    font-weight: 500;
+  }
+  .wrap-word{
+    width: 100%;
+    display: flex;
+    &-mean{
+      font-weight: 500;
+      font-size: 18px;
+      margin: 20px auto 20px auto;
+    }
   }
 
-  .word-type {
-    width: 49px;
-    margin-top: 33px;
-    padding: 15px;
-    margin-left: 38%;
-    text-align: center;
-    background: beige;
-    border-radius: 10px;
-  }
   .btn-next{
     float: right;
     margin-top: 25px;
     padding: 16px;
     i{margin-left: 8px}
+  }
+  .wrap-alphabet{
+    justify-content: space-between;
   }
   .alphabet {
     line-height: 55px;
@@ -46,6 +60,7 @@
     border-radius: 12px;
     text-align: center;
     cursor: pointer;
+
     -webkit-box-shadow: 0px -1px 4px 3px rgba(41,86,114,0.41);
     box-shadow: 0px -1px 4px 3px rgba(41,86,114,0.41);
     &:hover{

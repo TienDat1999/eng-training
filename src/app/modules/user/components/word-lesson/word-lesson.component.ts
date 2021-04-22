@@ -16,6 +16,7 @@ export class WordLessonComponent implements OnInit {
   parentParam: string;
   nextLevelParam: any;
 
+  // tslint:disable-next-line:max-line-length
   constructor(private wordService: CourseCardService, private route: ActivatedRoute,  private router: Router, private wordsS: WordTopicsService) { }
 
   ngOnInit(): void {

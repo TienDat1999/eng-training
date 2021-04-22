@@ -1,9 +1,15 @@
 <div class="wrap-input-word">
-  <div class="des-word">Gõ Vào Chính Xác</div>
-  <h2>Chuẩn bị</h2>
-  <div class="word-type">V</div>
-  <input>
-  <div class="d-flex mt-4">
-    <div class="alphabet mt-3" *ngFor="let alphabet of val">{{alphabet}}</div>
+  <div class="des-word">Type Exactly</div>
+  <div class="wrap-word">
+    <div class="wrap-word-mean">{{wordMean | titlecase}}</div>
+  </div>
+  <div  class="word-type">{{wordInput.wordType | uppercase}}</div>
+  <div>
+    <div class="wrap-input">
+      <input (keyup.enter)="enterToCheck()" type="text" #reset (ngModelChange)="correctWord($event, reset)" [(ngModel)] = 'valWord' />
+    </div>
+    <div class="d-flex wrap-alphabet mt-4">
+      <div class="alphabet mt-3" (click)="chooseWord($event, reset)" *ngFor="let alphabet of wordChosen">{{alphabet}}</div>
+    </div>
   </div>
 </div>

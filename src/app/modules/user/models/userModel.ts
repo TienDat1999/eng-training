@@ -31,15 +31,9 @@ export class WordModel {
   diffWord: number;
   ipa: string;
   define: string;
-  public constructor(init?: Partial<WordModel>) {
-    Object.assign(this, init);
-  }
-}
-export class OptionWordModel extends WordModel{
-  repeatNumber: number;
   status: any;
-  public constructor(init?: Partial<OptionWordModel>) {
-    super();
+  repeatNumber: number;
+  public constructor(init?: Partial<WordModel>) {
     Object.assign(this, init);
   }
 }

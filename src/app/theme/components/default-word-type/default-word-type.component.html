@@ -1,15 +1,19 @@
 <div class="wrap-default-type">
   <div class="des-word mt-3">ENGLISH</div>
   <div class="d-flex mt-2">
-    <h2 style="line-height: 49px">Display case</h2>
-    <div class="type-word">N</div>
-    <button class="btn-sound" onclick="document.getElementById('sound1').play();"><i class="fas fa-volume-up"></i></button>
+    <h4 style="line-height: 49px">{{wordDefault.wordEng}}</h4>
+    <div class="type-word">{{wordDefault.wordType}}</div>
+    <button class="btn-sound" id="idBtn-audio" onclick="document.getElementById('sound1').play();"><i class="fas fa-volume-up"></i></button>
   </div>
-  <div class="des-word mt-3">VIETNAMESE</div>
-  <h4 class="mt-2">Tủ trưng bày</h4>
+  <div class="des-word mt-3">Mean</div>
+  <h4 class="mt-2">{{wordShow}}</h4>
   <div class="des-word mt-3">ATTRIBUTES</div>
-  <div class="api-transcription mt-2">/DIS'PLEI/ /KEIS/</div>
+  <div class="api-transcription mt-2">{{wordDefault.ipa}}</div>
   <div class="des-word mt-3">EXAMPLE</div>
   <div>HE’S PUTTING UP A DISPLAY CASE.</div>
-  <audio id="sound1" src="https://static1.squarespace.com/static/56a3a52dcbced637feaca73c/t/56cf7aef555986536eb57d08/1456437999164/diamond-ring.mp3/original/diamond-ring.mp3" preload="auto"></audio>
+  <audio id="sound1"
+         autoplay
+         src="{{wordDefault.audioUrl}}"
+         preload="auto">
+  </audio>
 </div>

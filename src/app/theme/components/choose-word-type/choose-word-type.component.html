@@ -1,12 +1,12 @@
 <div class="choose-word">
   <div class="label-suggest">Choose the correct word</div>
   <div class="word-name">
-    {{word?.example}}
+    {{wordShow}}
   </div>
-  <div class="word-type">N</div>
+  <div class="word-type">{{word.wordType}}</div>
   <div>
     <div class="wrap-word">
-      <div class="word-item" *ngFor="let word of randomWordList">
+      <div class="word-item" (click)="chooseWord($event)" *ngFor="let word of randomWordList">
         {{word}}
       </div>
     </div>
