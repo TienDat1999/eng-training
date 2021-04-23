@@ -1,18 +1,27 @@
 <div class="wrap-practice-word">
+  <div class="space-top"></div>
   <div class="container">
     <div class="wrap-progress">
-      <progress-bar class="progress-score" [progress]="80" [color]="'#488aff'">
+      <progress-bar class="progress-score" [progress]="progressNumber" [color]="'#488aff'">
       </progress-bar>
       <div class="item-score">
         {{currentScore}}
       </div>
     </div>
     <div>
-      <button class="btn btn-check" *ngIf="option !== options.defaultOption" (click)="moveToDefaultOption()">
-        <i class="fad fa-question-circle"></i>
-        <div>I don't know</div>
-      </button>
-      <button class="btn btn-check btn-check-next" *ngIf="option === options.defaultOption"
+      <ng-container *ngIf="!isCorrectChosen">
+        <button class="btn btn-check" *ngIf="option !== options.defaultOption" (click)="moveToDefaultOption()">
+          <div>
+            <i class="fad fa-question-circle"></i>
+            <div>I don't know</div>
+          </div>
+        </button>
+      </ng-container>
+      <div  class="correct-icon" *ngIf="isCorrectChosen">
+        <i class="far fa-check-circle"></i>
+        <div>Correct</div>
+      </div>
+      <button  class="btn btn-check btn-check-next" *ngIf="option === options.defaultOption"
               (click)="handleNextOption()">
         <i class="fas fa-arrow-alt-circle-right"></i>
         <div class="text-click-next">Next</div>
@@ -32,6 +41,7 @@
       </app-default-word-type>
       <app-choose-word-type (callBackChooseNextWordHandel)="callBackNextWordHandel()"
                             *ngSwitchCase="options.ChooseOption"
+                            [(isCorrect)] ="isCorrectChosen"
                             [(optionChooseWord)] = "option" [word]="wordItem"
                             [wordList]="wordRandom">
       </app-choose-word-type>

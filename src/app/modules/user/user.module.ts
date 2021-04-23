@@ -49,11 +49,11 @@ const COMPONENTS = [
         component: HomeComponent,
       },
       {
-        path: 'learn',
+        path: 'course',
         component: CourseCardComponent,
       },
       {
-        path: 'learn/:name',
+        path: 'course/:name',
         component: TopicComponent,
       },
       {
@@ -61,7 +61,7 @@ const COMPONENTS = [
         component: PracticeWordComponent,
       },
       {
-        path: 'learn/:name/:id',
+        path: 'course/:name/:id',
         component: WordLessonComponent,
       },
       {

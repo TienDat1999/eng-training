@@ -28,15 +28,24 @@ export class InputWordTypeComponent implements OnInit, OnChanges {
     const listString = this.valWord;
     this.valWord = listString.concat(value);
     if (this.valWord.toUpperCase() === this.wordInput.wordEng.toUpperCase()){
-      this.callBackInputNextWordHandel.emit(null);
-      reset.value = '';
+      document.getElementsByTagName('input')[0].classList.add('input-correct');
+      this.playAudio();
+      setTimeout(() => {
+        this.callBackInputNextWordHandel.emit(null);
+        reset.value = '';
+      }, 1000);
     }
   }
 
   correctWord(event, reset): void {
     if (event.toUpperCase() === this.wordInput.wordEng.toUpperCase()){
-      this.callBackInputNextWordHandel.emit(null);
-      reset.value = '';
+      document.getElementsByTagName('input')[0].classList.add('input-correct');
+      this.playAudio();
+      setTimeout(() => {
+        this.callBackInputNextWordHandel.emit(null);
+        reset.value = '';
+        document.getElementsByTagName('input')[0].classList.remove('input-correct');
+      }, 1000);
     }
   }
   inItWordChosen(): void{
@@ -49,5 +58,11 @@ export class InputWordTypeComponent implements OnInit, OnChanges {
 
   enterToCheck(): void {
     this.optionInputWordChange.emit(0);
+  }
+  playAudio(): void{
+    const audio = new Audio();
+    audio.src = this.wordInput.audioUrl;
+    audio.load();
+    audio.play();
   }
 }

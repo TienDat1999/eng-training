@@ -16,12 +16,7 @@ export class TopicComponent implements OnInit, OnDestroy  {
               private route: ActivatedRoute, private topicsS: TopicService) { }
   topics: TopicModel[] = [];
   ngOnInit(): void {
-    this.topicService.getTopic().subscribe(value => {
-      this.topics = value;
-      console.log(value);
-    });
-    this.topicsS.getTopics().subscribe(value => console.log(value));
-
+    this.topicsS.getTopics().subscribe(value =>  this.topics = value);
   }
   ngOnDestroy(): void {
     // this.sub.unsubscribe();
@@ -30,7 +25,7 @@ export class TopicComponent implements OnInit, OnDestroy  {
   goToListWord(id): void {
     this.sub = this.route.params.subscribe(params => {
       this.param =  params['name'];
-      this.router.navigate(['/learn', this.param, id]);
+      this.router.navigate(['/course', this.param, id]);
     });
   }
 }

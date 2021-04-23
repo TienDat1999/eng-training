@@ -5,21 +5,25 @@
     font-size: 24px;
     color: rgb(73, 74, 76);
   }
-  .word-name{
-    margin-top: 50px;
-    font-size: 20px;
-    text-align: center;
-    margin-left: 146px;
+  .wrap-word-name{
+    display: flex;
+    width: 100%;
+    &-item{
+      margin: 10px auto 10px auto;
+      font-size: 20px;
+    }
   }
-  .word-type{
-    text-align: center;
-    font-weight: 500;
-    width: 41px;
-    height: 41px;
-    line-height: 41px;
-    border-radius: 10px;
-    background-color: #41d4c9;
-    margin: 20px auto 40px auto;
+  .wrap-word-type{
+    display: flex;
+    margin: 20px 0px;
+   &-item{
+     margin: 0 auto;
+     padding: 15px;
+     text-align: center;
+     font-weight: 500;
+     border-radius: 10px;
+     background-color: #79adaf;
+   }
   }
   .wrap-word{
     display: grid;
@@ -33,7 +37,6 @@
       // width: 20px;
       text-align: center;
       font-size: 30px;
-      // background-color: #caffee;
       box-shadow: 0px 3px 8px 2px rgb(0 0 0 / 24%);
       border-radius: 10px;
       height: 100px;
@@ -43,5 +46,7 @@
       margin-left: 62px;
     }
   }
-
+  .is-correct{
+    background-color: #48b360;
+  }
 }

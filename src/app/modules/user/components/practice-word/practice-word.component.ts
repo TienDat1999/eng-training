@@ -17,7 +17,10 @@ export class PracticeWordComponent implements OnInit {
   };
   pointTarget = 1000;
   currentScore = 0;
-  option = 2;
+  repeatNumber = 1;
+  progressNumber = 0;
+  scoreTurn: number;
+  option = 1;
   paramIdl: number;
   indexWord = 0;
   wordPractice: WordModel[] = [];
@@ -25,7 +28,7 @@ export class PracticeWordComponent implements OnInit {
   wordRandom = [];
   // tslint:disable-next-line:max-line-length
   numberIncrease = 0;
-  repeatNumber = 2;
+  isCorrectChosen: boolean;
   constructor(private courserService: CourseCardService,  private wordsS: WordTopicsService) {
   }
 
@@ -42,6 +45,7 @@ export class PracticeWordComponent implements OnInit {
     const param = !!id ? id : this.paramIdl;
     this.wordsS.getWordList(param).subscribe(value =>  {
      // console.log('get', value)
+      this.scoreTurn = 100 / (value.length * this.repeatNumber);
       this.wordPractice = value.map(item => {
         const newItem = new WordModel(
           {
@@ -95,7 +99,10 @@ export class PracticeWordComponent implements OnInit {
   }
 
   callBackNextWordHandel(): void {
-    // this.option = _.sample([1, 2]);
+    if (this.progressNumber <= 100){
+      this.progressNumber += this.scoreTurn;
+    }
+    this.option = _.sample([1, 2]);
     this.indexWord = _.random(this.wordPractice.length - 1);
     if (this.wordPractice[this.indexWord].repeatNumber < this.repeatNumber){
       const newRepeatNumber = this.wordPractice[this.indexWord].repeatNumber + 1;
@@ -127,5 +134,9 @@ export class PracticeWordComponent implements OnInit {
       repeatNumber: newRepeatNumber,
   });
   //  console.log(this.wordItem);
+  }
+
+  handleIsCorrect(event): void {
+    this.isCorrectChosen = event;
   }
 }

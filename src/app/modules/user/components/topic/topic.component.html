@@ -1,13 +1,20 @@
 <div class="wrap-topic">
-  <div class="row space-topic">
-    <div (click)="goToListWord(topic.topicNo)" class="col-3 " *ngFor="let topic of topics">
+  <div class="wrap-topic-container">
+    <div (click)="goToListWord(topic.id)" *ngFor="let topic of topics; let indexNumber = index">
       <div class="wrap-topic-item ">
-        <div class="wrap-topic-item-number">{{topic.id}}</div>
-        <div class="wrap-topic-item-icon" ><i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:60px"></i></div>
-<!--        <div>-->
-<!--          <i class="far fa-check-circle" aria-hidden="true" style="font-size:50px"></i>-->
-<!--        </div>-->
-        <div class="wrap-topic-item-name">{{topic.topicName}}</div>
+        <div class="inner-topic-container">
+          <div class="wrap-number-topic">
+            <div class="wrap-number-topic-item">{{indexNumber}}</div>
+          </div>
+            <div class="topic-item-icon" >
+              <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:60px"></i>
+            </div>
+
+          <!--        <div>-->
+          <!--          <i class="far fa-check-circle" aria-hidden="true" style="font-size:50px"></i>-->
+          <!--        </div>-->
+          <div class="topic-item-name">{{topic.topicName}}</div>
+        </div>
       </div>
     </div>
   </div>

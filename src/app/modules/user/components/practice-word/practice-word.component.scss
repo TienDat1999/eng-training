@@ -1,13 +1,16 @@
 .wrap-practice-word {
+  .space-top{
+    padding-top: 40px;
+  }
   .btn-check {
     float: right;
     margin-top: 50px;
-    background-color: #ffd55599;
+    background-color: #79adaf;
     font-weight: 500;
 
     i {
       font-size: 39px;
-      color: #ce9aff;
+      color: #ffffff;
     }
   }
 
@@ -28,7 +31,21 @@
     }
   }
 }
-
+.correct-icon{
+  float: right;
+  padding: 17px;
+  margin-top: 50px;
+  align-items: center;
+  border-radius: 13px;
+  font-weight: 500;
+  background-color: #48b360 !important;
+  color: #212529 !important;
+  i {
+    margin-left: 7px;
+    font-size: 39px;
+    color: #000000;
+  }
+}
 .wrap-progress {
   align-items: center;
   display: flex;
@@ -39,7 +56,8 @@
 
     .progress-outer {
       .progress-inner {
-        background-color: #2068b5 !important;
+        min-width: 5%;
+        background-color: #0e879a !important;
         min-height: 35px !important;
         line-height: 35px !important;
       }
@@ -52,6 +70,6 @@
     text-align: center;
     font-size: 25px;
     line-height: 47px;
-    padding: 4px 28px;
+    padding: 0px 28px;
   }
 }

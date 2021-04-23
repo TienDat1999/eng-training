@@ -10,10 +10,14 @@ export class DefaultWordTypeComponent implements OnInit {
   @ViewChild('audioOption') audioPlayerRef: ElementRef;
   @Input() wordDefault: WordModel;
   wordShow: string;
+  wordExample: string;
   constructor() { }
 
   ngOnInit(): void {
     this.wordShow = this.wordDefault.define.replace(':', '');
+    if (!!this.wordDefault.example){
+      this.wordExample = this.wordDefault.example.replace(/<\/?strong[^>]*>/g, '').replace(/<\/?span[^>]*>/g, '');
+    }
     console.log(this.wordDefault);
   //  this.playAudio();
   }

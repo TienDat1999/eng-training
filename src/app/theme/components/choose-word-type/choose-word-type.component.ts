@@ -16,6 +16,20 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
   @Output() callBackChooseNextWordHandel = new  EventEmitter<any>();
   randomWordList = [];
   wordShow: string;
+
+  isCorrectChosen: boolean;
+  @Output() isCorrectChange = new EventEmitter<boolean>();
+  @Input()
+  get isCorrect(): boolean{
+      return this.isCorrectChosen;
+  }
+  set isCorrect(val){
+    this.isCorrectChosen = val;
+    this.isCorrectChange.emit(val);
+  }
+
+
+
   constructor() { }
 
   ngOnInit(): void {
@@ -36,16 +50,37 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
     }
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.word.firstChange){
-     this.initWordRandom();
+    if (changes.word){
+      if (!changes.word.firstChange){
+        this.initWordRandom();
+      }
     }
   }
   chooseWord(event): void {
    const value = event.target.firstChild.data;
+   // console.log()
    if (value.trim() === this.word.wordEng.trim()){
-     this.callBackChooseNextWordHandel.emit(null);
+    this.isCorrect = true ;
+    document.getElementById(event.target.id).classList.add('is-correct');
+    setTimeout(() => {
+       this.callBackChooseNextWordHandel.emit(null);
+       this.isCorrect = null ;
+       document.getElementById(event.target.id).classList.remove('is-correct');
+     } , 1000);
+    this.playAudio();
    }else{
+     this.isCorrect = false ;
+     setTimeout(() => {
+       this.optionChooseWordChange.emit(0);
+       this.isCorrect = null ;
+     } , 1000);
      this.optionChooseWordChange.emit(0);
    }
+  }
+  playAudio(): void{
+    const audio = new Audio();
+    audio.src = this.word.audioUrl;
+    audio.load();
+    audio.play();
   }
 }

@@ -3,7 +3,9 @@
   <div class="wrap-word">
     <div class="wrap-word-mean">{{wordMean | titlecase}}</div>
   </div>
-  <div  class="word-type">{{wordInput.wordType | uppercase}}</div>
+  <div class="wrap-word-type">
+    <div class="wrap-word-type-item">{{wordInput.wordType}}</div>
+  </div>
   <div>
     <div class="wrap-input">
       <input (keyup.enter)="enterToCheck()" type="text" #reset (ngModelChange)="correctWord($event, reset)" [(ngModel)] = 'valWord' />

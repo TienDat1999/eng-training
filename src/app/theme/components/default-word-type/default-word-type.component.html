@@ -1,16 +1,26 @@
 <div class="wrap-default-type">
   <div class="des-word mt-3">ENGLISH</div>
   <div class="d-flex mt-2">
-    <h4 style="line-height: 49px">{{wordDefault.wordEng}}</h4>
-    <div class="type-word">{{wordDefault.wordType}}</div>
-    <button class="btn-sound" id="idBtn-audio" onclick="document.getElementById('sound1').play();"><i class="fas fa-volume-up"></i></button>
+    <div class="word-name">{{wordDefault.wordEng}}</div>
+    <button class="btn-sound" id="idBtn-audio" onclick="document.getElementById('sound1').play();"><i
+      class="fas fa-volume-up"></i></button>
   </div>
-  <div class="des-word mt-3">Mean</div>
-  <h4 class="mt-2">{{wordShow}}</h4>
-  <div class="des-word mt-3">ATTRIBUTES</div>
-  <div class="api-transcription mt-2">{{wordDefault.ipa}}</div>
-  <div class="des-word mt-3">EXAMPLE</div>
-  <div>HE’S PUTTING UP A DISPLAY CASE.</div>
+  <div class="mt-5">
+    <div class="des-word mt-3">MEAN</div>
+    <div class="mt-2 word-define">{{wordShow}}</div>
+  </div>
+  <div  class="mt-5">
+    <div class="des-word mt-3">ATTRIBUTES</div>
+    <div class="wrap-attribute mt-2">
+      <div class="wrap-attribute-item">{{wordDefault.ipa}}</div>
+      <div class="wrap-attribute-item ml-3">{{wordDefault.wordType}}</div>
+    </div>
+  </div>
+  <div class="mt-5">
+    <div class="des-word">EXAMPLE</div>
+    <div>{{wordExample}}</div>
+  </div>
+
   <audio id="sound1"
          autoplay
          src="{{wordDefault.audioUrl}}"

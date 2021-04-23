@@ -10,24 +10,36 @@
   .des-word{
     color: rgb(112, 116, 126);
   }
-  .type-word{
-    margin-left: 38px;
-    line-height: 9px;
-    padding: 23px 23px;
-    background: #ccdcec;
-    border-radius: 11px;
-    font-weight: 600;
-  }
+
   .api-transcription{
 
+  }
+  .word-name{
+    line-height: 49px;
+    font-size: 32px;
+    font-weight: 500;
+  }
+  .word-define{
+    font-weight: 400;
+    font-size: 22px;
+  }
+  .wrap-attribute{
+    display: flex;
+    &-item{
+      line-height: 9px;
+      background: #ccdcec;
+      border-radius: 11px;
+      font-weight: 600;
+      padding: 10px 20px;
+    }
   }
   .btn-sound{
     margin-left: 30px;
     font-size: 26px;
-    padding: 9px 24px;
+    padding: 0px 16px;
     border: none;
     border-radius: 10px;
-    background-color: #79e1e4;
+    background-color: #79adaf;
     &:focus{
       outline: none;
     }

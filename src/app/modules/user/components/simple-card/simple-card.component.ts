@@ -26,7 +26,7 @@ export class SimpleCardComponent implements OnInit {
 
   getParamCard(nameCard: string): void {
     const param = nameCard.toLowerCase().trim().split(/\s+/).join('-');
-    this.router.navigate(['/learn', param]);
+    this.router.navigate(['/course', param]);
   }
 
 }

@@ -30,14 +30,14 @@ export class WordLessonComponent implements OnInit {
   }
 
   goToNextPage(): void {
-    this.router.navigate(['/learn', this.parentParam, this.nextLevelParam]);
+    this.router.navigate(['/course', this.parentParam, this.nextLevelParam]);
     this.showWord();
   }
 
   backToPrevious(): void {
     if (this.levelParam > 1){
       this.levelParam = this.levelParam - 1;
-      this.router.navigate(['/learn', this.parentParam, this.levelParam]);
+      this.router.navigate(['/course', this.parentParam, this.levelParam]);
       this.showWord();
     }
   }
