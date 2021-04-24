@@ -8,7 +8,7 @@
   </div>
   <div>
     <div class="wrap-input">
-      <input (keyup.enter)="enterToCheck()" type="text" #reset (ngModelChange)="correctWord($event, reset)" [(ngModel)] = 'valWord' />
+      <input autofocus (keyup.enter)="enterToCheck($event)" type="text" #reset (ngModelChange)="correctWord($event, reset)" [(ngModel)] = 'valWord' />
     </div>
     <div class="d-flex wrap-alphabet mt-4">
       <div class="alphabet mt-3" (click)="chooseWord($event, reset)" *ngFor="let alphabet of wordChosen">{{alphabet}}</div>

@@ -6,6 +6,12 @@
     .progress-cus {
       width: 100%;
       margin: 0 auto;
+      &::ng-deep .progress-outer {
+        .progress-inner {
+          min-width: 5%;
+          background-color: #79adaf !important;
+        }
+      }
     }
 
     border-radius: 10px;
@@ -17,9 +23,11 @@
   .btn-learn {
     margin-top: 20px;
     margin-left: 16px;
+    background-color: #17304a;
+    border-color: #17304a;
   }
   .btn-warning{
-    background-color: #ffc10896;
+    background-color: #ffc83b99;
     border-color: #ffc10896;
   }
   .title-lesson {
@@ -58,7 +66,7 @@
 
   i {
    font-size: 50px;
-    color: #15aabf;
+    color: #084e98;
   }
 
   span {

@@ -13,10 +13,11 @@ export class SimpleCardModel {
 }
 export class TopicModel {
   id: number;
+  courseId: number;
   topicName: string;
   imgUrl: string;
   status: boolean;
-  topicNo: number;
+  words: WordModel[];
   public constructor(init?: Partial<TopicModel>) {
     Object.assign(this, init);
   }

@@ -4,13 +4,13 @@
       <button *ngIf="levelParam > 1" class="btn  btn-warning btn-next" (click)="backToPrevious()">
         <div>
           <div><i class="fas fa-chevron-circle-left"></i></div>
-          <div  style="font-weight: 500" >Level<br>{{levelParam}}</div>
+          <div  style="font-weight: 500" >Topic<br>{{levelParam}}</div>
         </div>
       </button>
       <div class="progress-cus">
-        <div class="title-level">Level {{levelParam}}</div>
+        <div class="title-level">Topic {{levelParam}}</div>
         <div>
-          <div class="title-lesson">title</div>
+          <div class="title-lesson">{{topicName}}</div>
           <progress-bar [progress]="80" [color]="'#488aff'">
           </progress-bar>
         </div>
@@ -19,7 +19,7 @@
       <button (click)="goToNextPage()" class="btn btn-warning btn-next">
         <div>
           <div><i class="fas fa-chevron-circle-right"></i></div>
-          <div style="font-weight: 500" >Level<br>{{nextLevelParam}}</div>
+          <div style="font-weight: 500" >Topic<br>{{nextLevelParam}}</div>
         </div>
       </button>
     </div>

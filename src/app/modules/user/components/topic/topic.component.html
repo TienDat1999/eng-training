@@ -2,18 +2,18 @@
   <div class="wrap-topic-container">
     <div (click)="goToListWord(topic.id)" *ngFor="let topic of topics; let indexNumber = index">
       <div class="wrap-topic-item ">
-        <div class="inner-topic-container">
+        <div [ngClass]="topic.status?'topic-bg-success':''" class="inner-topic-container">
           <div class="wrap-number-topic">
             <div class="wrap-number-topic-item">{{indexNumber}}</div>
           </div>
-            <div class="topic-item-icon" >
-              <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:60px"></i>
-            </div>
-
-          <!--        <div>-->
-          <!--          <i class="far fa-check-circle" aria-hidden="true" style="font-size:50px"></i>-->
-          <!--        </div>-->
-          <div class="topic-item-name">{{topic.topicName}}</div>
+          <div *ngIf="!topic.status ; else isComplete" class="topic-item-icon">
+            <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:60px"></i>
+          </div>
+          <ng-template #isComplete>
+            <i class="fas fa-flower-daffodil topic-icon-success"></i>
+            <i class="fas fa-check topic-icon-check" aria-hidden="true" style="font-size:30px"></i>
+          </ng-template>
+          <div [ngClass]="topic.status?'topic-item-name-success':''" class="topic-item-name">{{topic.topicName}}</div>
         </div>
       </div>
     </div>

@@ -27,4 +27,5 @@ export class DefaultWordTypeComponent implements OnInit {
     audio.load();
     audio.play();
   }
+
 }

@@ -1,3 +1,4 @@
+
 .wrap-topic {
   background-color: #fcfcfc;
   .space-topic{
@@ -24,21 +25,43 @@
     .inner-topic-container{
       height: 100%;
       border-radius:10px;
-      background-color: #cacaca;
+      background-color: #e8e8e8;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       .wrap-number-topic{
+        font-weight: 500;
         display: flex;
        &-item{
          margin: 0 auto;
-         padding: 0px 10px;
+         width: 30px;
+         height: 25px;
          background-color: #FFFFFF;
+         border-radius: 0 0 12px 12px;
        }
       }
      .topic-item-icon{
 
       }
-      .topic-item-name{
-
+      .topic-icon-success{
+        font-size: 80px;
+        margin-top: 25px;
+        color: #084e98;
       }
+      .topic-icon-check{
+        color: #0d7324;
+      }
+      .topic-item-name{
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+      .topic-item-name-success{
+        box-shadow: 0px 10px 25px -7px rgb(0 0 0 / 63%);
+        border-radius: 0px 0px 6px 6px;
+      }
+    }
+    .topic-bg-success{
+      background-color: #ffc83b99;
     }
 
   }

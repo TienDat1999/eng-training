@@ -11,6 +11,7 @@
     &-item{
       margin: 10px auto 10px auto;
       font-size: 20px;
+      max-width: 70%;
     }
   }
   .wrap-word-type{
@@ -48,5 +49,8 @@
   }
   .is-correct{
     background-color: #48b360;
+  }
+  .incorrect{
+    background-color: red;
   }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
 import {WordModel} from '@app/modules/user/models/userModel';
 import * as _ from 'lodash';
@@ -29,7 +29,15 @@ export class PracticeWordComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   numberIncrease = 0;
   isCorrectChosen: boolean;
+
   constructor(private courserService: CourseCardService,  private wordsS: WordTopicsService) {
+  }
+  // Listen ENTER
+  @HostListener('document:keydown.enter', ['$event'])
+  onKeydownHandler(event: KeyboardEvent): void {
+    if (this.option === 0){
+      this.handleNextOption();
+    }
   }
 
   ngOnInit(): void {
@@ -44,9 +52,9 @@ export class PracticeWordComponent implements OnInit {
     const id = localStorage.getItem('paramTopicID');
     const param = !!id ? id : this.paramIdl;
     this.wordsS.getWordList(param).subscribe(value =>  {
-     // console.log('get', value)
-      this.scoreTurn = 100 / (value.length * this.repeatNumber);
-      this.wordPractice = value.map(item => {
+   //   console.log('get', value)
+      this.scoreTurn = 100 / (value.words.length * this.repeatNumber);
+      this.wordPractice = value.words.map(item => {
         const newItem = new WordModel(
           {
           id: item.id,
@@ -61,18 +69,18 @@ export class PracticeWordComponent implements OnInit {
         });
         return newItem;
       });
-      value.forEach(item => this.wordRandom.push(item.wordEng));
+      value.words.forEach(item => this.wordRandom.push(item.wordEng));
       this.wordItem = new WordModel( {
-        wordEng: value[0].wordEng,
-        imgUrl: value[0].imgUrl,
-        audioUrl: value[0].audioUrl,
-        wordType: value[0].wordType,
-        example: value[0].example,
-        ipa: value[0].ipa,
-        define: value[0].define,
+        wordEng: value.words[0].wordEng,
+        imgUrl: value.words[0].imgUrl,
+        audioUrl: value.words[0].audioUrl,
+        wordType: value.words[0].wordType,
+        example: value.words[0].example,
+        ipa: value.words[0].ipa,
+        define: value.words[0].define,
         repeatNumber: 0,
       });
-      console.log('value', this.wordItem);
+      // console.log('value', this.wordItem);
     });
   }
 

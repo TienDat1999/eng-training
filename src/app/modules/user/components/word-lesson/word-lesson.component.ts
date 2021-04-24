@@ -15,7 +15,7 @@ export class WordLessonComponent implements OnInit {
   levelParam: number;
   parentParam: string;
   nextLevelParam: any;
-
+  topicName: string;
   // tslint:disable-next-line:max-line-length
   constructor(private wordService: CourseCardService, private route: ActivatedRoute,  private router: Router, private wordsS: WordTopicsService) { }
 
@@ -49,7 +49,8 @@ export class WordLessonComponent implements OnInit {
   }
   showWord(): void{
     this.wordsS.getWordList(this.levelParam).subscribe(value => {
-      this.words = value;
+      this.topicName = value.topicName;
+      this.words = value.words;
     });
   }
 }

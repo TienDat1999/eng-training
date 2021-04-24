@@ -22,7 +22,6 @@ export function topicMock(count: number): TopicModel[] {
       topicName: faker.name.jobTitle(),
       imgUrl: faker.image.business(),
       status: false,
-      topicNo: index + 1,
     });
   });
 }

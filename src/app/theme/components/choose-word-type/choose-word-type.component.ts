@@ -58,7 +58,6 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
   }
   chooseWord(event): void {
    const value = event.target.firstChild.data;
-   // console.log()
    if (value.trim() === this.word.wordEng.trim()){
     this.isCorrect = true ;
     document.getElementById(event.target.id).classList.add('is-correct');
@@ -69,6 +68,7 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
      } , 1000);
     this.playAudio();
    }else{
+     document.getElementById(event.target.id).classList.add('is-correct');
      this.isCorrect = false ;
      setTimeout(() => {
        this.optionChooseWordChange.emit(0);

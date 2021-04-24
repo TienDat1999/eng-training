@@ -56,8 +56,14 @@ export class InputWordTypeComponent implements OnInit, OnChanges {
     this.wordMean = this.wordInput.define.replace(':', '');
   }
 
-  enterToCheck(): void {
-    this.optionInputWordChange.emit(0);
+  enterToCheck(event): void {
+    if (event.target.value.toUpperCase() !== this.wordInput.wordEng.toUpperCase()){
+      document.getElementsByTagName('input')[0].classList.add('input-incorrect');
+      setTimeout(() => {
+        this.optionInputWordChange.emit(0);
+        document.getElementsByTagName('input')[0].classList.remove('input-incorrect');
+      }, 500);
+    }
   }
   playAudio(): void{
     const audio = new Audio();
