@@ -13,4 +13,7 @@ export class WordTopicsService {
   getWordList(id): Observable<any>{
     return this.http.get(`${environment.apiUrl}/api/learn/${id}`);
   }
+  // saveWord(word): Observable<any>{
+  //
+  // }
 }

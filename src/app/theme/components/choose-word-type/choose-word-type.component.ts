@@ -68,13 +68,13 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
      } , 1000);
     this.playAudio();
    }else{
-     document.getElementById(event.target.id).classList.add('is-correct');
-     this.isCorrect = false ;
-     setTimeout(() => {
-       this.optionChooseWordChange.emit(0);
-       this.isCorrect = null ;
-     } , 1000);
-     this.optionChooseWordChange.emit(0);
+       document.getElementById(event.target.id).classList.add('incorrect');
+       this.isCorrect = false ;
+       setTimeout(() => {
+         this.optionChooseWordChange.emit(0);
+         document.getElementById(event.target.id).classList.remove('incorrect');
+         this.isCorrect = null ;
+       } , 1000);
    }
   }
   playAudio(): void{

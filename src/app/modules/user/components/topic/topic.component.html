@@ -1,4 +1,24 @@
 <div class="wrap-topic">
+  <div class="space-height"></div>
+  <div class="card-header-topic">
+    <div class="progress-topics-score"><span class="score-achieved">47 </span>/<span style="font-weight: bold"> 673</span>
+      <span> words learned</span>
+    </div>
+    <div class="my-4">
+      <progress-bar class="progress-topics" [progress]="80">
+      </progress-bar>
+    </div>
+    <div class="d-flex">
+      <div class="review-word">
+        Review<span>(652)</span>
+        <i class="ml-2 fas fa-wand-magic"></i>
+      </div>
+        <div class=" ml-4 review-word">
+          Speech review
+          <i class="far fa-clock"></i>
+        </div>
+    </div>
+  </div>
   <div class="wrap-topic-container">
     <div (click)="goToListWord(topic.id)" *ngFor="let topic of topics; let indexNumber = index">
       <div class="wrap-topic-item ">

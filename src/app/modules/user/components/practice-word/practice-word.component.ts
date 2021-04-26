@@ -107,6 +107,7 @@ export class PracticeWordComponent implements OnInit {
   }
 
   callBackNextWordHandel(): void {
+    this.currentScore += 100;
     if (this.progressNumber <= 100){
       this.progressNumber += this.scoreTurn;
     }
@@ -117,8 +118,13 @@ export class PracticeWordComponent implements OnInit {
       this.initWord(this.indexWord, newRepeatNumber);
       this.wordPractice[this.indexWord].repeatNumber = newRepeatNumber;
     }else{
+      this.wordPractice[this.indexWord].status = 1;
+      // Call API to save status of word
+
+      // console.log('done one word', this.wordPractice[this.indexWord] );
       const newWords = this.wordPractice.filter(item => item.repeatNumber < this.repeatNumber);
       if (newWords.length === 0){
+        // TODO
         console.log('complete');
       }else{
         const index = _.random(newWords.length - 1);

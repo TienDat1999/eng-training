@@ -1,8 +1,7 @@
-
 .wrap-topic {
   background-color: #fcfcfc;
-  .space-topic{
-    margin: 40px auto 100px auto;
+  .space-height{
+    padding-top: 50px;
   }
   &-container{
     display: grid;
@@ -46,7 +45,8 @@
       .topic-icon-success{
         font-size: 80px;
         margin-top: 25px;
-        color: #084e98;
+        color:#173554;
+        font-weight: 500;
       }
       .topic-icon-check{
         color: #0d7324;
@@ -54,6 +54,7 @@
       .topic-item-name{
         margin-bottom: 10px;
         font-weight: 500;
+        color: #173554;
       }
       .topic-item-name-success{
         box-shadow: 0px 10px 25px -7px rgb(0 0 0 / 63%);
@@ -61,9 +62,42 @@
       }
     }
     .topic-bg-success{
-      background-color: #ffc83b99;
+      background-color:#ffc83bf5;
     }
 
   }
-
+::ng-deep .card-header-topic{
+  max-width: 924px;
+  margin: 0 auto;
+  box-shadow: 0px 1px 11px -4px rgb(0 0 0 / 43%);
+  border-radius: 20px;
+  padding: 20px;
+  .progress-topics {
+    width: 100%;
+    .progress-outer{
+      height: 22px;
+      margin: 0 !important;
+    }
+    .progress-inner{
+      font-size: 12px;
+      height: 16px;
+      margin-top: -2px;
+      margin-left: -2px;
+      background-color: #79adaf !important;
+    }
+    &-score{
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+  }
+  .review-word{
+    padding: 5px 25px;
+    background-color: #ffc107;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #173554;
+  }
+}
 }

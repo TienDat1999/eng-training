@@ -1,7 +1,9 @@
 <div class="container">
   <div class="space"></div>
-  <div  *ngFor="let card of courseCard">
-    <app-simple-card  [card] = "card">
-    </app-simple-card>
+  <div class="container-simple-card">
+    <div  *ngFor="let card of courseCard">
+      <app-simple-card  [card] = "card">
+      </app-simple-card>
+    </div>
   </div>
 </div>
