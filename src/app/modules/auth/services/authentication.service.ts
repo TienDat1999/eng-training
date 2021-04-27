@@ -16,7 +16,7 @@ export class AuthenticationService {
         private router: Router,
         private http: HttpClient
     ) {
-        this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+        this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('userEnglishTraining')));
         this.user = this.userSubject.asObservable();
     }
 
@@ -24,11 +24,11 @@ export class AuthenticationService {
         return this.userSubject.value;
     }
 
-    login(username: string, password: string): any {
-        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
+    login(email: string, password: string): any {
+        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { email, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
+                localStorage.setItem('userEnglishTraining', JSON.stringify(user));
                 this.userSubject.next(user);
                 return user;
             }));
@@ -36,7 +36,7 @@ export class AuthenticationService {
 
     logout(): any {
         // remove user from local storage to log user out
-        localStorage.removeItem('user');
+        localStorage.removeItem('userEnglishTraining');
         this.userSubject.next(null);
         this.router.navigate(['/login']);
     }

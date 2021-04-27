@@ -86,14 +86,17 @@
       background-color: #79adaf !important;
     }
     &-score{
-      font-size: 17px;
+      font-size: 14px;
       font-weight: 500;
-      margin-bottom: 5px;
     }
+  }
+  .course-name{
+    margin-bottom: 15px;
+    font-weight: 500;
   }
   .review-word{
     padding: 5px 25px;
-    background-color: #ffc107;
+    background-color: #06af6d78;
     border-radius: 15px;
     font-weight: bold;
     cursor: pointer;

@@ -5,6 +5,15 @@
   .logo-brand {
     border-radius: 50% !important;
   }
+  .wrap-header-user{
+    height: 35px;
+    align-items: center;
+    background: white;
+    border-radius: 50% 50%;
+    width: 35px;
+    text-align: center;
+    line-height: 36px;
+  }
 }
 .navbar{
   position: fixed;
