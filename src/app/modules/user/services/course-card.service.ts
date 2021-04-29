@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import {courseCardMock, topicMock, wordMock} from '../../../mock-data/course-card';
+import {topicMock, wordMock} from '../../../mock-data/course-card';
 import {Observable, of, Subject} from 'rxjs';
-import {SimpleCardModel, TopicModel, WordModel} from '../models/userModel';
+import {CourseModel, TopicModel, WordModel} from '../models/userModel';
 import {environment} from '../../../../environments/environment';
 import {delay} from 'rxjs/operators';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HeaderServicesService} from '@app/modules/user/services/header-services.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,30 +13,30 @@ import {delay} from 'rxjs/operators';
 export class CourseCardService {
   receiveParamId$: Observable<any>;
   private getIdParam = new Subject<any>();
-
-  constructor() {
+  token: string;
+  header: any;
+  constructor(private  http: HttpClient, private tokensService: HeaderServicesService) {
     this.receiveParamId$ = this.getIdParam.asObservable();
+    this.token =  localStorage.getItem('userEnglishTraining');
+    this.header = {
+      headers: new HttpHeaders()
+        .set('Authorization',  `Bearer ${this.token}`)
+    };
   }
   sendParmaId(param): void{
     this.getIdParam.next(param);
   }
-  getCourseCard(): Observable<SimpleCardModel[]> {
+  getCourseCard(): Observable<any> {
     if (environment.production) {
       console.log('get CourseCard');
     }
-    return of(courseCardMock(3)).pipe(delay(500));
+    return  this.http.get(`${environment.apiUrl}/api/Course/`, this.tokensService.token());
   }
   getTopic(): Observable<TopicModel[]> {
     if (environment.production) {
       console.log('get topic');
     }
     return of(topicMock(40)).pipe(delay(500));
-  }
-  getWord(id): Observable<WordModel[]>{
-    if (environment.production) {
-      console.log('get word');
-    }
-    return of(wordMock(15)).pipe(delay(500));
   }
 
 

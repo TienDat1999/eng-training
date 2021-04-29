@@ -1,15 +1,18 @@
 
-export class SimpleCardModel {
-  id: number;
-  continuityDay: number;
-  totalWords: number;
+export class CourseModel {
+  course: Course;
+  totalWord: number;
   wordLearned: number;
-  nameCard: string;
-  imgUrl: string;
-  timeTarget: number;
-  public constructor(init?: Partial<SimpleCardModel>) {
+  public constructor(init?: Partial<CourseModel>) {
     Object.assign(this, init);
   }
+}
+export  class Course {
+  id: number;
+  author: string;
+  dateCreated: Date;
+  courseName: string;
+  imgUrl: string;
 }
 export class TopicModel {
   id: number;

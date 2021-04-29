@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="card-body">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" (keyup.enter)="onSubmit()">
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -37,7 +37,7 @@
               Login
             </button>
           </div>
-          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+          <div *ngIf="error" class="alert alert-danger mt-5 mb-0">{{error}}</div>
         </form>
       </div>
       <div class="card-footer">

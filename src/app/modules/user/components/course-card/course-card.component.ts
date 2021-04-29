@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
-import {SimpleCardModel} from '@app/modules/user/models/userModel';
-import {Router} from '@angular/router';
+import {CourseModel} from '@app/modules/user/models/userModel';
 
 @Component({
   selector: 'app-course-card',
@@ -9,8 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./course-card.component.scss']
 })
 export class CourseCardComponent implements OnInit {
-  courseCard: SimpleCardModel[] = [];
-  value= '';
+  courseCard: CourseModel[] = [];
   constructor(private courseService: CourseCardService) {
   }
 
@@ -18,9 +16,5 @@ export class CourseCardComponent implements OnInit {
     this.courseService.getCourseCard().subscribe(value => {
       this.courseCard = value;
     });
-  }
-
-  onSubmitTarget() {
-
   }
 }

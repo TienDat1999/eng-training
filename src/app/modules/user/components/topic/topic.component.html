@@ -1,17 +1,17 @@
 <div class="wrap-topic">
   <div class="space-height"></div>
   <div class="card-header-topic">
-    <div class="course-name">Name Of Course</div>
-    <div class="progress-topics-score"><span class="score-achieved">47 </span>/<span style="font-weight: bold"> 673</span>
+    <div class="course-name">{{course?.course.courseName}}</div>
+    <div class="progress-topics-score"><span class="score-achieved">{{course.wordLearned}}</span>/<span style="font-weight: bold"> {{course.totalWord}}</span>
       <span> words learned</span>
     </div>
     <div class="mb-4">
-      <progress-bar class="progress-topics" [progress]="80">
+      <progress-bar class="progress-topics" [progress]="progress">
       </progress-bar>
     </div>
     <div class="d-flex">
       <div class="review-word">
-        Review<span>(652)</span>
+        Review<span>({{course.wordLearned}})</span>
         <i class="ml-2 fas fa-wand-magic"></i>
       </div>
         <div class=" ml-4 review-word">

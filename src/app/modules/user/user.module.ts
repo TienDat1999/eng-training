@@ -8,7 +8,7 @@ import {WordLessonComponent} from './components/word-lesson/word-lesson.componen
 import {CommonModule} from '@angular/common';
 import {PracticeWordComponent} from './components/practice-word/practice-word.component';
 import {ProgressBarModule} from 'angular-progress-bar';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
 import {
   ChooseWordTypeComponent,
@@ -24,6 +24,7 @@ import {
   RankingComponent,
   StatusMembersComponent
 } from '@app/modules/user/components';
+import {UserComponent} from './components/user/user.component';
 
 const COMPONENTS = [
   HomeComponent, CourseCardComponent, SimpleCardComponent,
@@ -34,7 +35,7 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS],
+  declarations: [...COMPONENTS, UserComponent],
   imports: [
     HttpClientModule,
     ProgressBarModule,
@@ -42,32 +43,38 @@ const COMPONENTS = [
     CommonModule,
     RouterModule.forChild([
       {
-        path: '', redirectTo: 'home', pathMatch: 'full'
+        path: '',
+        component: UserComponent,
+        children: [
+          {
+            path: '', redirectTo: 'course', pathMatch: 'full',
+          },
+          {
+            path: 'home',
+            component: HomeComponent,
+          },
+          {
+            path: 'course',
+            component: CourseCardComponent,
+          },
+          {
+            path: 'course/:name',
+            component: TopicComponent,
+          },
+          {
+            path: 'detail',
+            component: PracticeWordComponent,
+          },
+          {
+            path: 'course/:name/:id',
+            component: WordLessonComponent,
+          },
+          {
+            path: 'class',
+            component: ClassComponent,
+          }
+        ]
       },
-      {
-        path: 'home',
-        component: HomeComponent,
-      },
-      {
-        path: 'course',
-        component: CourseCardComponent,
-      },
-      {
-        path: 'course/:name',
-        component: TopicComponent,
-      },
-      {
-        path: 'detail',
-        component: PracticeWordComponent,
-      },
-      {
-        path: 'course/:name/:id',
-        component: WordLessonComponent,
-      },
-      {
-        path: 'class',
-        component: ClassComponent,
-      }
     ]),
   ],
 })

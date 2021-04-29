@@ -14,26 +14,6 @@ export class HomeComponent implements OnInit {
 
   wordList: any = [];
   FillList: any = [];
-  words = [
-    {
-      define: null,
-      example: null,
-      id: 1,
-      ipa: '/wɜːk/',
-      soundUrl: null,
-      wordEng: 'Abide',
-      wordType: null,
-    }, {
-      define: null,
-      example: 'someting',
-      id: 2,
-      ipa: '/kæmˈpeɪn/',
-      soundUrl: 'https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcam/ukcambo019.mp3',
-      wordEng: 'Agreement',
-      wordType: 'noun',
-    }
-  ];
-
 
   ngOnInit(): void {
   }

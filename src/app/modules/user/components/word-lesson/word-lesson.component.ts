@@ -53,4 +53,11 @@ export class WordLessonComponent implements OnInit {
       this.words = value.words;
     });
   }
+
+  onPlayAudio(audioUrl: string): void {
+    const audio = new Audio();
+    audio.src = audioUrl;
+    audio.load();
+    audio.play();
+  }
 }

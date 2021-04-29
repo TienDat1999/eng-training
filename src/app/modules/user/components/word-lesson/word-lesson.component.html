@@ -11,7 +11,7 @@
         <div class="title-level">Topic {{levelParam}}</div>
         <div>
           <div class="title-lesson">{{topicName}}</div>
-          <progress-bar [progress]="80" [color]="'#488aff'">
+          <progress-bar [progress]="0" [color]="'#488aff'">
           </progress-bar>
         </div>
         <button (click)="learnWord($event)" type="button" class="btn btn-success btn-learn">Learn these words</button>
@@ -24,7 +24,7 @@
       </button>
     </div>
     <div class="mt-5">
-      <div *ngFor="let word of words">
+      <div style="cursor: pointer" (click)="onPlayAudio(word.audioUrl)" *ngFor="let word of words">
         <div class="word-line">
           <div class="word-line-item word-item">
             {{word.wordEng}}

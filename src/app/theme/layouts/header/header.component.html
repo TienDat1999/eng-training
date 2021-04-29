@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+<nav class="navbar navbar-expand navbar-dark bg-dark" >
   <div class="navbar-header">
     <a class="navbar-brand" href="#">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDih4z_2tLAirk5KrfarHOeeQ4KKtF7QrzxgAKwfOuasIaKyF48LxmNLAEXpR8dZRP3Jg&usqp=CAU" width="30" height="30" class="logo-brand d-inline-block align-top" alt="">
@@ -6,8 +6,8 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <a class="nav-item active nav-link" routerLink="/home">Home</a>
-        <a class="nav-item nav-link" routerLink="/course">My courses</a>
+        <a class="nav-item  nav-link" routerLink="/home">Home</a>
+        <a class="nav-item active nav-link" routerLink="/course">My courses</a>
         <a class="nav-item nav-link" routerLink="/class">Class</a>
         <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
 
@@ -21,9 +21,9 @@
     color: white" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       </span>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a *ngIf="user" class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a *ngIf="!user" class="nav-item nav-link" (click)="logout()">Login</a>
       </div>
     </div>
   </div>
-
 </nav>

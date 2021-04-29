@@ -1,32 +1,34 @@
-<div class="learn-word " (click)="getParamCard(card.nameCard)">
+<div class="learn-word " (click)="getParamCard(card.course.courseName)">
   <div class="user-info">
     <div class="avatar">
       <img
         class="user-avatar"
-        src="{{card.imgUrl}}"
+        src="{{card.course.imgUrl}}"
         alt="avt">
     </div>
   </div>
   <div class="learn-target">
     <div class="wrap-title-header">
-      <span class="title">{{card.nameCard}}</span>
+      <span class="title">{{card.course.courseName}}</span>
       <span   type="button" data-toggle="modal" data-toggle="modal"
              data-target="#exampleModalCenter" (click)="showPopupTarget(); $event.stopPropagation();" class="target frequency setting-target">Set a daily goal
         <i class="ml-2 fal fa-trophy-alt"></i>
       </span>
     </div>
-    <div class="progress-course-score"><span class="score-achieved">47 </span>/<span style="font-weight: bold"> 673</span>
+    <div class="progress-course-score"><span class="score-achieved">{{card.wordLearned}} </span>/<span style="font-weight: bold"> {{card.totalWord}}</span>
       <span> words learned</span></div>
     <div>
-        <progress-bar class="progress-course" [progress]="80">
+        <progress-bar class="progress-course" [progress]="progress">
         </progress-bar>
     </div>
-    <div style="margin-top: 24px; margin-left: -18px">
-      <i class="fab icon-course-learn fa-leanpub"></i>
-      <span class="btn-learn-new-word">
+    <div class="wrap-card-bottom">
+      <div>
+        <i class="fab icon-course-learn fa-leanpub"></i>
+        <span class="btn-learn-new-word">
            LEARN NEW WORDS
       </span>
-      <span>Created by: <span>English Training</span></span>
+      </div>
+      <span class="auth-created" >Created by: <span style="font-weight: 500">{{card.course.author}}</span></span>
     </div>
   </div>
 </div>

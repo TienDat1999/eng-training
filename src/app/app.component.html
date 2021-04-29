@@ -1,11 +1,12 @@
-﻿<!-- header -->
-<app-header></app-header>
-<div style="padding-top: 55px;" class="space-top">
-</div>
+﻿
 <!-- main app container -->
-<div>
-    <router-outlet></router-outlet>
-</div>
-<div style="padding-bottom: 55px;" class="space-top">
-</div>
+<!--<div>-->
+<!--    <router-outlet></router-outlet>-->
+<!--</div>-->
+
+<app-default-layout *ngIf="isLogged; else unAuthorized"></app-default-layout>
+<ng-template #unAuthorized>
+  <router-outlet></router-outlet>
+</ng-template>
+<!--em check o day, neu chua login thy sund layout khac, neu login roi thy dung layout nay-->
 <!-- footer -->

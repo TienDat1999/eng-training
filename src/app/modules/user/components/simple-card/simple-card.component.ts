@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SimpleCardModel} from '@app/modules/user/models/userModel';
+import {CourseModel} from '@app/modules/user/models/userModel';
 import {Router} from '@angular/router';
+
 
 
 @Component({
@@ -9,11 +10,14 @@ import {Router} from '@angular/router';
   styleUrls: ['./simple-card.component.scss']
 })
 export class SimpleCardComponent implements OnInit {
-  cards: 21;
+  progress: number;
   isShowModal = false;
-  @Input() card: SimpleCardModel;
+  @Input() card: CourseModel;
 
   constructor(private router: Router) {
+    setTimeout(() => {
+      this.progress = Number(this.card?.wordLearned)  / Number(this.card?.totalWord ) * 100;
+    }, 100);
   }
 
   ngOnInit(): void {
@@ -22,11 +26,13 @@ export class SimpleCardComponent implements OnInit {
   showPopupTarget(): void {
     this.isShowModal = true;
     console.log(this.isShowModal);
+
   }
 
   getParamCard(nameCard: string): void {
     const param = nameCard.toLowerCase().trim().split(/\s+/).join('-');
     this.router.navigate(['/course', param]);
+    localStorage.setItem('courseEng', JSON.stringify(this.card));
   }
 
 }

@@ -27,10 +27,13 @@ export class AuthenticationService {
     login(email: string, password: string): any {
         return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { email, password })
             .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
+              if (user.result){
                 localStorage.setItem('userEnglishTraining', JSON.stringify(user));
                 this.userSubject.next(user);
                 return user;
+              }
+              return  user;
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
             }));
     }
 

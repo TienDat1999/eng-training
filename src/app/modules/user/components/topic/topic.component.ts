@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
-import {TopicModel} from '@app/modules/user/models/userModel';
+import {CourseModel, TopicModel} from '@app/modules/user/models/userModel';
 import { ActivatedRoute, Router } from '@angular/router';
 import {TopicService} from '@app/modules/user/services/topics/topic.service';
 
@@ -10,13 +10,17 @@ import {TopicService} from '@app/modules/user/services/topics/topic.service';
   styleUrls: ['./topic.component.scss']
 })
 export class TopicComponent implements OnInit, OnDestroy  {
+  course: CourseModel;
   param: string;
+  progress: number;
   private sub: any;
   constructor(private topicService: CourseCardService, private router: Router,
               private route: ActivatedRoute, private topicsS: TopicService) { }
   topics: TopicModel[] = [];
   ngOnInit(): void {
-    this.topicsS.getTopics().subscribe(value =>  this.topics = value);
+     this.course = JSON.parse(localStorage.getItem('courseEng'));
+     this.topicsS.getTopics(this.course.course.id).subscribe(value =>  this.topics = value);
+     this.progress = Number(this.course?.wordLearned)  / Number(this.course?.totalWord ) * 100;
   }
   ngOnDestroy(): void {
     // this.sub.unsubscribe();

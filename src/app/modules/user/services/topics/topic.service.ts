@@ -8,7 +8,10 @@ import {environment} from '@environments/environment';
 })
 export class TopicService {
   constructor(private  http: HttpClient ) { }
-  getTopics(): Observable<any>{
-    return this.http.get(`${environment.apiUrl}/learn`);
+  getTopics(id): Observable<any>{
+    if (environment.production){
+      console.log('get topic');
+    }
+    return this.http.get(`${environment.apiUrl}/course/${id}/topic`);
   }
 }
