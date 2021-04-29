@@ -41,3 +41,11 @@ export class WordModel {
     Object.assign(this, init);
   }
 }
+export class WordLearnedModel{
+  WordId: number;
+  UserCourseId: number;
+  TopicId: number;
+  public constructor(init?: Partial<WordLearnedModel>) {
+    Object.assign(this, init);
+  }
+}

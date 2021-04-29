@@ -1,8 +1,9 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
-import {WordModel} from '@app/modules/user/models/userModel';
+import {WordLearnedModel, WordModel} from '@app/modules/user/models/userModel';
 import * as _ from 'lodash';
 import {WordTopicsService} from '@app/modules/user/services/wordTopics/word-topics.service';
+import {logger} from "codelyzer/util/logger";
 
 @Component({
   selector: 'app-practice-word',
@@ -29,7 +30,7 @@ export class PracticeWordComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   numberIncrease = 0;
   isCorrectChosen: boolean;
-
+  completeWord: WordLearnedModel [] = [];
   constructor(private courserService: CourseCardService,  private wordsS: WordTopicsService) {
   }
   // Listen ENTER
@@ -80,23 +81,8 @@ export class PracticeWordComponent implements OnInit {
         define: value.words[0].define,
         repeatNumber: 0,
       });
-      // console.log('value', this.wordItem);
     });
   }
-
-
-  //  unique(arr): any {
-  //   const newArr = [];
-  //    // tslint:disable-next-line:prefer-for-of
-  //   for (let i = 0; i < arr.length; i++) {
-  //     if (newArr.indexOf(arr[i]) === -1) {
-  //       newArr.push(arr[i]);
-  //     }
-  //   }
-  //   return newArr;
-  // }
-
-
   handleNextOption(): void {
     this.indexWord += 1;
     this.option = _.sample([1, 2]);
@@ -118,13 +104,21 @@ export class PracticeWordComponent implements OnInit {
       this.initWord(this.indexWord, newRepeatNumber);
       this.wordPractice[this.indexWord].repeatNumber = newRepeatNumber;
     }else{
-      this.wordPractice[this.indexWord].status = 1;
+      // TODO
       // Call API to save status of word
-
+      const course = JSON.parse(localStorage.getItem('courseEng'));
+      const completeWord = new WordLearnedModel({
+        WordId: this.wordPractice[this.indexWord].id,
+        UserCourseId: course.course.id ,
+        TopicId: Number(localStorage.getItem('paramTopicID')),
+      });
+      this.courserService.addSimpleWordCompleted(completeWord).subscribe();
       // console.log('done one word', this.wordPractice[this.indexWord] );
+      console.log('complete word', completeWord)
       const newWords = this.wordPractice.filter(item => item.repeatNumber < this.repeatNumber);
       if (newWords.length === 0){
         // TODO
+        // Complete Course
         console.log('complete');
       }else{
         const index = _.random(newWords.length - 1);

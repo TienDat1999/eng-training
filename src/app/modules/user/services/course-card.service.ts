@@ -38,6 +38,11 @@ export class CourseCardService {
     }
     return of(topicMock(40)).pipe(delay(500));
   }
-
+  addSimpleWordCompleted(simpleWord): Observable<any>{
+    if (environment.production) {
+      console.log('add simple word');
+    }
+    return this.http.put(`${environment.apiUrl}/course/simple-word-learned`, simpleWord, this.tokensService.token());
+  }
 
 }

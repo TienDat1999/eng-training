@@ -50,7 +50,7 @@ export class InputWordTypeComponent implements OnInit, OnChanges {
   }
   inItWordChosen(): void{
     this.wordChosen = this.alphabet.split('')
-      .sort(() => Math.random() - Math.random()).slice(0, 4)
+      .sort(() => Math.random() - Math.random()).slice(0, this.wordInput.wordEng.length > 8 ? 0 : 2 )
       .concat(this.wordInput.wordEng.toUpperCase().split(''))
       .sort(() => Math.random() - Math.random()).slice(0, this.wordInput.wordEng.length + 4);
     this.wordMean = this.wordInput.define.replace(':', '');

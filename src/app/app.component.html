@@ -4,7 +4,7 @@
 <!--    <router-outlet></router-outlet>-->
 <!--</div>-->
 
-<app-default-layout *ngIf="isLogged; else unAuthorized"></app-default-layout>
+<app-default-layout *ngIf="!!isLogged; else unAuthorized"></app-default-layout>
 <ng-template #unAuthorized>
   <router-outlet></router-outlet>
 </ng-template>

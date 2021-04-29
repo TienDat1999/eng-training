@@ -3,7 +3,6 @@ import {CourseModel} from '@app/modules/user/models/userModel';
 import {Router} from '@angular/router';
 
 
-
 @Component({
   selector: 'app-simple-card',
   templateUrl: './simple-card.component.html',
