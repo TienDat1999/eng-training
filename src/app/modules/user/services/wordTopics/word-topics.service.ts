@@ -10,11 +10,11 @@ export class WordTopicsService {
 
   constructor(private  http: HttpClient) { }
 
-  getWordList(id): Observable<any>{
+  getWordList(courseId: number, topicId: number): Observable<any>{
     if (environment.production){
        console.log('get word list');
     }
-    return this.http.get(`${environment.apiUrl}/course/topic/${id}`);
+    return this.http.get(`${environment.apiUrl}/api/WordList?CourseId=${courseId}&TopicId=${topicId}`);
   }
 
 }

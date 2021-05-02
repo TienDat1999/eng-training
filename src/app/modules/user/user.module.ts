@@ -62,7 +62,7 @@ const COMPONENTS = [
             component: TopicComponent,
           },
           {
-            path: 'detail',
+            path: 'practice',
             component: PracticeWordComponent,
           },
           {

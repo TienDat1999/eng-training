@@ -17,7 +17,7 @@ export class PracticeWordComponent implements OnInit {
     inputOption: 2,
   };
   pointTarget = 1000;
-  currentScore = 0;
+ // currentScore = 0;
   repeatNumber = 1;
   progressNumber = 0;
   scoreTurn: number;
@@ -51,8 +51,9 @@ export class PracticeWordComponent implements OnInit {
   }
   initWordItem(): void{
     const id = localStorage.getItem('paramTopicID');
+    const course = JSON.parse(localStorage.getItem('courseEng'));
     const param = !!id ? id : this.paramIdl;
-    this.wordsS.getWordList(param).subscribe(value =>  {
+    this.wordsS.getWordList(course.course.id, Number(param) ).subscribe(value =>  {
    //   console.log('get', value)
       this.scoreTurn = 100 / (value.words.length * this.repeatNumber);
       this.wordPractice = value.words.map(item => {
@@ -93,7 +94,7 @@ export class PracticeWordComponent implements OnInit {
   }
 
   callBackNextWordHandel(): void {
-    this.currentScore += 100;
+   // this.currentScore += 100;
     if (this.progressNumber <= 100){
       this.progressNumber += this.scoreTurn;
     }
@@ -104,7 +105,6 @@ export class PracticeWordComponent implements OnInit {
       this.initWord(this.indexWord, newRepeatNumber);
       this.wordPractice[this.indexWord].repeatNumber = newRepeatNumber;
     }else{
-      // TODO
       // Call API to save status of word
       const course = JSON.parse(localStorage.getItem('courseEng'));
       const completeWord = new WordLearnedModel({
@@ -113,8 +113,6 @@ export class PracticeWordComponent implements OnInit {
         TopicId: Number(localStorage.getItem('paramTopicID')),
       });
       this.courserService.addSimpleWordCompleted(completeWord).subscribe();
-      // console.log('done one word', this.wordPractice[this.indexWord] );
-      console.log('complete word', completeWord)
       const newWords = this.wordPractice.filter(item => item.repeatNumber < this.repeatNumber);
       if (newWords.length === 0){
         // TODO
@@ -141,7 +139,6 @@ export class PracticeWordComponent implements OnInit {
       define: newWordArr ? newWordArr[index].define :  this.wordPractice[index].define,
       repeatNumber: newRepeatNumber,
   });
-  //  console.log(this.wordItem);
   }
 
   handleIsCorrect(event): void {

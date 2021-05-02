@@ -13,15 +13,8 @@ import {HeaderServicesService} from '@app/modules/user/services/header-services.
 export class CourseCardService {
   receiveParamId$: Observable<any>;
   private getIdParam = new Subject<any>();
-  token: string;
-  header: any;
   constructor(private  http: HttpClient, private tokensService: HeaderServicesService) {
     this.receiveParamId$ = this.getIdParam.asObservable();
-    this.token =  localStorage.getItem('userEnglishTraining');
-    this.header = {
-      headers: new HttpHeaders()
-        .set('Authorization',  `Bearer ${this.token}`)
-    };
   }
   sendParmaId(param): void{
     this.getIdParam.next(param);
@@ -31,12 +24,6 @@ export class CourseCardService {
       console.log('get CourseCard');
     }
     return  this.http.get(`${environment.apiUrl}/api/Course/`, this.tokensService.token());
-  }
-  getTopic(): Observable<TopicModel[]> {
-    if (environment.production) {
-      console.log('get topic');
-    }
-    return of(topicMock(40)).pipe(delay(500));
   }
   addSimpleWordCompleted(simpleWord): Observable<any>{
     if (environment.production) {

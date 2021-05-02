@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {CrawWordsService} from '@app/modules/user/services/craw-words.service';
-import {getLocaleFirstDayOfWeek} from '@angular/common';
 
 @Component({
   selector: 'app-home',
