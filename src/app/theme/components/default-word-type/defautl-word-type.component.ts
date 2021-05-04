@@ -18,7 +18,7 @@ export class DefaultWordTypeComponent implements OnInit {
     if (!!this.wordDefault.example){
       this.wordExample = this.wordDefault.example.replace(/<\/?strong[^>]*>/g, '').replace(/<\/?span[^>]*>/g, '');
     }
-    console.log(this.wordDefault);
+   // console.log(this.wordDefault);
   //  this.playAudio();
   }
   playAudio(): void{

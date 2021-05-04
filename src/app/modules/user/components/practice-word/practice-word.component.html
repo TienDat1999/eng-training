@@ -9,7 +9,7 @@
 <!--      </div>-->
     </div>
     <div>
-      <ng-container *ngIf="!isCorrectChosen">
+      <ng-container *ngIf="typeIconClick == iconType.dontKnow ">
         <button class="btn btn-check" *ngIf="option !== options.defaultOption" (click)="moveToDefaultOption()">
           <div>
             <i class="fad fa-question-circle"></i>
@@ -17,9 +17,13 @@
           </div>
         </button>
       </ng-container>
-      <div  class="correct-icon" *ngIf="isCorrectChosen">
+      <div  class="correct-icon" *ngIf="typeIconClick == iconType.correct">
         <i class="far fa-check-circle"></i>
         <div>Correct</div>
+      </div>
+      <div class="incorrect-icon" *ngIf="typeIconClick == iconType.inCorrect">
+        <i class="far fa-times-circle"></i>
+        <div>Incorrect</div>
       </div>
       <button  class="btn btn-check btn-check-next" *ngIf="option === options.defaultOption"
               (click)="handleNextOption()">
@@ -41,7 +45,7 @@
       </app-default-word-type>
       <app-choose-word-type (callBackChooseNextWordHandel)="callBackNextWordHandel()"
                             *ngSwitchCase="options.ChooseOption"
-                            [(isCorrect)] ="isCorrectChosen"
+                            [(isCorrect)] ="typeIconClick"
                             [(optionChooseWord)] = "option" [word]="wordItem"
                             [wordList]="wordRandom">
       </app-choose-word-type>
@@ -50,3 +54,22 @@
 
   </div>
 </div>
+<!-- The Modal -->
+<div *ngIf="isShowModal" class="modal-cus">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Completed topic</h2>
+      <span (click)="backToTopic()" class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="d-flex" style="height: 100%">
+        <i class="fas fa-check-circle icon-complete-topic"></i>
+      </div>
+    </div>
+    <div class="modal-footer">
+     <button (click)="continueLean()" class="btn-continue-learn btn">Continue <i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>
+>

@@ -3,3 +3,8 @@ export enum PracticeType{
   choose,
   input,
 }
+export  enum IconType{
+  dontKnow,
+  inCorrect,
+  correct,
+}

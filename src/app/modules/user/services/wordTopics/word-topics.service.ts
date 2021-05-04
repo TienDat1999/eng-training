@@ -14,7 +14,7 @@ export class WordTopicsService {
     if (environment.production){
        console.log('get word list');
     }
-    return this.http.get(`${environment.apiUrl}/api/WordList?CourseId=${courseId}&TopicId=${topicId}`);
+    return this.http.get(`${environment.apiUrl}/api/Word?CourseId=${courseId}&TopicId=${topicId}`);
   }
 
 }

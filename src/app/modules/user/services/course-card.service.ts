@@ -29,6 +29,7 @@ export class CourseCardService {
     if (environment.production) {
       console.log('add simple word');
     }
+    console.log('add word learned ', simpleWord);
     return this.http.put(`${environment.apiUrl}/course/simple-word-learned`, simpleWord, this.tokensService.token());
   }
 

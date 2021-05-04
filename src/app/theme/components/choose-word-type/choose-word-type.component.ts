@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {WordModel} from '@app/modules/user/models/userModel';
-
+import {IconType} from '@app/share/enum';
 
 
 @Component({
@@ -17,10 +17,10 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
   randomWordList = [];
   wordShow: string;
 
-  isCorrectChosen: boolean;
-  @Output() isCorrectChange = new EventEmitter<boolean>();
+  isCorrectChosen: number;
+  @Output() isCorrectChange = new EventEmitter<number>();
   @Input()
-  get isCorrect(): boolean{
+  get isCorrect(): number{
       return this.isCorrectChosen;
   }
   set isCorrect(val){
@@ -59,21 +59,21 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
   chooseWord(event): void {
    const value = event.target.firstChild.data;
    if (value.trim() === this.word.wordEng.trim()){
-    this.isCorrect = true ;
+    this.isCorrect = IconType.correct ;
     document.getElementById(event.target.id).classList.add('is-correct');
     setTimeout(() => {
        this.callBackChooseNextWordHandel.emit(null);
-       this.isCorrect = null ;
+       this.isCorrect = IconType.dontKnow ;
        document.getElementById(event.target.id).classList.remove('is-correct');
      } , 1000);
     this.playAudio();
    }else{
        document.getElementById(event.target.id).classList.add('incorrect');
-       this.isCorrect = false ;
+       this.isCorrect = IconType.inCorrect ;
        setTimeout(() => {
          this.optionChooseWordChange.emit(0);
          document.getElementById(event.target.id).classList.remove('incorrect');
-         this.isCorrect = null ;
+         this.isCorrect = IconType.dontKnow  ;
        } , 1000);
    }
   }

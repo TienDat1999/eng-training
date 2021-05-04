@@ -24,8 +24,6 @@ export class SimpleCardComponent implements OnInit {
 
   showPopupTarget(): void {
     this.isShowModal = true;
-    console.log(this.isShowModal);
-
   }
 
   getParamCard(nameCard: string): void {

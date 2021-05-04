@@ -3,7 +3,7 @@ import {CourseCardService} from '@app/modules/user/services/course-card.service'
 import {WordModel} from '@app/modules/user/models/userModel';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WordTopicsService} from '@app/modules/user/services/wordTopics/word-topics.service';
-import {delay} from "rxjs/operators";
+
 
 @Component({
   selector: 'app-word-lesson',

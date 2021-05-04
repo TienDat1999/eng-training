@@ -9,10 +9,18 @@ export class CourseModel {
 }
 export  class Course {
   id: number;
-  author: string;
+  authorId: number;
+  authorName: string;
   dateCreated: Date;
   courseName: string;
   imgUrl: string;
+}
+export  class  TopicStatusModel {
+  status: boolean;
+  topic: TopicModel;
+  public constructor(init?: Partial<TopicStatusModel>) {
+    Object.assign(this, init);
+  }
 }
 export class TopicModel {
   id: number;
