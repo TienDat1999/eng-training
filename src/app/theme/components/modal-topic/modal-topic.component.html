@@ -1,0 +1,39 @@
+<!-- The Modal -->
+<div *ngIf="isOpenTopic" class="modal-cus">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add new topic</h2>
+      <span (click)="backToTopic()" class="close">&times;</span>
+    </div>
+    <input type="file" id="input" (change)="excelRead($event)" />
+    <div class="modal-body">
+      <div class="d-flex table-wrapper-scroll-y my-custom-scrollbar" style="height: 100%">
+        <table class="table table-borderless">
+          <thead>
+          <tr>
+            <th scope="col">order</th>
+            <th scope="col">word</th>
+            <th scope="col">type</th>
+            <th scope="col">define</th>
+            <th scope="col">example</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor ="let worditem of wordRecord; let id = index">
+            <th scope="row">{{id+1}}</th>
+            <td>{{worditem.word}}</td>
+            <td>{{worditem.type}}</td>
+            <td>{{worditem.define}}</td>
+            <td>{{worditem.example}}</td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button (click)="continueLean()" class="btn-continue-learn btn">Continue <i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>

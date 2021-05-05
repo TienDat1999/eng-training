@@ -14,7 +14,8 @@ import {
   ChooseWordTypeComponent,
   DefaultWordTypeComponent,
   InputWordTypeComponent,
-  ListenWordTypeComponent
+  ListenWordTypeComponent,
+  ModalTopicComponent
 } from '@app/theme/components';
 import {FormsModule} from '@angular/forms';
 import {
@@ -31,7 +32,7 @@ const COMPONENTS = [
   TopicComponent, WordLessonComponent, PracticeWordComponent,
   ChooseWordTypeComponent, DefaultWordTypeComponent, InputWordTypeComponent,
   ListenWordTypeComponent, ClassComponent, RankingComponent,
-  MemberComponent, ExerciseComponent, StatusMembersComponent,
+  MemberComponent, ExerciseComponent, StatusMembersComponent, ModalTopicComponent
 ];
 
 @NgModule({

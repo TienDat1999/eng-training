@@ -21,6 +21,15 @@
     </div>
   </div>
   <div class="wrap-topic-container">
+    <div class="wrap-topic-item " (click)="openModalTopic()">
+      <div class="inner-topic-container">
+        <div class="wrap-number-topic">
+          <div class="wrap-number-topic-item">0</div>
+        </div>
+        <i style="font-size: 80px" class="fas fa-plus-circle"></i>
+        <div style="font-weight: 600; margin-bottom: 5px">Add new topic</div>
+      </div>
+    </div>
     <div (click)="goToListWord(topic.topic.id)" *ngFor="let topic of topics; let indexNumber = index">
       <div class="wrap-topic-item ">
         <div [ngClass]="topic.status?'topic-bg-success':''" class="inner-topic-container">
@@ -39,4 +48,7 @@
       </div>
     </div>
   </div>
+</div>
+<div>
+  <app-modal-topic [isOpenTopic]="isOpenTopic"></app-modal-topic>
 </div>

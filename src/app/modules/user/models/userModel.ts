@@ -1,10 +1,32 @@
+import {publish} from "rxjs/operators";
 
 export class CourseModel {
   course: Course;
   totalWord: number;
   wordLearned: number;
+  isEdit: boolean;
   public constructor(init?: Partial<CourseModel>) {
     Object.assign(this, init);
+    this.isEdit = false;
+  }
+}
+export  class SimpleCourseModel{
+  id: number;
+  courseName: string;
+  imgUrl: string;
+  public constructor(init?: Partial<SimpleCourseModel>) {
+    Object.assign(this, init);
+  }
+}
+export  class ImageSnippet{
+  pending: boolean;
+  status: string;
+  // src: string;
+  //file: File;
+  // @ts-ignore
+  public constructor(public src: string, public file: File) {
+    this.pending = false;
+    this.status = 'init';
   }
 }
 export  class Course {
@@ -14,6 +36,9 @@ export  class Course {
   dateCreated: Date;
   courseName: string;
   imgUrl: string;
+  public constructor(init?: Partial<Course>) {
+    Object.assign(this, init);
+  }
 }
 export  class  TopicStatusModel {
   status: boolean;

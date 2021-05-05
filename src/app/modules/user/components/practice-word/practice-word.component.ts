@@ -129,7 +129,6 @@ export class PracticeWordComponent implements OnInit {
         this.wordPractice.splice(findIndexId, 1);
       }
     } else {
-      console.log('complete');
       this.isShowModal = true;
     }
 

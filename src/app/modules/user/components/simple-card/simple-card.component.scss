@@ -29,6 +29,21 @@
     left: 22px;
     top: 1px;
   }
+  .btb-edit{
+    position: relative;
+    bottom: -42px;
+    width: 38px;
+    display: flex;
+    background-color: #17a2b8;
+    height: 29px;
+    color: white;
+    left: -14px;
+    border-radius: 0px 11px 0px 6px;
+    .icon-edit{
+      align-self: center;
+      margin: 0 auto;
+    }
+  }
   .wrap-card-bottom{
     margin-top: 24px;
     margin-left: -18px;
@@ -39,6 +54,14 @@
       position: relative;
       bottom: -23px;
     }
+  }
+  .avatar{
+    display: flex;
+    flex-direction: column;
+  }
+  .choose-img{
+    width: 100px;
+    position: absolute;
   }
 }
 
