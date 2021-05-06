@@ -18,7 +18,8 @@
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 50%;
+  min-width: 800px;
+  max-width: 1200px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -61,6 +62,7 @@
 .modal-body {
   padding: 2px 16px;
   height:  600px;
+ // width: 1000px;
   .table-wrapper-scroll-y{
     position: relative;
     height: 200px;
@@ -69,9 +71,11 @@
 }
 
 .modal-footer {
-  padding: 2px 16px;
+  padding: 5px 16px;
   background-color: #117a8b;
   color: white;
+  display: flex;
+  justify-content: space-between;
 }
 .icon-complete-topic{
   font-size: 180px;
@@ -82,4 +86,14 @@
 .btn-continue-learn{
   font-weight: 500;
   margin: 5px 0;
+}
+.wrap-file-choose{
+  padding: 10px 10px;
+}
+.index-order{
+  display: flex;
+}
+.btn-add-cord{
+  margin-top: 5px;
+  margin-left: 29px;
 }

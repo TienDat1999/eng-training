@@ -6,7 +6,10 @@
       <h2>Add new topic</h2>
       <span (click)="backToTopic()" class="close">&times;</span>
     </div>
-    <input type="file" id="input" (change)="excelRead($event)" />
+    <div class="wrap-file-choose">
+      <p>You can import file excel </p>
+      <input type="file" id="input" (change)="excelRead($event)" />
+    </div>
     <div class="modal-body">
       <div class="d-flex table-wrapper-scroll-y my-custom-scrollbar" style="height: 100%">
         <table class="table table-borderless">
@@ -20,20 +23,39 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor ="let worditem of wordRecord; let id = index">
-            <th scope="row">{{id+1}}</th>
-            <td>{{worditem.word}}</td>
-            <td>{{worditem.type}}</td>
-            <td>{{worditem.define}}</td>
-            <td>{{worditem.example}}</td>
+          <tr *ngFor ="let wordItem of wordRecord; let id = index">
+            <th scope="row" class="d-flex">{{id+1}}
+              <button class="btn btn-danger ml-2" (click)="onRemoveCord($event, id)">
+                <i class="fas fa-minus-circle"></i>
+              </button>
+            </th>
+            <td *ngIf="wordItem.word; else wordTempl">{{wordItem.word}}</td>
+            <ng-template  #wordTempl>
+              <td>
+                <input (change)="saveWord($event, id)">
+              </td>
+            </ng-template>
+            <td *ngIf="wordItem.wordType; else typeTempl">{{wordItem.wordType}}</td>
+            <ng-template  #typeTempl>
+              <td><input (change)="saveWordType($event, id)"></td>
+            </ng-template>
+            <td *ngIf="wordItem.define; else  defineTempl">{{wordItem.define}}</td>
+            <ng-template  #defineTempl>
+              <td><input style="width: 100%" (change)="saveDefine($event, id)"></td>
+            </ng-template>
+            <td *ngIf="wordItem.example; else  exampleTempl" >{{wordItem.example}}</td>
+            <ng-template  #exampleTempl>
+              <td><input style="width: 100%" (change)="saveExample($event, id)"></td>
+            </ng-template>
           </tr>
-
+          <button (click)="onHandelAddWord()" class="btn btn-primary btn-add-cord"><i class="fas fa-plus-circle"></i></button>
           </tbody>
         </table>
       </div>
     </div>
     <div class="modal-footer">
-      <button (click)="continueLean()" class="btn-continue-learn btn">Continue <i class="fas fa-chevron-right"></i></button>
+      <button class="btn btn-warning" (click)="onHandelFillWord()">Auto fill</button>
+      <button (click)="onHandelSaveTopic()" class="btn">Continue <i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </div>
