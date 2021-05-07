@@ -15,14 +15,16 @@ export class CrawWordsService {
   }
   fillWord(word: string): Observable<any> {
    return  this.http.get(`https://dictionary-api-five.vercel.app/api/v1/entries/en/${word}`).pipe(map(item => {
-      return new CrawWordModel({
-        word: item[0].word,
-        soundUrl: item[0].phonetics[0].audio,
-        wordType: item[0].type,
-        example: item[0].meanings[0].definitions[0].examples[0].replace(/<\/?strong[^>]*>/g, '').replace(/<\/?span[^>]*>/g, ''),
-        ipa:  item[0].phonetics[0].text,
-        define: item[0].meanings[0].definitions[0].definition.replace(':', ''),
+     if(!!item[0]) {
+       return new CrawWordModel({
+         wordEng: item[0].word,
+         audioUrl: item[0].phonetics[0].audio,
+         wordType: item[0].type,
+         example: item[0].meanings[0].definitions[0].examples[0].replace(/<\/?strong[^>]*>/g, '').replace(/<\/?span[^>]*>/g, ''),
+         ipa: item[0].phonetics[0].text,
+         define: item[0].meanings[0].definitions[0].definition.replace(':', ''),
        });
+     }
     }));
   }
   updateWord(wordList): Observable<any>{

@@ -9,7 +9,13 @@
     <div class="wrap-file-choose">
       <p>You can import file excel </p>
       <input type="file" id="input" (change)="excelRead($event)" />
+      <h5 class="mt-2">Topic Name</h5>
+      <div class="d-flex">
+        <input (change)="changeNameTopic($event)" type="text" placeholder="input topic name">
+        <button class="btn btn-warning ml-3" (click)="onHandelFillWord()">Auto fill</button>
+      </div>
     </div>
+
     <div class="modal-body">
       <div class="d-flex table-wrapper-scroll-y my-custom-scrollbar" style="height: 100%">
         <table class="table table-borderless">
@@ -29,7 +35,7 @@
                 <i class="fas fa-minus-circle"></i>
               </button>
             </th>
-            <td *ngIf="wordItem.word; else wordTempl">{{wordItem.word}}</td>
+            <td *ngIf="wordItem.wordEng; else wordTempl">{{wordItem.wordEng}}</td>
             <ng-template  #wordTempl>
               <td>
                 <input (change)="saveWord($event, id)">
@@ -54,8 +60,11 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-warning" (click)="onHandelFillWord()">Auto fill</button>
-      <button (click)="onHandelSaveTopic()" class="btn">Continue <i class="fas fa-chevron-right"></i></button>
+
+      <button (click)="onHandelSaveTopic()" class="btn btn-success">Add topic </button>
     </div>
   </div>
+  <ng-template #customNotification let-notificationData="notification">
+    <my-custom-alert type="notificationData.type"> {{ notificationData.message }} </my-custom-alert>
+  </ng-template>
 </div>

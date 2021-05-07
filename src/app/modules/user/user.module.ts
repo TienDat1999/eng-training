@@ -9,7 +9,6 @@ import {CommonModule} from '@angular/common';
 import {PracticeWordComponent} from './components/practice-word/practice-word.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import {HttpClientModule} from '@angular/common/http';
-
 import {
   ChooseWordTypeComponent,
   DefaultWordTypeComponent,

@@ -1,7 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import readXlsxFile from 'read-excel-file';
-import {CrawWordModel, WordTopicModel} from '@app/modules/user/models/word.model';
+import {CrawWordModel} from '@app/modules/user/models/word.model';
 import {CrawWordsService} from '@app/modules/user/services/craw-words.service';
+import {TopicService} from '@app/modules/user/services/topics/topic.service';
+import {AddTopicModel} from '@app/modules/user/models/topicModel';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-topic',
@@ -9,20 +12,29 @@ import {CrawWordsService} from '@app/modules/user/services/craw-words.service';
   styleUrls: ['./modal-topic.component.scss']
 })
 export class ModalTopicComponent implements OnInit {
-
- @Input() isOpenTopic;
+  @Output() isOpenTopicChange = new EventEmitter<boolean>();
+  @Input() isOpenTopic;
   wordRecord: CrawWordModel[] = [];
-  constructor( private getWordService: CrawWordsService) { }
+  topicName: string;
+  courseId: number;
+
+
+  constructor( private getWordService: CrawWordsService, private topicService: TopicService,
+  ) {
+  }
 
   ngOnInit(): void {
+    const course = JSON.parse(localStorage.getItem('courseEng'));
+    this.courseId = course.course.id;
   }
-  excelRead(e): void{
+
+  excelRead(e): void {
     // @ts-ignore
     const schema = {
       'word': {
-          prop: 'word',
-          type: String,
-          required: true,
+        prop: 'word',
+        type: String,
+        required: true,
       },
       'wordType': {
         prop: 'type',
@@ -42,17 +54,19 @@ export class ModalTopicComponent implements OnInit {
     };
 
     readXlsxFile(e.target.files[0], {schema}).then((data) => {
-    if (data.rows){
-      data.rows.forEach(elm => {
-        this.wordRecord.push(elm);
-      });
-      //console.log(this.wordRecord)
-    }
+      if (data.rows) {
+        data.rows.forEach(elm => {
+          this.wordRecord.push(elm);
+        });
+        //console.log(this.wordRecord)
+      }
     });
   }
 
   backToTopic(): void {
-
+    this.isOpenTopicChange.emit(false);
+    this.topicName = '';
+    this.wordRecord = [];
   }
 
   onHandelAddWord(): void {
@@ -60,35 +74,65 @@ export class ModalTopicComponent implements OnInit {
   }
 
   onRemoveCord(e, index): void {
-   this.wordRecord.splice(index, 1);
+    this.wordRecord.splice(index, 1);
   }
 
   onHandelFillWord(): void {
     this.wordRecord.forEach(wordItem => {
-      this.getWordService.fillWord(wordItem.word).subscribe(value => {
-        if (!wordItem.wordType){
-          wordItem.wordType = value.wordType;
-        }
-        if (!wordItem.define){
-          wordItem.define = value.define;
-        }
-        if (!wordItem.example){
-          wordItem.example = value.example;
-        }
-        wordItem.ipa = value.ipa;
-        wordItem.soundUrl = value.soundUrl;
-      });
-      console.log(this.wordRecord);
-    } );
+      if (!!wordItem.wordEng) {
+        this.getWordService.fillWord(wordItem.wordEng).subscribe(value => {
+          if (!wordItem.wordType) {
+            wordItem.wordType = value?.wordType;
+          }
+          if (!wordItem.define) {
+            wordItem.define = value?.define;
+          }
+          if (!wordItem.example) {
+            wordItem.example = value?.example;
+          }
+          wordItem.ipa = value?.ipa;
+          wordItem.audioUrl = value?.soundUrl;
+        });
+      }
+    });
 
   }
 
   onHandelSaveTopic(): void {
-
+    const newWords = this.wordRecord.filter(_ => !!_.ipa && !!_.wordEng);
+    const topic = new AddTopicModel({
+      topicName: this.topicName,
+      words: newWords,
+      courseId: this.courseId,
+    });
+    if (!!topic.topicName && !!newWords){
+      this.topicService.addTopics(topic).subscribe( result => {
+        if (result.isSuccess){
+          this.isOpenTopicChange.emit(false);
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Add topic success fully',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        this.topicName = '';
+        this.wordRecord = [];
+      }, error => console.log(error));
+    }else{
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Please input the topic name',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
   }
 
   saveWord(e: any, index): void {
-    this.wordRecord[index].word = e.target.value;
+    this.wordRecord[index].wordEng = e.target.value;
   }
 
 
@@ -102,5 +146,9 @@ export class ModalTopicComponent implements OnInit {
 
   saveExample(e, index: number): void {
     this.wordRecord[index].example = e.target.value;
+  }
+
+  changeNameTopic(e): void {
+    this.topicName = e.target.value;
   }
 }

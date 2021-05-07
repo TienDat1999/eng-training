@@ -1,6 +1,6 @@
 export class CrawWordModel {
-  word: string;
-  soundUrl: string;
+  wordEng: string;
+  audioUrl: string;
   wordType: string;
   example: string;
   ipa: string;

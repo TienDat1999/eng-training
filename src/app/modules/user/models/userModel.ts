@@ -1,4 +1,3 @@
-import {publish} from "rxjs/operators";
 
 export class CourseModel {
   course: Course;
@@ -21,9 +20,6 @@ export  class SimpleCourseModel{
 export  class ImageSnippet{
   pending: boolean;
   status: string;
-  // src: string;
-  //file: File;
-  // @ts-ignore
   public constructor(public src: string, public file: File) {
     this.pending = false;
     this.status = 'init';

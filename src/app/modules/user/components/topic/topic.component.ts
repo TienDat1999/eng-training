@@ -17,7 +17,9 @@ export class TopicComponent implements OnInit, OnDestroy  {
   private sub: any;
   isOpenTopic = false;
   constructor(private topicService: CourseCardService, private router: Router,
-              private route: ActivatedRoute, private topicsS: TopicService) { }
+              private route: ActivatedRoute, private topicsS: TopicService,
+             ) {
+  }
   topics: TopicStatusModel[] = [];
   ngOnInit(): void {
      this.course = JSON.parse(localStorage.getItem('courseEng'));
@@ -29,6 +31,7 @@ export class TopicComponent implements OnInit, OnDestroy  {
      }else {
        this.progress = Number(this.course?.wordLearned) / Number(this.course?.totalWord) * 100;
      }
+
   }
   ngOnDestroy(): void {
     // this.sub.unsubscribe();
