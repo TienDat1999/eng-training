@@ -99,27 +99,38 @@ export class ModalTopicComponent implements OnInit {
   }
 
   onHandelSaveTopic(): void {
+    debugger
     const newWords = this.wordRecord.filter(_ => !!_.ipa && !!_.wordEng);
     const topic = new AddTopicModel({
       topicName: this.topicName,
       words: newWords,
       courseId: this.courseId,
     });
-    if (!!topic.topicName && !!newWords){
-      this.topicService.addTopics(topic).subscribe( result => {
-        if (result.isSuccess){
-          this.isOpenTopicChange.emit(false);
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Add topic success fully',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-        this.topicName = '';
-        this.wordRecord = [];
-      }, error => console.log(error));
+    if (!!topic.topicName){
+      if (newWords.length > 0){
+        this.topicService.addTopics(topic).subscribe( result => {
+          if (result.isSuccess){
+            this.isOpenTopicChange.emit(false);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Add topic success fully',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          this.topicName = '';
+          this.wordRecord = [];
+        }, error => console.log(error));
+      }else{
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Please enter all fields',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
     }else{
       Swal.fire({
         position: 'center',
