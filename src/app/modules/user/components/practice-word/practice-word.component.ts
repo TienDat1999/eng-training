@@ -57,7 +57,7 @@ export class PracticeWordComponent implements OnInit {
   initWordItem(): void {
     const id = localStorage.getItem('paramTopicID');
     const course = JSON.parse(localStorage.getItem('courseEng'));
-    const param = !!id ? id : this.paramIdl;
+    const param = !!this.paramIdl ?  this.paramIdl : id;
     this.wordsS.getWordList(course.course.id, Number(param)).subscribe(value => {
       // console.log('get', value);
       this.scoreTurn = 90 / (value.words.length * (this.repeatNumber + 1));
@@ -116,9 +116,9 @@ export class PracticeWordComponent implements OnInit {
         // Call API to save status of word
         const course = JSON.parse(localStorage.getItem('courseEng'));
         const completeWord = new WordLearnedModel({
-          WordId: this.wordPractice[this.indexWord].id,
-          UserCourseId: course.course.id,
-          TopicId: Number(localStorage.getItem('paramTopicID')),
+          wordId: this.wordPractice[this.indexWord].id,
+          courseId: course.course.id,
+          topicId: Number(localStorage.getItem('paramTopicID')),
         });
         this.courserService.addSimpleWordCompleted(completeWord).subscribe();
         // const newWords = this.wordPractice.filter(item => item.repeatNumber < this.repeatNumber);

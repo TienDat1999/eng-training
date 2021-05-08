@@ -1,4 +1,4 @@
-<div class="learn-word " (click)="getParamCard(card.course.courseName)">
+<div class="learn-word ">
   <div class="user-info">
     <div class="avatar">
       <img
@@ -55,7 +55,7 @@
         </progress-bar>
     </div>
     <div class="wrap-card-bottom">
-      <div>
+      <div (click)="getParamCard(card.course.courseName)">
         <i class="fab icon-course-learn fa-leanpub"></i>
         <span class="btn-learn-new-word">
            LEARN NEW WORDS

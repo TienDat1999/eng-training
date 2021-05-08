@@ -10,18 +10,14 @@
       </progress-bar>
     </div>
     <div class="d-flex">
-      <div class="review-word">
+      <div (click)="onReviewWord()" class="review-word">
         Review<span>({{course.wordLearned}})</span>
         <i class="ml-2 fas fa-wand-magic"></i>
       </div>
-        <div class=" ml-4 review-word">
-          Speech review
-          <i class="far fa-clock"></i>
-        </div>
     </div>
   </div>
   <div class="wrap-topic-container">
-    <div class="wrap-topic-item " (click)="openModalTopic()">
+    <div  *ngIf="!!isEdit" class="wrap-topic-item " (click)="openModalTopic()">
       <div class="inner-topic-container">
         <div class="wrap-number-topic">
           <div class="wrap-number-topic-item">0</div>
@@ -30,9 +26,12 @@
         <div style="font-weight: 600; margin-bottom: 5px">Add new topic</div>
       </div>
     </div>
-    <div (click)="goToListWord(topic.topic.id)" *ngFor="let topic of topics; let indexNumber = index">
-      <div class="wrap-topic-item ">
-        <div [ngClass]="topic.status?'topic-bg-success':''" class="inner-topic-container">
+    <div *ngFor="let topic of topics; let indexNumber = index">
+      <div class="wrap-topic-item wrap-topic--position ">
+        <span *ngIf="!!isEdit" class="wrap-eraser-icon" (click)="onRemoveTopic(topic, indexNumber)">
+          <i class="fas fa-eraser"></i>
+        </span>
+        <div (click)="goToListWord(topic.topic.id)" [ngClass]="topic.status?'topic-bg-success':''" class="inner-topic-container">
           <div class="wrap-number-topic">
             <div class="wrap-number-topic-item">{{indexNumber+1}}</div>
           </div>
@@ -50,5 +49,5 @@
   </div>
 </div>
 <div>
-  <app-modal-topic [(isOpenTopic)]="isOpenTopic"></app-modal-topic>
+  <app-modal-topic (reloadTopic) ="onHandelReload()" [(isOpenTopic)]="isOpenTopic"></app-modal-topic>
 </div>

@@ -8,3 +8,4 @@ export * from './class/ranking/ranking.component';
 export * from './class/member/member.component';
 export * from './class/exercise/exercise.component';
 export * from './class/status-members/status-members.component';
+export * from './review-word/review-word.component';

@@ -71,9 +71,10 @@ export class WordModel {
   }
 }
 export class WordLearnedModel{
-  WordId: number;
-  UserCourseId: number;
-  TopicId: number;
+  wordId: number;
+  userCourseId: number;
+  topicId: number;
+  courseId: number;
   public constructor(init?: Partial<WordLearnedModel>) {
     Object.assign(this, init);
   }

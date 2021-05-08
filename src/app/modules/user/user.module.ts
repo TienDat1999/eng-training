@@ -22,11 +22,13 @@ import {
   ExerciseComponent,
   MemberComponent,
   RankingComponent,
-  StatusMembersComponent
+  StatusMembersComponent,
+  ReviewWordComponent
 } from '@app/modules/user/components';
 import {UserComponent} from './components/user/user.component';
 
 const COMPONENTS = [
+  ReviewWordComponent,
   HomeComponent, CourseCardComponent, SimpleCardComponent,
   TopicComponent, WordLessonComponent, PracticeWordComponent,
   ChooseWordTypeComponent, DefaultWordTypeComponent, InputWordTypeComponent,
@@ -72,6 +74,10 @@ const COMPONENTS = [
           {
             path: 'class',
             component: ClassComponent,
+          },
+          {
+            path: 'review-word',
+            component: ReviewWordComponent,
           }
         ]
       },

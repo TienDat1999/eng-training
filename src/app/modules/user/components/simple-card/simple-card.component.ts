@@ -26,9 +26,9 @@ export class SimpleCardComponent implements OnInit {
         this.progress = Number(this.card?.wordLearned)  / Number(this.card?.totalWord) * 100;
       }
       const user = JSON.parse(localStorage.getItem('userEnglishTraining'));
-      this.checkEdit(user.userId, this.card.course.authorId);
+      this.isCanEdit(user.userId, this.card.course.authorId);
   }
-  checkEdit(userIdLocal, userIdServer): void{
+  isCanEdit(userIdLocal, userIdServer): void{
     if (userIdLocal ===  userIdServer){
       this.card.isEdit = true;
     }

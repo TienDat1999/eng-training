@@ -12,6 +12,26 @@
     justify-content: center;
 
   }
+  .wrap-topic--position{
+     position: relative;
+    &:hover{
+      .wrap-eraser-icon{
+        display: block;
+      }
+    }
+    .wrap-eraser-icon{
+      position: absolute;
+      top: 1px;
+      right: 5px;
+      color: red;
+      display: none;
+      i{
+        &:hover{
+          box-shadow: 1px -1px 13px -1px #FF0510;
+        }
+      }
+    }
+  }
   &-item {
     margin-top: 20px;
     cursor: pointer;
@@ -39,9 +59,6 @@
          background-color: #FFFFFF;
          border-radius: 0 0 12px 12px;
        }
-      }
-     .topic-item-icon{
-
       }
       .topic-icon-success{
         font-size: 80px;

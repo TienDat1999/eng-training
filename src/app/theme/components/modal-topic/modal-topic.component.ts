@@ -5,6 +5,7 @@ import {CrawWordsService} from '@app/modules/user/services/craw-words.service';
 import {TopicService} from '@app/modules/user/services/topics/topic.service';
 import {AddTopicModel} from '@app/modules/user/models/topicModel';
 import Swal from 'sweetalert2';
+import {TopicStatusModel} from '@app/modules/user/models/userModel';
 
 @Component({
   selector: 'app-modal-topic',
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2';
 export class ModalTopicComponent implements OnInit {
   @Output() isOpenTopicChange = new EventEmitter<boolean>();
   @Input() isOpenTopic;
+  @Output() reloadTopic = new EventEmitter<any>();
   wordRecord: CrawWordModel[] = [];
   topicName: string;
   courseId: number;
@@ -91,7 +93,7 @@ export class ModalTopicComponent implements OnInit {
             wordItem.example = value?.example;
           }
           wordItem.ipa = value?.ipa;
-          wordItem.audioUrl = value?.soundUrl;
+          wordItem.audioUrl = value?.audioUrl;
         });
       }
     });
@@ -99,7 +101,6 @@ export class ModalTopicComponent implements OnInit {
   }
 
   onHandelSaveTopic(): void {
-    debugger
     const newWords = this.wordRecord.filter(_ => !!_.ipa && !!_.wordEng);
     const topic = new AddTopicModel({
       topicName: this.topicName,
@@ -111,6 +112,7 @@ export class ModalTopicComponent implements OnInit {
         this.topicService.addTopics(topic).subscribe( result => {
           if (result.isSuccess){
             this.isOpenTopicChange.emit(false);
+            this.reloadTopic.emit(null);
             Swal.fire({
               position: 'center',
               icon: 'success',
