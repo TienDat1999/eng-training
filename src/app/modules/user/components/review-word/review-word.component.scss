@@ -1,4 +1,8 @@
 .choose-word{
+  height: 100vh;
+  padding-top: 50px;
+  margin: auto;
+  max-width: 1000px;
   .label-suggest{
     margin-top: 20px;
     margin-left: 40px;
@@ -28,15 +32,15 @@
   }
   .wrap-word{
     margin: auto;
-    width: 50%;
+  //  width: 50%;
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 50px 50px;
     .word-item{
-      &:hover{
-        background-color: #FFC312;
-        color: white;
-      }
+      //&:hover{
+      //  background-color: #FFC312;
+      //  color: white;
+      //}
       // width: 20px;
       text-align: center;
       font-size: 30px;
@@ -54,5 +58,15 @@
   }
   .incorrect{
     background-color: #e30202;
+  }
+  ::ng-deep .progress-outer{
+    border: none;
+    max-width: 50%;
+    margin: auto;
+    .progress-inner{
+      font-size: 0px;
+      min-width: 0px;
+      background-color: #FFC312 !important;
+    }
   }
 }

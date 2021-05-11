@@ -9,18 +9,19 @@ import {CommonModule} from '@angular/common';
 import {PracticeWordComponent} from './components/practice-word/practice-word.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import {HttpClientModule} from '@angular/common/http';
+import {MemberComponent} from '@app/modules/user/components';
 import {
   ChooseWordTypeComponent,
   DefaultWordTypeComponent,
   InputWordTypeComponent,
   ListenWordTypeComponent,
-  ModalTopicComponent
+  ModalTopicComponent,
+  CompleteReviewModelComponent
 } from '@app/theme/components';
 import {FormsModule} from '@angular/forms';
 import {
   ClassComponent,
   ExerciseComponent,
-  MemberComponent,
   RankingComponent,
   StatusMembersComponent,
   ReviewWordComponent
@@ -28,7 +29,7 @@ import {
 import {UserComponent} from './components/user/user.component';
 
 const COMPONENTS = [
-  ReviewWordComponent,
+  ReviewWordComponent, CompleteReviewModelComponent,
   HomeComponent, CourseCardComponent, SimpleCardComponent,
   TopicComponent, WordLessonComponent, PracticeWordComponent,
   ChooseWordTypeComponent, DefaultWordTypeComponent, InputWordTypeComponent,

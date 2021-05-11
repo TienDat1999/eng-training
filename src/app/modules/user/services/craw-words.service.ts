@@ -15,7 +15,7 @@ export class CrawWordsService {
   }
   fillWord(word: string): Observable<any> {
    return  this.http.get(`https://dictionary-api-five.vercel.app/api/v1/entries/en/${word}`).pipe(map(item => {
-     if(!!item[0]) {
+     if (!!item[0]) {
        return new CrawWordModel({
          wordEng: item[0].word,
          audioUrl: item[0].phonetics[0].audio,
@@ -28,6 +28,6 @@ export class CrawWordsService {
     }));
   }
   updateWord(wordList): Observable<any>{
-    return this.http.put('https://localhost:44347/Word', wordList);
+    return this.http.put('https://localhost:44347/CrwalWord', wordList);
   }
 }

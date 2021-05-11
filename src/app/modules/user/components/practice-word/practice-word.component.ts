@@ -34,7 +34,8 @@ export class PracticeWordComponent implements OnInit {
   completeWord: WordLearnedModel [] = [];
   typeIconClick: number;
   iconType = IconType;
-  constructor(private courserService: CourseCardService, private wordsS: WordTopicsService, private router: Router) {
+  constructor(private courserService: CourseCardService,
+              private wordsS: WordTopicsService, private router: Router) {
   }
 
   // Listen ENTER

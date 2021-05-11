@@ -11,7 +11,7 @@ import {UserModule} from '@app/modules/user/user.module';
 import {AdminComponent} from './modules/admin/components/admin';
 import {LoginComponent} from './modules/auth/components/login';
 import {HeaderComponent} from './theme/layouts/header/header.component';
-import {DefaultLayoutComponent} from '@app/theme/layouts/default-layout/default-layout.component';
+import {DefaultLayoutComponent} from '@app/theme/layouts/default-layout/default-layout.component';;
 
 @NgModule({
   imports: [

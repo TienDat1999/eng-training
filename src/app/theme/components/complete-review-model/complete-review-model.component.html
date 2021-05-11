@@ -1,0 +1,23 @@
+<!-- The Modal -->
+<div *ngIf="isOpenTopic" class="modal-cus">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Review finish</h2>
+      <span (click)="backToTopic()" class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="wrap-icon-finish">
+        <div>
+          <i class="far icon-finish fa-clipboard-list-check"></i>
+          <div class="wrap-score-review">
+            <span>{{scored}}</span>/<span>{{totalNumberWord}}</span>
+            <i class="fad fa-badge-check"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>

@@ -1,4 +1,11 @@
 ::ng-deep app-course-card {
+  .space {
+    padding-top: 50px;
+  }
+  .wrap-btn-course{
+    max-width: 743px;
+    margin: auto;
+  }
   .learn-word {
     margin-top: 25px;
     display: flex;
@@ -20,7 +27,6 @@
         height: 80px;
       }
     }
-
     .learn-target {
       padding-left: 10px;
       width: 100%;
