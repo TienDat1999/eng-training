@@ -1,6 +1,6 @@
 <div class="member__wrap">
   <div class="title">
-    {{count}} thành viên
+ thành viên
   </div>
   <div class="member-input py-2">
     <div class="input-group px-3">
@@ -9,6 +9,7 @@
         type="text" class="form-control" placeholder="Name member" aria-label="Recipient's username">
       <div class="input-group-append">
         <button
+          style="z-index: 0"
           (click)="addMember()"
           class="btn btn-outline-secondary" type="button">Add
         </button>
@@ -19,19 +20,21 @@
     <table class="table">
       <thead class="thead-light">
       <tr>
-        <th scope="col">#</th>
+        <th scope="col"></th>
         <th scope="col">Full Name</th>
         <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let member of members">
-        <th scope="row">{{member.id}}</th>
-        <td>{{member.fullName}}</td>
-        <td (click)="removeMember(member)">
-          <i class="fas fa-minus-circle text-danger"></i>
-        </td>
-      </tr>
+      <ng-container *ngIf="members">
+        <tr  *ngFor="let member of members">
+          <th scope="row">{{member.id}}</th>
+          <td>{{member.fullName}}</td>
+          <td (click)="removeMember(member)">
+            <i class="fas fa-minus-circle text-danger"></i>
+          </td>
+        </tr>
+      </ng-container>
       </tbody>
     </table>
   </div>

@@ -5,7 +5,7 @@ export * from './topic/topic.component';
 export * from './word-lesson/word-lesson.component';
 export * from './class/class.component';
 export * from './class/ranking/ranking.component';
-export * from './class/member/member.component';
 export * from './class/exercise/exercise.component';
 export * from './class/status-members/status-members.component';
 export * from './review-word/review-word.component';
+export * from './course-member/course-member.component';

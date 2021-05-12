@@ -1,10 +1,28 @@
 ::ng-deep app-course-card {
   .space {
-    padding-top: 50px;
+    padding-top: 20px;
   }
-  .wrap-btn-course{
+  .wrap-new-course{
     max-width: 743px;
     margin: auto;
+    .img-course{
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+    }
+    .new-card-course{
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: 3px -1px 15px -5px rgb(3 5 20 / 34%);
+    }
+    .btn-create-course{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
   }
   .learn-word {
     margin-top: 25px;

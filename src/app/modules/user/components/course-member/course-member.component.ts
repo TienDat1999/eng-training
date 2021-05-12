@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {ClassService} from '@app/modules/user/services/class.service';
+import {Component, Input, OnInit} from '@angular/core';
 import {Member} from '@app/modules/user/models/class.model';
+import {ClassService} from '@app/modules/user/services/class.service';
 
 @Component({
-  selector: 'app-member',
-  templateUrl: './member.component.html',
-  styleUrls: ['./member.component.scss']
+  selector: 'app-course-member',
+  templateUrl: './course-member.component.html',
+  styleUrls: ['./course-member.component.scss']
 })
-export class MemberComponent implements OnInit {
+export class CourseMemberComponent implements OnInit {
+
   count: number;
   members: Member[] = [];
   inputNameMember: string;

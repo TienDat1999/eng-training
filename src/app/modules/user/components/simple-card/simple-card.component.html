@@ -5,13 +5,13 @@
         class="user-avatar"
         src="{{card.course.imgUrl}}"
         alt="avt">
-         <input *ngIf="isEdit"
-          class="choose-img"
-          (click)="$event.stopPropagation();"
-          #imageInput
-          type="file"
-          accept="image/*"
-          (change)="processFile(imageInput)">
+<!--         <input *ngIf="isEdit"-->
+<!--          class="choose-img"-->
+<!--          (click)="$event.stopPropagation();"-->
+<!--          #imageInput-->
+<!--          type="file"-->
+<!--          accept="image/*"-->
+<!--          (change)="processFile(imageInput)">-->
       <div *ngIf="selectedFile" class="img-preview-container">
 
         <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
@@ -26,7 +26,7 @@
         <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
       </div>
     </div>
-    <div *ngIf="!!card.isEdit" (click)="$event.stopPropagation()">
+    <div *ngIf="!!card.isEdit">
       <div *ngIf="!isEdit" (click)="onEditCourse();"  class="btb-edit">
         <i class="far fa-edit icon-edit">
         </i>
@@ -34,19 +34,29 @@
       <div  class="btb-edit"*ngIf="isEdit" (click)="onUpdateCourse();">
         <i class="fas fa-save icon-edit"></i>
       </div>
+      <div *ngIf="isEdit" (click)="onRemoveCourse($event);"  class="btn-remove">
+        <i class="fas fa-trash-alt"></i>
+      </div>
     </div>
   </div>
   <div class="learn-target">
     <div class="wrap-title-header">
       <span  *ngIf="!isEdit, else isEditVal" class="title">{{card.course.courseName}}</span>
       <ng-template #isEditVal>
-        <input (click)="$event.stopPropagation()" [(ngModel)]="simpleCourse.courseName">
+        <input  [(ngModel)]="card.course.courseName">
       </ng-template>
-
-      <span   type="button" data-toggle="modal" data-toggle="modal"
-             data-target="#exampleModalCenter" (click)="showPopupTarget(); $event.stopPropagation();" class="target frequency setting-target">Set a daily goal
-        <i class="ml-2 fal fa-trophy-alt"></i>
-      </span>
+      <div *ngIf="card.course" class="d-flex">
+        <ng-container *ngIf="isEdit">
+          <span (click)="setPublic(card.course)" *ngIf="card.course?.isPublish; else coursePrivate" class="public-course">public</span>
+          <ng-template #coursePrivate>
+            <span (click)="setPublic(card.course)"  class="public-course">private</span>
+          </ng-template>
+        </ng-container>
+        <div   type="button" data-toggle="modal" data-toggle="modal"
+               data-target="#exampleModalCenter" (click)="showPopupTarget()" class="target frequency setting-target">Set a daily goal
+          <i class="ml-2 fal fa-trophy-alt"></i>
+        </div>
+      </div>
     </div>
     <div class="progress-course-score"><span class="score-achieved">{{card.wordLearned}} </span>/<span style="font-weight: bold"> {{card.totalWord}}</span>
       <span> words learned</span></div>

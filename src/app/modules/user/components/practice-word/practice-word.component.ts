@@ -1,6 +1,6 @@
 import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
-import {WordLearnedModel, WordModel} from '@app/modules/user/models/userModel';
+import {WordLearnedModel, WordModel} from '@app/modules/user/models/user.model';
 import * as _ from 'lodash';
 import {WordTopicsService} from '@app/modules/user/services/wordTopics/word-topics.service';
 import {Router} from '@angular/router';

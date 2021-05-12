@@ -1,8 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CourseModel, SimpleCourseModel} from '@app/modules/user/models/userModel';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {CourseModel, SimpleCourseModel, ImageSnippet} from '@app/modules/user/models/course.model';
 import {Router} from '@angular/router';
-import {ImageServiceService} from '@app/modules/user/services/image-service.service';
-import {ImageSnippet} from '@app/modules/user/models/userModel';
+
+import {CourseCardService} from '@app/modules/user/services/course-card.service';
+import Swal from 'sweetalert2';
+import {MessageModel} from '@app/modules/user/models/message.model';
+
 
 @Component({
   selector: 'app-simple-card',
@@ -16,8 +19,9 @@ export class SimpleCardComponent implements OnInit {
   @Input() card: CourseModel;
   simpleCourse: SimpleCourseModel;
   selectedFile: ImageSnippet;
-
-  constructor(private router: Router, private imageService: ImageServiceService) {}
+  @Output() onRemoveEvent = new EventEmitter<any>();
+  // @Output() onRemoveEvent = new EventEmitter<any>();
+  constructor(private router: Router, private courseService: CourseCardService) {}
 
   ngOnInit(): void {
       if (this.card?.totalWord === 0){
@@ -69,9 +73,51 @@ export class SimpleCardComponent implements OnInit {
     reader.readAsDataURL(file);
   }
   onUpdateCourse(): void {
-    this.simpleCourse.imgUrl = this.card.course.imgUrl;
-    console.log(this.simpleCourse);
-    // TODO
-    // write service update course
+    // this.simpleCourse.imgUrl = this.card.course.imgUrl;
+   // console.log(this.card.course);
+    this.courseService.updateCourseCard(this.card.course).subscribe((result: MessageModel<any>) => {
+      if (result.isSuccess){
+        Swal.fire(
+          'Updated course!',
+          'Updated successfully',
+          'success'
+        );
+        this.isEdit = false;
+      }
+    });
+  }
+
+  onRemoveCourse(e): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.onRemoveEvent.emit(this.card.course.id);
+        this.courseService.deleteCourseCard(this.card.course.id).subscribe((val: MessageModel<any>) => {
+          if (val.isSuccess){
+            Swal.fire(
+              'Deleted!',
+              'Deleted successfully',
+              'success'
+            );
+          }else{
+            Swal.fire(
+              'Deleted!',
+              'Deleted fail',
+              'error')
+          }
+        });
+      }
+    });
+  }
+
+  setPublic(course): void {
+    course.isPublish = !course.isPublish;
   }
 }

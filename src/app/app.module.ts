@@ -15,7 +15,6 @@ import {DefaultLayoutComponent} from '@app/theme/layouts/default-layout/default-
 
 @NgModule({
   imports: [
-
     UserModule,
     BrowserModule,
     ReactiveFormsModule,

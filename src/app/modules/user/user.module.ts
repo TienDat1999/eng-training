@@ -9,7 +9,6 @@ import {CommonModule} from '@angular/common';
 import {PracticeWordComponent} from './components/practice-word/practice-word.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import {HttpClientModule} from '@angular/common/http';
-import {MemberComponent} from '@app/modules/user/components';
 import {
   ChooseWordTypeComponent,
   DefaultWordTypeComponent,
@@ -24,17 +23,19 @@ import {
   ExerciseComponent,
   RankingComponent,
   StatusMembersComponent,
-  ReviewWordComponent
+  ReviewWordComponent,
+  CourseMemberComponent
 } from '@app/modules/user/components';
 import {UserComponent} from './components/user/user.component';
 
 const COMPONENTS = [
+  CourseMemberComponent,
   ReviewWordComponent, CompleteReviewModelComponent,
   HomeComponent, CourseCardComponent, SimpleCardComponent,
   TopicComponent, WordLessonComponent, PracticeWordComponent,
   ChooseWordTypeComponent, DefaultWordTypeComponent, InputWordTypeComponent,
   ListenWordTypeComponent, ClassComponent, RankingComponent,
-  MemberComponent, ExerciseComponent, StatusMembersComponent, ModalTopicComponent
+  ExerciseComponent, StatusMembersComponent, ModalTopicComponent
 ];
 
 @NgModule({

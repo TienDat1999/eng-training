@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {WordModel} from '@app/modules/user/models/userModel';
+import {WordModel} from '@app/modules/user/models/user.model';
 import {IconType} from '@app/share/enum';
 
 

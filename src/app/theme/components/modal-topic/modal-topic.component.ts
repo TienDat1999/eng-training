@@ -3,9 +3,9 @@ import readXlsxFile from 'read-excel-file';
 import {CrawWordModel} from '@app/modules/user/models/word.model';
 import {CrawWordsService} from '@app/modules/user/services/craw-words.service';
 import {TopicService} from '@app/modules/user/services/topics/topic.service';
-import {AddTopicModel} from '@app/modules/user/models/topicModel';
+import {AddTopicModel} from '@app/modules/user/models/topic.model';
 import Swal from 'sweetalert2';
-import {TopicStatusModel} from '@app/modules/user/models/userModel';
+import {TopicStatusModel} from '@app/modules/user/models/user.model';
 
 @Component({
   selector: 'app-modal-topic',

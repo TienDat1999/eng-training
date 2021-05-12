@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
-import {WordModel} from '@app/modules/user/models/userModel';
+import {WordModel} from '@app/modules/user/models/user.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WordTopicsService} from '@app/modules/user/services/wordTopics/word-topics.service';
 

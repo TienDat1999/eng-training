@@ -1,4 +1,28 @@
-<p>home works!</p>
-<button class="btn btn-primary" (click)="getWord()">Get</button>
-<button class="btn btn-primary" (click)="fillWords()">Fill</button>
-<button class="btn btn-primary" (click)="updateData()">update</button>
+<!--<p>home works!</p>-->
+<!--<button class="btn btn-primary" (click)="getWord()">Get</button>-->
+<!--<button class="btn btn-primary" (click)="fillWords()">Fill</button>-->
+<!--<button class="btn btn-primary" (click)="updateData()">update</button>-->
+<div class="container">
+  <div class="space-height"></div>
+  <div class="card-course">
+    <div *ngFor="let course of publicCourser" class="course-item">
+      <div class="course-item-header">
+        <div class="wrap-img-course">
+          <img src="{{course.course.imgUrl}}" class="course-image">
+        </div>
+      </div>
+      <div class="course-item-body">
+        <div class="course-name">{{course.course.courseName}}</div>
+        <div class="wrap-follower">
+          <div class="wrap-follower-item">
+            <span>{{course.follower}}</span>
+            <i class="fas fa-user-friends"></i>
+          </div>
+          <div (click)="onChooseCourse(course.course.id)" class="wrap-follower-item btn-plus-course">
+            <i class="fas fa-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

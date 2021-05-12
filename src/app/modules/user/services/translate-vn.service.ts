@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '@environments/environment';
-import {TranslateOption} from '@app/modules/user/models/translateOption';
+import {TranslateOption} from '@app/modules/user/models/translate.option';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class TranslateVnService {
     return new HttpHeaders({
       'content-type': 'application/x-www-form-urlencoded',
       'accept-encoding': 'application/gzip',
-      'x-rapidapi-key': 'ae22054922msh748ac9534ec83ebp1d8986jsnc0a44382c0db',
-      'x-rapidapi-host': 'google-translate1.p.rapidapi.com'
+      'x-rapidapi-key': 'ae7febf184msh698d0a035b9741fp10f93bjsnf09c9a6f73f4',
+      'x-rapidapi-host': 'google-translate1.p.rapidapi.com',
     });
   }
 

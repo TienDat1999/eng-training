@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {WordLearnedService} from '@app/modules/user/services/word-learned.service';
-import {WordModel} from '@app/modules/user/models/userModel';
+import {WordModel} from '@app/modules/user/models/user.model';
 import * as _ from 'lodash';
 import {TranslateVnService} from '@app/modules/user/services/translate-vn.service';
-import {TranslateOption} from '@app/modules/user/models/translateOption';
+import {TranslateOption} from '@app/modules/user/models/translate.option';
 import {Router} from '@angular/router';
 
 @Component({

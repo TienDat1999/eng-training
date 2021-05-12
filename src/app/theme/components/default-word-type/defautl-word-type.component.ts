@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {WordModel} from '@app/modules/user/models/userModel';
+import {WordModel} from '@app/modules/user/models/user.model';
 
 @Component({
   selector: 'app-default-word-type',
