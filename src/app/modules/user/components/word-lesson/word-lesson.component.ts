@@ -3,6 +3,8 @@ import {CourseCardService} from '@app/modules/user/services/course-card.service'
 import {WordModel} from '@app/modules/user/models/user.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WordTopicsService} from '@app/modules/user/services/wordTopics/word-topics.service';
+import {TranslateVnService} from '@app/modules/user/services/translate-vn.service';
+import {TranslateOption} from '@app/modules/user/models/translate.option';
 
 
 @Component({
@@ -17,9 +19,11 @@ export class WordLessonComponent implements OnInit {
   parentParam: string;
   nextLevelParam: number;
   topicName: string;
-
+  defineTranslate: string;
+  isTranslate = false;
   // tslint:disable-next-line:max-line-length
-  constructor(private wordService: CourseCardService, private route: ActivatedRoute, private router: Router, private wordsS: WordTopicsService) {
+  constructor(private wordService: CourseCardService, private route: ActivatedRoute,
+              private router: Router, private wordsS: WordTopicsService, private translateS: TranslateVnService) {
   }
 
   ngOnInit(): void {
@@ -64,5 +68,19 @@ export class WordLessonComponent implements OnInit {
     audio.src = audioUrl;
     audio.load();
     audio.play();
+  }
+
+  TranslateDefineWord(define: string): void {
+    const data = new TranslateOption({
+      data: define,
+      target: 'vi',
+      source: 'en',
+    });
+    this.translateS.translateWord(data).subscribe( value => {
+      this.defineTranslate = value.data.translations[0].translatedText;
+    }, error => {
+      console.log(error) }, () => {
+      this.isTranslate = true;
+    });
   }
 }

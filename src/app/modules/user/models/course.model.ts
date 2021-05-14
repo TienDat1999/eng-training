@@ -44,3 +44,17 @@ export  class Course {
     Object.assign(this, init);
   }
 }
+export  class UserClass {
+  courseId: number;
+  email: string;
+  public constructor(init?: Partial<UserClass>) {
+    Object.assign(this, init);
+  }
+}
+export class UserInCourse{
+  userName: number;
+  userId: string;
+  public constructor(init?: Partial<UserClass>) {
+    Object.assign(this, init);
+  }
+}

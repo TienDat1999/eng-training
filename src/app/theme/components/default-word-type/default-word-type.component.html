@@ -7,7 +7,8 @@
   </div>
   <div class="mt-5">
     <div class="des-word mt-3">MEAN</div>
-    <div class="mt-2 word-define">{{wordShow}}</div>
+    <div class="mt-2 word-define">{{isTranslate? defineTranslate : wordDefault.define}}</div>
+    <div (click)="onTranslate()" class="btn-translate-word">translate</div>
   </div>
   <div  class="mt-5">
     <div class="des-word mt-3">ATTRIBUTES</div>
@@ -18,7 +19,7 @@
   </div>
   <div class="mt-5">
     <div class="des-word">EXAMPLE</div>
-    <div style="font-weight: 500">{{wordExample}}</div>
+    <div style="font-weight: 500">{{wordDefault.example}}</div>
   </div>
 
   <audio id="sound1"

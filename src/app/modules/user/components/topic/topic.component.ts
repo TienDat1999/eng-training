@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CourseCardService} from '@app/modules/user/services/course-card.service';
-import { TopicModel, TopicStatusModel} from '@app/modules/user/models/user.model';
+import {TopicStatusModel} from '@app/modules/user/models/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import {TopicService} from '@app/modules/user/services/topics/topic.service';
 import Swal from 'sweetalert2';
@@ -91,5 +90,4 @@ export class TopicComponent implements OnInit, OnDestroy  {
   onReviewWord(): void {
     this.router.navigate(['/review-word']);
   }
-
 }

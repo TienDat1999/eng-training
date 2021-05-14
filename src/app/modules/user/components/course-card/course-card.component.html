@@ -1,54 +1,66 @@
 <div class="container">
   <div class="space"></div>
-  <div class="wrap-new-course">
-    <button (click)="isCreatCourse = true " class="btn btn-primary">create course</button>
-    <div class="space"></div>
-    <div *ngIf="isCreatCourse" class="new-card-course">
-      <div class="d-flex">
-        <img
-          class="img-course"
-          src="{{newCourse.imgUrl}}"
-          alt="avt">
-        <div class="ml-2">
-          <div>Input course mame</div>
-          <input [(ngModel)]="newCourse.courseName">
-          <div class="mt-3">Choose image</div>
-          <input
-            class="choose-img"
-            #imageInput
-            type="file"
-            accept="image/*"
-            (change)="processFile(imageInput)">
-          <div *ngIf="selectedFile" class="img-preview-container">
+  <div *ngIf="courseCard.length>0; else loading">
+    <div class="wrap-new-course">
+      <button (click)="isCreatCourse = true " class="btn btn-add-course btn-primary">create course</button>
+      <div class="space"></div>
+      <div *ngIf="isCreatCourse" class="new-card-course">
+        <div class="d-flex">
+          <img
+            class="img-course"
+            src="{{newCourse.imgUrl}}"
+            alt="avt">
+          <div class="ml-2">
+            <div>
+              <div>Input course mame</div>
+              <input [(ngModel)]="newCourse.courseName">
+              <span (click)="newCourse.isPublish = !newCourse.isPublish" class="status-course">
+              {{newCourse.isPublish? "public" : "private"}}
+            </span>
+            </div>
+            <div class="mt-3">Choose image</div>
+            <input
+              class="choose-img"
+              #imageInput
+              type="file"
+              accept="image/*"
+              (change)="processFile(imageInput)">
+            <div *ngIf="selectedFile" class="img-preview-container">
 
-            <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
-                 [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+              <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
+                   [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+              </div>
+
+              <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+                <div class="img-spinning-circle"></div>
+              </div>
+
+              <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
+              <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
             </div>
 
-            <div *ngIf="selectedFile.pending" class="img-loading-overlay">
-              <div class="img-spinning-circle"></div>
-            </div>
-
-            <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
-            <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
           </div>
-
         </div>
-      </div>
-      <div class="d-lex" style="position: relative">
+        <div class="d-lex" style="position: relative">
         <span  (click)="isCreatCourse = false ">
             <i class="fas fa-times"></i>
         </span>
-        <button (click)="createCourse()" class="btn btn-create-course btn-primary">Create</button>
+          <button (click)="createCourse()" class="btn btn-create-course btn-primary">Create</button>
+        </div>
+
       </div>
+    </div>
 
+    <div class="container-simple-card">
+      <div *ngFor="let card of courseCard">
+        <app-simple-card (onRemoveEvent)="onHandleRemoveCourse($event)" [card]="card">
+        </app-simple-card>
+      </div>
     </div>
   </div>
-
-  <div class="container-simple-card">
-    <div *ngFor="let card of courseCard">
-      <app-simple-card (onRemoveEvent)="onHandleRemoveCourse($event)" [card]="card">
-      </app-simple-card>
+  <ng-template #loading>
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
-  </div>
+  </ng-template>
 </div>

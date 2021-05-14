@@ -32,7 +32,8 @@
             {{word.ipa}}
           </div>
           <div class="word-line-item ex-item">
-            {{word.define}}
+            <span (click)="TranslateDefineWord(word.define)" class="mr-2"><i class="far fa-language"></i></span>
+           <span>{{isTranslate? defineTranslate : word.define}}</span>
           </div>
         </div>
       </div>

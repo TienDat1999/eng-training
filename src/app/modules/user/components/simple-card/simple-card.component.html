@@ -5,13 +5,13 @@
         class="user-avatar"
         src="{{card.course.imgUrl}}"
         alt="avt">
-<!--         <input *ngIf="isEdit"-->
-<!--          class="choose-img"-->
-<!--          (click)="$event.stopPropagation();"-->
-<!--          #imageInput-->
-<!--          type="file"-->
-<!--          accept="image/*"-->
-<!--          (change)="processFile(imageInput)">-->
+      <!--         <input *ngIf="isEdit"-->
+      <!--          class="choose-img"-->
+      <!--          (click)="$event.stopPropagation();"-->
+      <!--          #imageInput-->
+      <!--          type="file"-->
+      <!--          accept="image/*"-->
+      <!--          (change)="processFile(imageInput)">-->
       <div *ngIf="selectedFile" class="img-preview-container">
 
         <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
@@ -27,42 +27,45 @@
       </div>
     </div>
     <div *ngIf="!!card.isEdit">
-      <div *ngIf="!isEdit" (click)="onEditCourse();"  class="btb-edit">
+      <div *ngIf="!isEdit" (click)="onEditCourse();" class="btb-edit">
         <i class="far fa-edit icon-edit">
         </i>
       </div>
-      <div  class="btb-edit"*ngIf="isEdit" (click)="onUpdateCourse();">
+      <div class="btb-edit" *ngIf="isEdit" (click)="onUpdateCourse();">
         <i class="fas fa-save icon-edit"></i>
       </div>
-      <div *ngIf="isEdit" (click)="onRemoveCourse($event);"  class="btn-remove">
+      <div *ngIf="isEdit" (click)="onRemoveCourse($event);" class="btn-remove">
         <i class="fas fa-trash-alt"></i>
       </div>
     </div>
   </div>
   <div class="learn-target">
     <div class="wrap-title-header">
-      <span  *ngIf="!isEdit, else isEditVal" class="title">{{card.course.courseName}}</span>
+      <span *ngIf="!isEdit, else isEditVal" class="title">{{card.course.courseName}}</span>
       <ng-template #isEditVal>
-        <input  [(ngModel)]="card.course.courseName">
+        <input [(ngModel)]="card.course.courseName">
       </ng-template>
       <div *ngIf="card.course" class="d-flex">
         <ng-container *ngIf="isEdit">
-          <span (click)="setPublic(card.course)" *ngIf="card.course?.isPublish; else coursePrivate" class="public-course">public</span>
+          <span (click)="setPublic(card.course)" *ngIf="card.course?.isPublish; else coursePrivate"
+                class="public-course">public</span>
           <ng-template #coursePrivate>
-            <span (click)="setPublic(card.course)"  class="public-course">private</span>
+            <span (click)="setPublic(card.course)" class="public-course">private</span>
           </ng-template>
         </ng-container>
-        <div   type="button" data-toggle="modal" data-toggle="modal"
-               data-target="#exampleModalCenter" (click)="showPopupTarget()" class="target frequency setting-target">Set a daily goal
+        <div type="button" data-toggle="modal" data-toggle="modal"
+             data-target="#exampleModalCenter" (click)="showPopupTarget()" class="target frequency setting-target">Set a
+          daily goal
           <i class="ml-2 fal fa-trophy-alt"></i>
         </div>
       </div>
     </div>
-    <div class="progress-course-score"><span class="score-achieved">{{card.wordLearned}} </span>/<span style="font-weight: bold"> {{card.totalWord}}</span>
+    <div class="progress-course-score"><span class="score-achieved">{{card.wordLearned}} </span>/<span
+      style="font-weight: bold"> {{card.totalWord}}</span>
       <span> words learned</span></div>
     <div>
-        <progress-bar class="progress-course" [progress]="progress">
-        </progress-bar>
+      <progress-bar class="progress-course" [progress]="progress">
+      </progress-bar>
     </div>
     <div class="wrap-card-bottom">
       <div (click)="getParamCard(card.course.courseName)">
@@ -71,7 +74,7 @@
            LEARN NEW WORDS
       </span>
       </div>
-      <span class="auth-created" >Created by: <span style="font-weight: 500">{{card.course.authorName}}</span></span>
+      <span class="auth-created">Created by: <span style="font-weight: 500">{{card.course.authorName}}</span></span>
     </div>
 
   </div>
@@ -81,12 +84,30 @@
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
+      <h2>Setup daily goals</h2>
       <span (click)="isShowModal=false" class="close">&times;</span>
-      <h2>Modal Header</h2>
     </div>
     <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
+      <div>
+        <div class="btn-setting-daily form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+          <label class="form-check-label" for="flexRadioDefault2">
+            5 minutes a day
+          </label>
+        </div>
+        <div class="btn-setting-daily form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            15 minutes a day
+          </label>
+        </div>
+        <div class="btn-setting-daily form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+          <label class="form-check-label" for="flexRadioDefault3">
+            30 minutes a day
+          </label>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <h3>Modal Footer</h3>

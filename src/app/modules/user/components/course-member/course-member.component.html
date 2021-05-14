@@ -1,17 +1,17 @@
 <div class="member__wrap">
   <div class="title">
- thành viên
+  Members
   </div>
   <div class="member-input py-2">
     <div class="input-group px-3">
       <input
-        [(ngModel)]="inputNameMember"
+        [(ngModel)]="userClassCourse.email"
         type="text" class="form-control" placeholder="Name member" aria-label="Recipient's username">
       <div class="input-group-append">
         <button
           style="z-index: 0"
           (click)="addMember()"
-          class="btn btn-outline-secondary" type="button">Add
+          class="btn btn-success" type="button">Add
         </button>
       </div>
     </div>
@@ -21,15 +21,15 @@
       <thead class="thead-light">
       <tr>
         <th scope="col"></th>
-        <th scope="col">Full Name</th>
+        <th scope="col">User name</th>
         <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
       <ng-container *ngIf="members">
-        <tr  *ngFor="let member of members">
-          <th scope="row">{{member.id}}</th>
-          <td>{{member.fullName}}</td>
+        <tr  *ngFor="let member of members ; let id = index">
+          <th scope="row">{{id}}</th>
+          <td>{{member.userName}}</td>
           <td (click)="removeMember(member)">
             <i class="fas fa-minus-circle text-danger"></i>
           </td>

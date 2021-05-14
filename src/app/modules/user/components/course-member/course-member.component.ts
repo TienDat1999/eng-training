@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Member} from '@app/modules/user/models/class.model';
 import {ClassService} from '@app/modules/user/services/class.service';
+import {UserClass, UserInCourse} from '@app/modules/user/models/course.model';
+import {UserCourseService} from '@app/modules/user/services/user-course/user-course.service';
+import Swal from 'sweetalert2';
+import {MessageModel} from '@app/modules/user/models/message.model';
 
 @Component({
   selector: 'app-course-member',
@@ -10,10 +14,10 @@ import {ClassService} from '@app/modules/user/services/class.service';
 export class CourseMemberComponent implements OnInit {
 
   count: number;
-  members: Member[] = [];
+  members: UserInCourse[] = [];
   inputNameMember: string;
-
-  constructor(private classService: ClassService) {
+  userClassCourse: UserClass = new UserClass();
+  constructor(private classService: UserCourseService) {
   }
 
   ngOnInit(): void {
@@ -21,46 +25,51 @@ export class CourseMemberComponent implements OnInit {
   }
 
   addMember(): void {
-    const isDuplicateName = this.checkDuplicateNameMember(this.inputNameMember, this.members);
-    if (isDuplicateName || !this.inputNameMember) {
-      // Todo: show notification duplicate
-      return;
-    }
-    const member = this.createNewMember();
-    this.classService.addMemberInClass(member).subscribe((res) => {
-      if (res) {
-        this.members.push(member);
-        // Todo: show notification add success
-        this.inputNameMember = '';
+    const course = JSON.parse(localStorage.getItem('courseEng'));
+    this.userClassCourse.courseId = course.course.id;
+    this.classService.addUserToClass(this.userClassCourse).subscribe((res: MessageModel<any>) => {
+      if (res.isSuccess) {
+       this.getMembers();
+       Swal.fire(
+          'Notification',
+          `${res.message}`,
+          'success'
+        );
       } else {
-        // Todo: show notification add failure
+        Swal.fire(
+          'Notification!',
+          `${res.message}`,
+          'error'
+        );
       }
     });
   }
 
-  removeMember(member): void {
-    this.classService.removeMemberInClass(member).subscribe((res) => {
+  removeMember(member: UserInCourse): void {
+    const course = JSON.parse(localStorage.getItem('courseEng'));
+    this.classService.removeUserFromClass(member.userId, course.course.id).subscribe((res) => {
       if (res) {
         // Todo: show notification remove member
-        this.members = this.members.filter(item => item.id !== member.id);
+        Swal.fire(
+          'Notification',
+          `Remove fail`,
+          'success'
+        );
+        this.members = this.members.filter(item => item.userId !== member.userId);
       } else {
-        // Todo: show notification remove failure
+        Swal.fire(
+          'Notification!',
+          `Remove fail`,
+          'error'
+        );
       }
     });
   }
 
   private getMembers(): void {
-    this.classService.getMemberInClass(20).subscribe((res) => {
-      this.count = res.count;
-      this.members = res.data;
-    });
-  }
-
-  private createNewMember(): Member {
-    const maxId: number = this.members.length;
-    return new Member({
-      id: maxId + 1,
-      fullName: this.inputNameMember,
+    const course = JSON.parse(localStorage.getItem('courseEng'));
+    this.classService.getUserClass(course.course.id).subscribe((res) => {
+      this.members = res;
     });
   }
 

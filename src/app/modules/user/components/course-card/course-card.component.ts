@@ -3,6 +3,7 @@ import {CourseCardService} from '@app/modules/user/services/course-card.service'
 import {Course, CourseModel, ImageSnippet} from '@app/modules/user/models/course.model';
 import Swal from 'sweetalert2';
 import {MessageModel} from '@app/modules/user/models/message.model';
+import {AuthenticationService} from '@app/modules/auth/services';
 
 @Component({
   selector: 'app-course-card',
@@ -14,15 +15,18 @@ export class CourseCardComponent implements OnInit {
   selectedFile: ImageSnippet;
   imgUrl: any;
   isCreatCourse: boolean;
-  newCourse: Course = new  Course();
-  constructor(private courseService: CourseCardService) {
+  newCourse: Course = new  Course({isPublish: false});
+  isLogin = false;
+  constructor(private courseService: CourseCardService,  private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
     this.courseService.getCourseCard().subscribe(value => {
       this.courseCard = value;
     });
-
+    if (this.authenticationService.userValue){
+      this.isLogin = true;
+    }
   }
   processFile(imageInput: any): void {
     const file: File = imageInput.files[0];

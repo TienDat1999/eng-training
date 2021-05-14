@@ -1,5 +1,7 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {WordModel} from '@app/modules/user/models/user.model';
+import {TranslateVnService} from '@app/modules/user/services/translate-vn.service';
+import {TranslateOption} from '@app/modules/user/models/translate.option';
 
 @Component({
   selector: 'app-default-word-type',
@@ -9,23 +11,32 @@ import {WordModel} from '@app/modules/user/models/user.model';
 export class DefaultWordTypeComponent implements OnInit {
   @ViewChild('audioOption') audioPlayerRef: ElementRef;
   @Input() wordDefault: WordModel;
-  wordShow: string;
-  wordExample: string;
-  constructor() { }
+  defineTranslate: string;
+  isTranslate = false;
+  constructor(private translateS: TranslateVnService) {
+  }
 
   ngOnInit(): void {
-    this.wordShow = this.wordDefault.define.replace(':', '');
-    if (!!this.wordDefault.example){
-      this.wordExample = this.wordDefault.example.replace(/<\/?strong[^>]*>/g, '').replace(/<\/?span[^>]*>/g, '');
-    }
-   // console.log(this.wordDefault);
-  //  this.playAudio();
   }
-  playAudio(): void{
+
+  playAudio(): void {
     const audio = new Audio();
     audio.src = this.wordDefault.audioUrl;
     audio.load();
     audio.play();
   }
 
+  onTranslate(): void {
+    const data = new TranslateOption({
+      data: this.wordDefault.define,
+      target: 'vi',
+      source: 'en',
+    });
+    this.translateS.translateWord(data).subscribe( value => {
+      this.defineTranslate = value.data.translations[0].translatedText;
+    }, error => {
+      console.log(error) }, () => {
+      this.isTranslate = true;
+    });
+  }
 }
