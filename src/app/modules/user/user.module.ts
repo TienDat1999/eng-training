@@ -15,7 +15,8 @@ import {
   InputWordTypeComponent,
   ListenWordTypeComponent,
   ModalTopicComponent,
-  CompleteReviewModelComponent
+  CompleteReviewModelComponent,
+  ToastrComponent
 } from '@app/theme/components';
 import {FormsModule} from '@angular/forms';
 import {
@@ -24,18 +25,19 @@ import {
   RankingComponent,
   StatusMembersComponent,
   ReviewWordComponent,
-  CourseMemberComponent
+  CourseMemberComponent,
+  RankComponent
 } from '@app/modules/user/components';
 import {UserComponent} from './components/user/user.component';
 
 const COMPONENTS = [
-  CourseMemberComponent,
+  CourseMemberComponent, ToastrComponent,
   ReviewWordComponent, CompleteReviewModelComponent,
   HomeComponent, CourseCardComponent, SimpleCardComponent,
   TopicComponent, WordLessonComponent, PracticeWordComponent,
   ChooseWordTypeComponent, DefaultWordTypeComponent, InputWordTypeComponent,
   ListenWordTypeComponent, ClassComponent, RankingComponent,
-  ExerciseComponent, StatusMembersComponent, ModalTopicComponent
+  ExerciseComponent, StatusMembersComponent, ModalTopicComponent, RankComponent,
 ];
 
 @NgModule({

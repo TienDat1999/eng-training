@@ -34,12 +34,12 @@ export class ModalTopicComponent implements OnInit {
     // @ts-ignore
     const schema = {
       'word': {
-        prop: 'word',
+        prop: 'wordEng',
         type: String,
         required: true,
       },
-      'wordType': {
-        prop: 'type',
+      'type': {
+        prop: 'wordType',
         type: String,
         required: false,
       },
@@ -58,6 +58,7 @@ export class ModalTopicComponent implements OnInit {
     readXlsxFile(e.target.files[0], {schema}).then((data) => {
       if (data.rows) {
         data.rows.forEach(elm => {
+          console.log(elm)
           this.wordRecord.push(elm);
         });
         //console.log(this.wordRecord)

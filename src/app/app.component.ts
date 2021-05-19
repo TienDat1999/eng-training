@@ -1,6 +1,5 @@
 ﻿import {Component} from '@angular/core';
 import {AuthenticationService} from '@app/modules/auth/services';
-import {User} from '@app/modules/auth/models';
 
 @Component({selector: 'app', templateUrl: 'app.component.html'})
 export class AppComponent {

@@ -1,23 +1,30 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CourseCardService} from '@app/modules/user/services/course-card.service';
 import {Course, CourseModel, ImageSnippet} from '@app/modules/user/models/course.model';
 import Swal from 'sweetalert2';
 import {MessageModel} from '@app/modules/user/models/message.model';
 import {AuthenticationService} from '@app/modules/auth/services';
-
+import {SignalrService} from '@app/modules/user/services/signalr.service';
+import {ConnectionModel} from '@app/modules/user/models/connnection.Model';
 @Component({
   selector: 'app-course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.scss']
 })
-export class CourseCardComponent implements OnInit {
+export class CourseCardComponent implements OnInit, OnDestroy {
   courseCard: CourseModel[] = [];
   selectedFile: ImageSnippet;
   imgUrl: any;
   isCreatCourse: boolean;
   newCourse: Course = new  Course({isPublish: false});
   isLogin = false;
-  constructor(private courseService: CourseCardService,  private authenticationService: AuthenticationService) {
+  userConnection: ConnectionModel;
+  isDisplay = false;
+  senderId: string;
+  constructor(private courseService: CourseCardService,
+              private authenticationService: AuthenticationService,
+              private signal: SignalrService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -27,7 +34,19 @@ export class CourseCardComponent implements OnInit {
     if (this.authenticationService.userValue){
       this.isLogin = true;
     }
+    this.signal.startConnection();
+    setTimeout(() => {
+     this.signal.askServer();
+     this.signal.askServerListener();
+    }, 3000);
+    this.ReceiveNotifyCompetition();
+    this.OnShowNotifyRefuse();
   }
+  ngOnDestroy(): void {
+    this.signal.connection.off('userConnected');
+    // this.signal.stopConnection();
+  }
+
   processFile(imageInput: any): void {
     const file: File = imageInput.files[0];
     const reader = new FileReader();
@@ -80,6 +99,40 @@ export class CourseCardComponent implements OnInit {
   onHandleRemoveCourse(courseId: any): void {
    // console.log(this.courseCard)
     const index = this.courseCard.findIndex(_ => _.course.id === courseId);
-    this.courseCard.splice(index,1);
+    this.courseCard.splice(index, 1);
+  }
+
+  sendmessage(): void {
+    this.signal.DirectMessage();
+  }
+
+  onSelectOption(val: boolean): void {
+    debugger
+    if (val){
+      //TODO add to group
+
+    }
+    else {
+      //TODO sendback notify refuse;
+      this.signal.connection.invoke('OnRefuseCompetition', `${this.senderId}`);
+  }
+  }
+  ReceiveNotifyCompetition(): void{
+    this.signal.connection.on('ReceiveMessage', (result) => {
+      if (!!result){
+        this.senderId = result;
+        this.isDisplay = true;
+      }
+      setTimeout(() => {this.isDisplay = false; }, 5000);
+    });
+  }
+  OnShowNotifyRefuse(): void{
+    this.signal.connection.on('RefuseCompetition', (result) => {
+      if (!!result){
+        // this.senderId = result;
+        this.isDisplay = true;
+      }
+      setTimeout(() => {this.isDisplay = false; }, 5000);
+    });
   }
 }

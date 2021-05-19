@@ -1,10 +1,21 @@
 ::ng-deep app-course-card {
   font-family: 'Itim', cursive;
+  overflow-x: hidden;
   .space {
     padding-top: 20px;
   }
-  .wrap-new-course{
-    max-width: 743px;
+  .course-container{
+    //max-width: 1440px;
+    margin: 0 auto;
+    .wrap-course-content{
+      display: flex;
+      justify-content: center;
+    }
+    .wrap-mid-content{
+      margin: 0px 50px;
+    }
+  }
+  .wrap-course-item{
     margin: auto;
     .img-course{
       border-radius: 50%;

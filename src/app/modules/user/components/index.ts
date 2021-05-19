@@ -9,3 +9,4 @@ export * from './class/exercise/exercise.component';
 export * from './class/status-members/status-members.component';
 export * from './review-word/review-word.component';
 export * from './course-member/course-member.component';
+export * from './rank/rank.component';

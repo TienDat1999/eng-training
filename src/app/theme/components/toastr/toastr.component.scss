@@ -1,0 +1,38 @@
+::ng-deep app-toastr{
+  right: 0;
+  width: 300px;
+  position: absolute;
+  padding: 10px 20px;
+  background-color: #8cefff;
+  border-radius: 5px;
+  animation: fade-in 1s linear;
+  @keyframes fade-in {
+    from {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    to {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .wrap-btn-option{
+    display: flex;
+    margin-top: 10px;
+    .btn-competition{
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 5px 15px;
+      color: white;
+    }
+    .btn-accept{
+      background-color: #0d7324;
+    }
+    .btn-refuse{
+      margin-left: 10px;
+      background-color: #da0101;
+    }
+  }
+}
