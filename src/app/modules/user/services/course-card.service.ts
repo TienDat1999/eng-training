@@ -38,7 +38,7 @@ export class CourseCardService {
     if (environment.production) {
       console.log('update CourseCard');
     }
-    return  this.http.put(`${environment.apiUrl}/api/Course/`, course);
+    return  this.http.put(`${environment.apiUrl}/api/Course`, course);
   }
   getPublicCourseCard(): Observable<any> {
     if (environment.production) {

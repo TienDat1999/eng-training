@@ -2,7 +2,7 @@
   <div class="label-suggest">Choose the correct word</div>
   <div class="wrap-word-name">
     <div class="wrap-word-name-item">
-      {{wordShow}}
+      {{word.define}}
     </div>
   </div>
   <div class="wrap-word-type">
@@ -11,7 +11,7 @@
   <div>
     <div class="wrap-word">
       <div id="answer-{{i}}" class="word-item" (click)="chooseWord($event)" *ngFor="let word of randomWordList; let i = index">
-        {{word}}
+        {{word.wordEng}}
       </div>
     </div>
   </div>

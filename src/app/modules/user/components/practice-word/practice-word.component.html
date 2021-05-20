@@ -30,7 +30,6 @@
         <i class="fas fa-arrow-alt-circle-right"></i>
         <div class="text-click-next">Next</div>
       </button>
-
     </div>
     <div *ngIf="!!wordItem" [ngSwitch]="option">
       <app-input-word-type (callBackInputNextWordHandel)="callBackNextWordHandel()"
@@ -46,8 +45,9 @@
       <app-choose-word-type (callBackChooseNextWordHandel)="callBackNextWordHandel()"
                             *ngSwitchCase="options.ChooseOption"
                             [(isCorrect)] ="typeIconClick"
-                            [(optionChooseWord)] = "option" [word]="wordItem"
-                            [wordList]="wordRandom">
+                            [(optionChooseWord)] = "option"
+                            [word]="wordItem"
+                            [wordList]="wordPractice">
       </app-choose-word-type>
     </div>
 

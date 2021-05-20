@@ -12,11 +12,10 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
   @Output() optionChooseWordChange = new EventEmitter<number>();
   @Input() optionChooseWord;
   @Input() word: WordModel;
-  @Input() wordList: [string];
+  @Input() wordList: WordModel[];
   @Output() callBackChooseNextWordHandel = new  EventEmitter<any>();
   randomWordList = [];
-  wordShow: string;
-
+  userId: string;
   isCorrectChosen: number;
   @Output() isCorrectChange = new EventEmitter<number>();
   @Input()
@@ -34,18 +33,19 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.initWordRandom();
+    const value = JSON.parse(localStorage.getItem('userEnglishTraining')) ;
+    this.userId = value?.userId;
   }
   initWordRandom(): void{
-    this.wordShow = this.word.define.replace(':', '');
     const randomArray = this.wordList.sort(() => Math.random() - Math.random()).slice(0, 4);
-    const wordExist  = randomArray.filter(item => item !== this.word.wordEng);
+    const wordExist  = randomArray.filter(item => item.wordEng !== this.word.wordEng);
     if ( wordExist.length === 4){
       const newRandom = [];
-      newRandom.push(...wordExist.slice(1, 4), this.word.wordEng);
+      newRandom.push(...wordExist.slice(1, 4), this.word);
       this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
     }else{
       const newRandom = [];
-      newRandom.push(...wordExist, this.word.wordEng);
+      newRandom.push(...wordExist, this.word);
       this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
     }
   }
@@ -62,7 +62,7 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
     this.isCorrect = IconType.correct ;
     document.getElementById(event.target.id).classList.add('is-correct');
     setTimeout(() => {
-       this.callBackChooseNextWordHandel.emit(null);
+       this.callBackChooseNextWordHandel.emit(this.userId);
        this.isCorrect = IconType.dontKnow ;
        document.getElementById(event.target.id).classList.remove('is-correct');
      } , 1000);

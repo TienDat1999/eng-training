@@ -26,9 +26,11 @@ import {
   StatusMembersComponent,
   ReviewWordComponent,
   CourseMemberComponent,
-  RankComponent
+  RankComponent,
+  CompetitionComponent,
 } from '@app/modules/user/components';
 import {UserComponent} from './components/user/user.component';
+
 
 const COMPONENTS = [
   CourseMemberComponent, ToastrComponent,
@@ -36,7 +38,7 @@ const COMPONENTS = [
   HomeComponent, CourseCardComponent, SimpleCardComponent,
   TopicComponent, WordLessonComponent, PracticeWordComponent,
   ChooseWordTypeComponent, DefaultWordTypeComponent, InputWordTypeComponent,
-  ListenWordTypeComponent, ClassComponent, RankingComponent,
+  ListenWordTypeComponent, ClassComponent, RankingComponent, CompetitionComponent,
   ExerciseComponent, StatusMembersComponent, ModalTopicComponent, RankComponent,
 ];
 
@@ -82,7 +84,11 @@ const COMPONENTS = [
           {
             path: 'review-word',
             component: ReviewWordComponent,
-          }
+          },
+          {
+            path: 'competition',
+            component: CompetitionComponent,
+          },
         ]
       },
     ]),

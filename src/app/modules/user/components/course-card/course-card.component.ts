@@ -6,6 +6,10 @@ import {MessageModel} from '@app/modules/user/models/message.model';
 import {AuthenticationService} from '@app/modules/auth/services';
 import {SignalrService} from '@app/modules/user/services/signalr.service';
 import {ConnectionModel} from '@app/modules/user/models/connnection.Model';
+import {Router} from '@angular/router';
+import {CrawWordModel} from "@app/modules/user/models/word.model";
+import {CompetitionService} from "@app/modules/user/services/competition/competition.service";
+
 @Component({
   selector: 'app-course-card',
   templateUrl: './course-card.component.html',
@@ -16,14 +20,19 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   selectedFile: ImageSnippet;
   imgUrl: any;
   isCreatCourse: boolean;
-  newCourse: Course = new  Course({isPublish: false});
+  newCourse: Course = new Course({isPublish: false});
   isLogin = false;
   userConnection: ConnectionModel;
   isDisplay = false;
+  words: CrawWordModel[] = [];
+  word: CrawWordModel;
   senderId: string;
+
   constructor(private courseService: CourseCardService,
               private authenticationService: AuthenticationService,
               private signal: SignalrService,
+              private router: Router,
+              private competitionS: CompetitionService,
   ) {
   }
 
@@ -31,17 +40,19 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     this.courseService.getCourseCard().subscribe(value => {
       this.courseCard = value;
     });
-    if (this.authenticationService.userValue){
+    if (this.authenticationService.userValue) {
       this.isLogin = true;
     }
     this.signal.startConnection();
     setTimeout(() => {
-     this.signal.askServer();
-     this.signal.askServerListener();
+      this.signal.askServer();
+      this.signal.askServerListener();
     }, 3000);
     this.ReceiveNotifyCompetition();
     this.OnShowNotifyRefuse();
+    this.onGetWordCompetition();
   }
+
   ngOnDestroy(): void {
     this.signal.connection.off('userConnected');
     // this.signal.stopConnection();
@@ -65,10 +76,10 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(file);
   }
 
-  createCourse(): void{
-   this.newCourse.dateCreated = new Date();
-   this.courseService.createCourseCard(this.newCourse).subscribe((result: MessageModel<CourseModel>) => {
-      if (result.isSuccess){
+  createCourse(): void {
+    this.newCourse.dateCreated = new Date();
+    this.courseService.createCourseCard(this.newCourse).subscribe((result: MessageModel<CourseModel>) => {
+      if (result.isSuccess) {
         Swal.fire(
           'Created!',
           'You are created success!',
@@ -80,7 +91,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
           wordLearned: result.data.wordLearned,
           // isEdit: result.data.isEdit,
         }));
-      }else {
+      } else {
         Swal.fire(
           'Created!',
           'Created fail',
@@ -88,16 +99,16 @@ export class CourseCardComponent implements OnInit, OnDestroy {
         );
       }
     }, error => {
-     Swal.fire(
-       'Created!',
-       'Created fail',
-       'error'
-     );
-   });
+      Swal.fire(
+        'Created!',
+        'Created fail',
+        'error'
+      );
+    });
   }
 
   onHandleRemoveCourse(courseId: any): void {
-   // console.log(this.courseCard)
+    // console.log(this.courseCard)
     const index = this.courseCard.findIndex(_ => _.course.id === courseId);
     this.courseCard.splice(index, 1);
   }
@@ -107,32 +118,45 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   }
 
   onSelectOption(val: boolean): void {
-    debugger
-    if (val){
+    this.isDisplay = false;
+    this.signal.connection.invoke('OnSendResultCompetition', `${this.senderId}`, val).then();
+    if (val) {
+      this.signal.connection.invoke('AddToGroup', 'name1', this.words).then();
+      this.router.navigate(['/competition']);
       //TODO add to group
 
-    }
-    else {
+    } else {
       //TODO sendback notify refuse;
-      this.signal.connection.invoke('OnRefuseCompetition', `${this.senderId}`);
+    }
   }
-  }
-  ReceiveNotifyCompetition(): void{
+
+  ReceiveNotifyCompetition(): void {
     this.signal.connection.on('ReceiveMessage', (result) => {
-      if (!!result){
+      if (!!result) {
         this.senderId = result;
         this.isDisplay = true;
       }
-      setTimeout(() => {this.isDisplay = false; }, 5000);
+      setTimeout(() => {
+        this.isDisplay = false;
+      }, 5000);
     });
   }
-  OnShowNotifyRefuse(): void{
-    this.signal.connection.on('RefuseCompetition', (result) => {
-      if (!!result){
-        // this.senderId = result;
-        this.isDisplay = true;
+
+  OnShowNotifyRefuse(): void {
+    this.signal.connection.on('ListenResultCompetition', (result) => {
+      if (!!result) {
+        this.router.navigate(['/competition']).then();
+        this.signal.connection.invoke('AddToGroup', 'name1', this.words).then();
+      } else {
+        console.log('refuse');
       }
-      setTimeout(() => {this.isDisplay = false; }, 5000);
+      //setTimeout(() => {this.isDisplay = false; }, 5000);
     });
+  }
+
+  onGetWordCompetition(): void {
+    this.competitionS.getWordCompetition(1).subscribe(value => {
+        this.words = value;
+      });
   }
 }

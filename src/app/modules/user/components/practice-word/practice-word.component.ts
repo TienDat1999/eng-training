@@ -27,7 +27,6 @@ export class PracticeWordComponent implements OnInit {
   indexWord = 0;
   wordPractice: WordModel[] = [];
   wordItem: WordModel;
-  wordRandom = [];
   // tslint:disable-next-line:max-line-length
   numberIncrease = 0;
   // isCorrectChosen: boolean;
@@ -77,7 +76,7 @@ export class PracticeWordComponent implements OnInit {
           });
         return newItem;
       });
-      value.words.forEach(item => this.wordRandom.push(item.wordEng));
+     // value.words.forEach(item => this.wordRandom.push(item.wordEng));
       this.wordItem = new WordModel({
         wordEng: value.words[0].wordEng,
         imgUrl: value.words[0].imgUrl,

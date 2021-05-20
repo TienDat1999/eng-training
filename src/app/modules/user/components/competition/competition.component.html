@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="">
+    <ng-container *ngIf="!!word">
+      <app-choose-word-type
+        [word]="word"
+        [wordList]="words"
+        (callBackChooseNextWordHandel)="callBackNextWordHandel($event)"
+      ></app-choose-word-type>
+    </ng-container>
+
+  </div>
+</div>
