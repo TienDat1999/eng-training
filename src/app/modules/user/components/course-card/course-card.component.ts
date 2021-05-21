@@ -7,8 +7,9 @@ import {AuthenticationService} from '@app/modules/auth/services';
 import {SignalrService} from '@app/modules/user/services/signalr.service';
 import {ConnectionModel} from '@app/modules/user/models/connnection.Model';
 import {Router} from '@angular/router';
-import {CrawWordModel} from "@app/modules/user/models/word.model";
-import {CompetitionService} from "@app/modules/user/services/competition/competition.service";
+import {CrawWordModel} from '@app/modules/user/models/word.model';
+import {CompetitionService} from '@app/modules/user/services/competition/competition.service';
+import {InitCompetition} from "@app/modules/user/models/competition.model";
 
 @Component({
   selector: 'app-course-card',
@@ -24,10 +25,11 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   isLogin = false;
   userConnection: ConnectionModel;
   isDisplay = false;
-  words: CrawWordModel[] = [];
+  initCompetitor: InitCompetition = new  InitCompetition();
   word: CrawWordModel;
   senderId: string;
-
+  senderName: string;
+  competitorName: string;
   constructor(private courseService: CourseCardService,
               private authenticationService: AuthenticationService,
               private signal: SignalrService,
@@ -37,6 +39,8 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+   // this.competitorName = this.signal.competitor?.userName;
+
     this.courseService.getCourseCard().subscribe(value => {
       this.courseCard = value;
     });
@@ -47,7 +51,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.signal.askServer();
       this.signal.askServerListener();
-    }, 3000);
+    }, 1000);
     this.ReceiveNotifyCompetition();
     this.OnShowNotifyRefuse();
     this.onGetWordCompetition();
@@ -113,27 +117,28 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     this.courseCard.splice(index, 1);
   }
 
-  sendmessage(): void {
-    this.signal.DirectMessage();
+  onFindCompetitor(): void {
+    this.signal.sendRequestCompetition();
   }
 
   onSelectOption(val: boolean): void {
     this.isDisplay = false;
     this.signal.connection.invoke('OnSendResultCompetition', `${this.senderId}`, val).then();
     if (val) {
-      this.signal.connection.invoke('AddToGroup', 'name1', this.words).then();
+      this.signal.connection.invoke('AddToGroup', 'name1', this.initCompetitor).then();
       this.router.navigate(['/competition']);
-      //TODO add to group
+      // TODO add to group
 
     } else {
-      //TODO sendback notify refuse;
+      // TODO sendback notify refuse;
     }
   }
 
   ReceiveNotifyCompetition(): void {
     this.signal.connection.on('ReceiveMessage', (result) => {
       if (!!result) {
-        this.senderId = result;
+        this.senderId = result.idConnection;
+        this.senderName = result.userName;
         this.isDisplay = true;
       }
       setTimeout(() => {
@@ -145,18 +150,20 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   OnShowNotifyRefuse(): void {
     this.signal.connection.on('ListenResultCompetition', (result) => {
       if (!!result) {
-        this.router.navigate(['/competition']).then();
-        this.signal.connection.invoke('AddToGroup', 'name1', this.words).then();
+          this.initCompetitor.competitor = this.signal.competitor.userName;
+          this.router.navigate(['/competition']).then();
+          this.signal.connection.invoke('AddToGroup', 'name1', this.initCompetitor).then();
+
       } else {
         console.log('refuse');
       }
-      //setTimeout(() => {this.isDisplay = false; }, 5000);
+      // setTimeout(() => {this.isDisplay = false; }, 5000);
     });
   }
 
   onGetWordCompetition(): void {
     this.competitionS.getWordCompetition(1).subscribe(value => {
-        this.words = value;
+        this.initCompetitor.words = value;
       });
   }
 }

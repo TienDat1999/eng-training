@@ -1,10 +1,12 @@
 ::ng-deep app-toastr{
   right: 0;
+  top: 60px;
   width: 300px;
   position: absolute;
   padding: 10px 20px;
-  background-color: #8cefff;
+  background-color: #54a254;
   border-radius: 5px;
+  color: white;
   animation: fade-in 1s linear;
   @keyframes fade-in {
     from {
@@ -17,7 +19,15 @@
       opacity: 1;
     }
   }
-
+  .wrap-toastr{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .wrap-toatrs-icon{
+      font-size: 40px;
+      margin-right: 10px;
+    }
+  }
   .wrap-btn-option{
     display: flex;
     margin-top: 10px;

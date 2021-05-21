@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-toastr',
@@ -7,6 +7,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class ToastrComponent implements OnInit {
   @Output() option = new EventEmitter<boolean>();
+  @Input() textContentNotify: string;
+  @Input() textHeader: string;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,5 +1,32 @@
 <div class="container">
-  <div class="">
+  <div class="competition-header">
+    <div class="wrap-competitor">
+      <div class="competitor">
+        <div class="wrap-user-img">
+<!--          <img src="">-->
+          <i class="fal fa-user"></i>
+        </div>
+        <div class="mt-2">{{this.myInfo?.userName}}</div>
+        <div>
+          <span>{{this.myInfo?.resultCorrect}}</span>/<span>{{this.numberQuestion}}</span>
+        </div>
+      </div>
+      <div class="timer-count-down">
+        5
+      </div>
+      <div class="competitor">
+        <div class="wrap-user-img">
+<!--          <img src="">-->
+          <i class="fal fa-user"></i>
+        </div>
+        <div class="mt-2">{{competitor.userName}}</div>
+        <div>
+          <span>{{this.competitor?.resultCorrect}}</span>/<span>{{this.numberQuestion}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="competition-body">
     <ng-container *ngIf="!!word">
       <app-choose-word-type
         [word]="word"
@@ -7,6 +34,5 @@
         (callBackChooseNextWordHandel)="callBackNextWordHandel($event)"
       ></app-choose-word-type>
     </ng-container>
-
   </div>
 </div>

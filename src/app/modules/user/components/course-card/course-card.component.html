@@ -1,5 +1,5 @@
-<ng-container *ngIf="isDisplay">
-  <app-toastr (option)="onSelectOption($event)"></app-toastr>
+<ng-container *ngIf="!!isDisplay">
+  <app-toastr [textContentNotify]="senderName + ' want to fight you'" (option)="onSelectOption($event)"></app-toastr>
 </ng-container>
 <div class="course-container">
   <div class="space"></div>
@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="competition">
-      <button class="btn btn-primary" (click)="sendmessage()">send <i class="fas fa-dragon"></i></button>
+      <button class="btn btn-primary" (click)="onFindCompetitor()">send <i class="fas fa-dragon"></i></button>
     </div>
   </div>
 </div>

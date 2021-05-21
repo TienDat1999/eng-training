@@ -1,0 +1,33 @@
+::ng-deep app-competition{
+  font-family: 'Itim', cursive;
+  .competition-header{
+    margin-top: 40px;
+    .wrap-competitor{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .competitor{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .wrap-user-img{
+          width: 100px;
+          height: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          background-color: #989898;
+          i{
+            font-size: 40px;
+          }
+        }
+      }
+      .timer-count-down{
+        color: #117a8b;
+        font-size: 80px;
+      }
+    }
+  }
+}

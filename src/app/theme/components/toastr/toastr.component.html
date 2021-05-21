@@ -1,14 +1,19 @@
 <div class="wrap-toastr">
-  <div class="header-text">
-    header
+  <div class="wrap-toatrs-icon">
+    <i class="fal fa-axe-battle"></i>
   </div>
   <div>
-    <div>
-      one user want to thach dau voi ban
+    <div  class="header-text">
+      {{!!textHeader? textHeader:''}}
     </div>
-    <div class="wrap-btn-option">
-      <div (click)="acceptCompetition()" class="btn-competition btn-accept">accept</div>
-      <div (click)="refuseCompetition()" class="btn-competition btn-refuse">refuse</div>
+    <div>
+      <div>
+        {{!!textContentNotify? textContentNotify: ''}}
+      </div>
+      <div class="wrap-btn-option">
+        <div (click)="acceptCompetition()" class="btn-competition btn-accept">accept</div>
+        <div (click)="refuseCompetition()" class="btn-competition btn-refuse">refuse</div>
+      </div>
     </div>
   </div>
 </div>
