@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course-manager.component.scss']
 })
 export class CourseManagerComponent implements OnInit {
-
+  dataSource: [];
   constructor() { }
 
   ngOnInit(): void {
