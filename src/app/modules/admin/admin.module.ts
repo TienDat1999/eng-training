@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {RouterModule} from '@angular/router';
 import {CourseManagerComponent, UserManagerComponent} from '@app/modules/admin/components';
+import {DxDataGridModule} from 'devextreme-angular';
 
 const COMPONENTS = [
   DashboardComponent,
@@ -22,7 +23,8 @@ const COMPONENTS = [
           {path: 'user', component: UserManagerComponent},
         ]
       },
-    ])
+    ]),
+    DxDataGridModule,
   ],
 })
 export class AdminModule {

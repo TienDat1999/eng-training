@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-admin-course',
@@ -6,8 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course-manager.component.scss']
 })
 export class CourseManagerComponent implements OnInit {
-  dataSource: [];
-  constructor() { }
+  dataSource = [
+    {
+      id: 1,
+      code: '321231',
+      name: 'abc',
+      author: 'ec ec',
+      type: 'admin',
+    },
+    {
+      id: 2,
+      code: '321231',
+      name: 'abc',
+      author: 'ec ec',
+      type: 'admin',
+    },
+  ];
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
