@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './modules/admin/components/admin';
-import { LoginComponent } from './modules/auth/components/login';
-import { AuthGuard } from './modules/auth/helpers';
-import { Role } from './modules/auth/models';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from './modules/auth/components/login';
+
 const routes: Routes = [
   {
     path: '',
@@ -11,9 +9,10 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent,
-    canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] }
+    loadChildren: () => import('@app/modules/admin/admin.module').then( m => m.AdminModule),
+    // component: AdminComponent,
+    // canActivate: [AuthGuard],
+    // data: { roles: [Role.Admin] }
   },
   {
     path: 'login',

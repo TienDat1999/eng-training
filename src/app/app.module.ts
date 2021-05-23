@@ -4,17 +4,19 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 // used to create fake backend
-import {ErrorInterceptor, fakeBackendProvider, JwtInterceptor} from './modules/auth/helpers';
+import {ErrorInterceptor, JwtInterceptor} from './modules/auth/helpers';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {UserModule} from '@app/modules/user/user.module';
-import {AdminComponent} from './modules/admin/components/admin';
 import {LoginComponent} from './modules/auth/components/login';
 import {HeaderComponent} from './theme/layouts/header/header.component';
 import {DefaultLayoutComponent} from '@app/theme/layouts/default-layout/default-layout.component';
+import {AdminModule} from '@app/modules/admin/admin.module';
+
 @NgModule({
   imports: [
     UserModule,
+    AdminModule,
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -22,7 +24,6 @@ import {DefaultLayoutComponent} from '@app/theme/layouts/default-layout/default-
   ],
   declarations: [
     AppComponent,
-    AdminComponent,
     LoginComponent,
     HeaderComponent,
     DefaultLayoutComponent,
