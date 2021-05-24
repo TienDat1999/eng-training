@@ -25,15 +25,14 @@ export class CompetitionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.myId = this.idUser;
     this.onGetWordCompetition();
     this.signalS.connection.on('GetResultCompetition', result => {
       console.log(result);
     });
   }
-  get idUser(): string {
-    const value = JSON.parse(localStorage.getItem('userEnglishTraining')) ;
-    return value?.userId;
+  get roomName(): string {
+    const value = localStorage.getItem('RoomName');
+    return value;
   }
   get userName(): string {
     const value = JSON.parse(localStorage.getItem('userEnglishTraining')) ;
