@@ -104,4 +104,8 @@ export class DashboardAdminService {
   getData(loadOptions: LoadOptions): Observable<any>{debugger;
     return of(this.data);
   }
+
+  removeDate(row: any): Observable<any>{debugger;
+    return of(true);
+  }
 }

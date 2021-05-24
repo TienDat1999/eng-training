@@ -27,12 +27,13 @@ export class CourseManagerComponent implements OnInit {
       }, insert: row => {
         console.log(row);
         return [];
-      }, update: row => {
+      }, update: (row, fieldChange) => {
         console.log(row);
+        console.log(fieldChange);
         return [];
       }, remove: row => {
         console.log(row);
-        return [];
+        return this.service.removeDate(row);
       }
     });
   }
