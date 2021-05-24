@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import {environment} from '../../../../environments/environment';
 import * as _ from 'lodash';
-import {UserInfo} from '@app/modules/user/models/competition.model';
+import {UserInfoCompetition} from '@app/modules/user/models/competition.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,13 +11,15 @@ export class SignalrService {
   public connection: signalR.HubConnection;
   userChosen: string;
   userOl: any = [];
-  competitor: UserInfo;
+  competitor: UserInfoCompetition;
+  userCompetition = new UserInfoCompetition();
   constructor() {
+    this.initUserCompetition();
   }
 
   startConnection(): void {
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl(`${environment.apiUrl}/hub?userId=${this.userInformation.idUser}&userName=${this.userInformation.userName}`, {
+      .withUrl(`${environment.apiUrl}/hub?userId=${this.userCompetition.userId}`, {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
       })
@@ -29,12 +32,10 @@ export class SignalrService {
       console.log('There was an error connecting to the hub. Please check the configuration.', e);
     });
   }
-  get userInformation(): UserInfo{
-    const value = JSON.parse(localStorage.getItem('userEnglishTraining')) ;
-    return new UserInfo({
-      userName: value?.userName,
-      idUser: value?.userId,
-    });
+   initUserCompetition(): void {
+    const value = JSON.parse(localStorage.getItem('userEnglishTraining'));
+    this.userCompetition.userId = value?.userId;
+    this.userCompetition.userName = value?.userName;
   }
   askServer(): void {
     //  console.log(this.connection)
@@ -49,21 +50,16 @@ export class SignalrService {
     });
   }
   sendRequestCompetition(): void {
-    const user = this.userOl.filter( val => val.key !== this.userInformation.idUser);
-    const index = _.random(user.length - 1);
-    const userDirective = user[index]?.value[0].idConnection;
-    if (!!userDirective){
-      this.competitor = new UserInfo({
-        userName : user[index].value[0].userName,
-        idConnection: user[index].value[0].idConnection,
-        idUser: user[index].key,
-      });
-      this.connection.invoke('DirectMessage', `${userDirective}`, this.userInformation.userName).catch(err => console.error(err));
+    const userCompetitor = this.userOl.filter( val => val.key !== this.userCompetition.userId);
+    const index = _.random(userCompetitor.length - 1);
+    const competitorConnectedId = userCompetitor[index]?.value;
+    const myConnectedId =  this.userOl.filter( val => val.key === this.userCompetition.userId);
+    this.userCompetition.connectionId = myConnectedId[0].value;
+    if (!!competitorConnectedId){
+      this.connection.invoke('SendRequestCompetitor', `${competitorConnectedId}`, this.userCompetition).catch(err => console.error(err));
     }else{
       // TODO CHECK IF  userDirective = null NOT USER OL
       console.log('not found competitor');
     }
     }
-
-
 }

@@ -9,7 +9,7 @@ import {ConnectionModel} from '@app/modules/user/models/connnection.Model';
 import {Router} from '@angular/router';
 import {CrawWordModel} from '@app/modules/user/models/word.model';
 import {CompetitionService} from '@app/modules/user/services/competition/competition.service';
-import {InitCompetition} from "@app/modules/user/models/competition.model";
+import {InitCompetition, ResultRoomCompetition, UserInfoCompetition} from '@app/modules/user/models/competition.model';
 
 @Component({
   selector: 'app-course-card',
@@ -25,11 +25,14 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   isLogin = false;
   userConnection: ConnectionModel;
   isDisplay = false;
-  initCompetitor: InitCompetition = new  InitCompetition();
+  // initCompetitor: InitCompetition = new  InitCompetition();
   word: CrawWordModel;
+  userCompetitions: UserInfoCompetition[] = [];
   senderId: string;
-  senderName: string;
-  competitorName: string;
+  senderCompetitor: UserInfoCompetition = new UserInfoCompetition();
+  userCompetitor: UserInfoCompetition = new UserInfoCompetition();
+  competitionWords: CrawWordModel[] = [];
+
   constructor(private courseService: CourseCardService,
               private authenticationService: AuthenticationService,
               private signal: SignalrService,
@@ -39,8 +42,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-   // this.competitorName = this.signal.competitor?.userName;
-
+    // this.competitorName = this.signal.competitor?.userName;
     this.courseService.getCourseCard().subscribe(value => {
       this.courseCard = value;
     });
@@ -121,24 +123,43 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     this.signal.sendRequestCompetition();
   }
 
+  get idUser(): string {
+    const value = JSON.parse(localStorage.getItem('userEnglishTraining'));
+    return value?.userId;
+  }
+
   onSelectOption(val: boolean): void {
     this.isDisplay = false;
-    this.signal.connection.invoke('OnSendResultCompetition', `${this.senderId}`, val).then();
     if (val) {
-      this.signal.connection.invoke('AddToGroup', 'name1', this.initCompetitor).then();
+      this.userCompetitor = this.signal.userCompetition;
+      const myIdConnected = this.signal.userOl.filter(id => id.key === this.userCompetitor.userId);
+      this.userCompetitor.connectionId = myIdConnected[0].value;
+      this.userCompetitions.push(this.senderCompetitor, this.userCompetitor);
+      const newRoomName = this.userCompetitor.userName + this.senderCompetitor.userName + new Date().getTime();
+      const resultCompetition = new ResultRoomCompetition({
+        result : true,
+        roomName: newRoomName,
+      });
+      localStorage.setItem('RoomName', newRoomName);
+      this.signal.connection.invoke('OnSendResultCompetition', `${this.senderCompetitor.connectionId}`, resultCompetition).then();
+      this.signal.connection.invoke('AddToGroup', resultCompetition.roomName, this.userCompetitions, this.competitionWords).then();
       this.router.navigate(['/competition']);
       // TODO add to group
 
     } else {
       // TODO sendback notify refuse;
+      const resultCompetition = new ResultRoomCompetition({
+        result: false,
+        roomName: null,
+      });
+      this.signal.connection.invoke('OnSendResultCompetition', `${this.senderCompetitor.connectionId}`, resultCompetition).then();
     }
   }
 
   ReceiveNotifyCompetition(): void {
-    this.signal.connection.on('ReceiveMessage', (result) => {
+    this.signal.connection.on('ReceiveRequestCompetitor', (result: UserInfoCompetition) => {
       if (!!result) {
-        this.senderId = result.idConnection;
-        this.senderName = result.userName;
+        this.senderCompetitor = result;
         this.isDisplay = true;
       }
       setTimeout(() => {
@@ -148,13 +169,12 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   }
 
   OnShowNotifyRefuse(): void {
-    this.signal.connection.on('ListenResultCompetition', (result) => {
-      if (!!result) {
-          this.initCompetitor.competitor = this.signal.competitor.userName;
-          this.router.navigate(['/competition']).then();
-          this.signal.connection.invoke('AddToGroup', 'name1', this.initCompetitor).then();
-
+    this.signal.connection.on('ListenResultCompetition', (result: ResultRoomCompetition) => {
+      if (!!result.result) {
+        localStorage.setItem('RoomName', result.roomName);
+        this.router.navigate(['/competition']).then();
       } else {
+        // TODO
         console.log('refuse');
       }
       // setTimeout(() => {this.isDisplay = false; }, 5000);
@@ -163,7 +183,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
 
   onGetWordCompetition(): void {
     this.competitionS.getWordCompetition(1).subscribe(value => {
-        this.initCompetitor.words = value;
-      });
+      this.competitionWords = value;
+    });
   }
 }
