@@ -3,6 +3,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {RouterModule} from '@angular/router';
 import {CourseManagerComponent, UserManagerComponent} from '@app/modules/admin/components';
 import {DxDataGridModule} from 'devextreme-angular';
+import {DashboardAdminService} from '@app/modules/admin/services';
 
 const COMPONENTS = [
   DashboardComponent,
@@ -26,6 +27,7 @@ const COMPONENTS = [
     ]),
     DxDataGridModule,
   ],
+  providers: [DashboardAdminService],
 })
 export class AdminModule {
 }

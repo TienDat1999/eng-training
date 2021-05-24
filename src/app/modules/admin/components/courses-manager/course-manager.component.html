@@ -15,8 +15,19 @@
           [allowDeleting]="true"
           mode="row"> <!-- 'batch' | 'cell' | 'form' | 'popup' -->
         </dxo-editing>
-        <dxi-column dataField="id" width="75"></dxi-column>
-        <dxi-column dataField="code"></dxi-column>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[5, 10, 15]"
+          [showInfo]="true">
+        </dxo-pager>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+
+        <dxi-column dataField="id" width="75" caption="No" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="code" caption="Course Code" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="name" caption="Course Name" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="author" caption="Course Name" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="type" caption="Type" [allowSorting]="false"></dxi-column>
       </dx-data-grid>
     </div>
   </div>

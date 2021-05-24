@@ -1,17 +1,19 @@
 ::ng-deep app-dashboard {
-  display: flex;
+  .dashboard-admin {
+    display: flex;
 
-  nav {
-    min-width: 200px;
-    max-width: 300px;
+    nav {
+      min-width: 200px;
+      max-width: 300px;
 
-    .menu-link {
-      display: flex;
-      flex-direction: column;
+      .menu-link {
+        display: flex;
+        flex-direction: column;
+      }
     }
-  }
 
-  main {
+    main {
 
+    }
   }
 }

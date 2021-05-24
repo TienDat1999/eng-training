@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {DashboardAdminService} from '@app/modules/admin/services';
+import DataSource from 'devextreme/data/data_source';
 
 @Component({
   selector: 'app-admin-course',
@@ -6,27 +8,32 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./course-manager.component.scss']
 })
 export class CourseManagerComponent implements OnInit {
-  dataSource = [
-    {
-      id: 1,
-      code: '321231',
-      name: 'abc',
-      author: 'ec ec',
-      type: 'admin',
-    },
-    {
-      id: 2,
-      code: '321231',
-      name: 'abc',
-      author: 'ec ec',
-      type: 'admin',
-    },
-  ];
+  dataSource: DataSource;
 
-  constructor() {
+  constructor(private service: DashboardAdminService) {
   }
 
   ngOnInit(): void {
+    this.initDataSource();
   }
 
+  private initDataSource(): void {
+    this.dataSource = new DataSource({
+      load: (loadOptions) => {
+        return this.service.getData(loadOptions)
+          .toPromise()
+          .then(res => res)
+          .catch(error => console.error(error));
+      }, insert: row => {
+        console.log(row);
+        return [];
+      }, update: row => {
+        console.log(row);
+        return [];
+      }, remove: row => {
+        console.log(row);
+        return [];
+      }
+    });
+  }
 }
