@@ -25,7 +25,6 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   isLogin = false;
   userConnection: ConnectionModel;
   isDisplay = false;
-  // initCompetitor: InitCompetition = new  InitCompetition();
   word: CrawWordModel;
   userCompetitions: UserInfoCompetition[] = [];
   senderId: string;
@@ -49,7 +48,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     if (this.authenticationService.userValue) {
       this.isLogin = true;
     }
-    this.signal.startConnection();
+   // this.signal.startConnection();
     setTimeout(() => {
       this.signal.askServer();
       this.signal.askServerListener();

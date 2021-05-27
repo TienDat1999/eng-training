@@ -23,6 +23,7 @@ export class SignalrService {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
       })
+      .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Trace)
       // .withHubProtocol(new signalR.JsonHubProtocol())
       .build();

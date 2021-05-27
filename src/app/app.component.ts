@@ -1,11 +1,20 @@
-﻿import {Component} from '@angular/core';
+﻿import {Component, OnDestroy} from '@angular/core';
 import {AuthenticationService} from '@app/modules/auth/services';
+import {SignalrService} from '@app/modules/user/services/signalr.service';
 
 @Component({selector: 'app', templateUrl: 'app.component.html'})
-export class AppComponent {
+export class AppComponent implements OnDestroy{
   isLogged: any;
-  constructor(private authenticationService: AuthenticationService) {
-    this.authenticationService.user.subscribe(x => this.isLogged = x);
+  constructor(private authenticationService: AuthenticationService, private signal: SignalrService) {
+    this.authenticationService.user.subscribe((x) => {
+      this.isLogged = x;
+      if (!!x){
+       this.signal.startConnection();
+     }
+    });
   }
-
+  ngOnDestroy(): void {
+    this.signal.connection.off('userConnected');
+    this.signal.stopConnection();
+  }
 }
