@@ -1,23 +1,19 @@
-::ng-deep app-ranking {
+::ng-deep app-rank {
   .ranking__wrap {
-    border: 1px solid gray;
     border-radius: 7px;
-    height: 100%;
-
+    border: none;
     .title {
       font-weight: bold;
       font-size: 18px;
       text-align: center;
       color: black;
     }
-
     .ranking-table {
       overflow: auto;
-      max-height: 290px;
-
+      max-height: 400px;
+      box-shadow: 3px -1px 15px -5px rgb(3 5 20 / 34%);
       .table {
         position: relative;
-
         & > thead th {
           position: sticky;
           top: -1px;

@@ -11,9 +11,6 @@
           <span>{{roomData?.userA?.resultCorrect}}</span>/<span>{{roomData?.totalWords}}</span>
         </div>
       </div>
-      <div class="timer-count-down">
-        5
-      </div>
       <div class="competitor">
         <div class="wrap-user-img">
 <!--          <img src="">-->
@@ -31,8 +28,12 @@
       <app-choose-word-type
         [word]="word"
         [wordList]="roomData.words"
-        (callBackChooseNextWordHandel)="callBackNextWordHandel($event)"
+        (callBackChooseNextWordHandel)="callBackNextWordHandel()"
       ></app-choose-word-type>
     </ng-container>
   </div>
 </div>
+<app-count-down-popup [countDownNumber]="5"
+                      [isOpenCountdown]="true">
+
+</app-count-down-popup>

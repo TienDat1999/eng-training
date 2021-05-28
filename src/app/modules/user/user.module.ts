@@ -16,30 +16,28 @@ import {
   ListenWordTypeComponent,
   ModalTopicComponent,
   CompleteReviewModelComponent,
-  ToastrComponent
+  ToastrComponent,
+  CountDownPopupComponent,
 } from '@app/theme/components';
 import {FormsModule} from '@angular/forms';
 import {
-  ClassComponent,
-  ExerciseComponent,
-  RankingComponent,
-  StatusMembersComponent,
   ReviewWordComponent,
   CourseMemberComponent,
   RankComponent,
   CompetitionComponent,
 } from '@app/modules/user/components';
 import {UserComponent} from './components/user/user.component';
+import {DxTextBoxModule} from "devextreme-angular";
 
 
 const COMPONENTS = [
-  CourseMemberComponent, ToastrComponent,
+  CourseMemberComponent, ToastrComponent, CountDownPopupComponent,
   ReviewWordComponent, CompleteReviewModelComponent,
   HomeComponent, CourseCardComponent, SimpleCardComponent,
   TopicComponent, WordLessonComponent, PracticeWordComponent,
   ChooseWordTypeComponent, DefaultWordTypeComponent, InputWordTypeComponent,
-  ListenWordTypeComponent, ClassComponent, RankingComponent, CompetitionComponent,
-  ExerciseComponent, StatusMembersComponent, ModalTopicComponent, RankComponent,
+  ListenWordTypeComponent, CompetitionComponent,
+ ModalTopicComponent, RankComponent,
 ];
 
 @NgModule({
@@ -58,7 +56,7 @@ const COMPONENTS = [
             path: '', redirectTo: 'course', pathMatch: 'full',
           },
           {
-            path: 'home',
+            path: 'explore',
             component: HomeComponent,
           },
           {
@@ -78,10 +76,6 @@ const COMPONENTS = [
             component: WordLessonComponent,
           },
           {
-            path: 'class',
-            component: ClassComponent,
-          },
-          {
             path: 'review-word',
             component: ReviewWordComponent,
           },
@@ -92,6 +86,7 @@ const COMPONENTS = [
         ]
       },
     ]),
+    DxTextBoxModule,
   ],
 })
 export class UserModule {

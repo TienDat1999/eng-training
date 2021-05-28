@@ -75,7 +75,7 @@ export class CourseMemberComponent implements OnInit {
 
   private checkDuplicateNameMember(name: string, members: Member[]): boolean {
     return members.some((item) => {
-      return item.fullName === name;
+      return item.userName === name;
     });
   }
 }

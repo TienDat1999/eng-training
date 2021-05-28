@@ -3,6 +3,7 @@ import * as signalR from '@microsoft/signalr';
 import {environment} from '../../../../environments/environment';
 import * as _ from 'lodash';
 import {UserInfoCompetition} from '@app/modules/user/models/competition.model';
+import {AppNotify} from '@app/share/AppNotify';
 
 @Injectable({
   providedIn: 'root'
@@ -33,34 +34,52 @@ export class SignalrService {
       console.log('There was an error connecting to the hub. Please check the configuration.', e);
     });
   }
-   initUserCompetition(): void {
+
+  initUserCompetition(): void {
     const value = JSON.parse(localStorage.getItem('userEnglishTraining'));
     this.userCompetition.userId = value?.userId;
     this.userCompetition.userName = value?.userName;
   }
+
   askServer(): void {
     //  console.log(this.connection)
     this.connection.invoke('GetListUserConnected').catch(err => console.error(err));
   }
-  stopConnection(): void{
+
+  stopConnection(): void {
     this.connection.stop().then(() => console.log('disconnect'));
   }
+
   askServerListener(): any {
-   this.connection.on('userConnected', (users) => {
-        this.userOl = users;
+    this.connection.on('userConnected', (users) => {
+      this.userOl = users;
     });
   }
-  sendRequestCompetition(): void {
-    const userCompetitor = this.userOl.filter( val => val.key !== this.userCompetition.userId);
-    const index = _.random(userCompetitor.length - 1);
-    const competitorConnectedId = userCompetitor[index]?.value;
-    const myConnectedId =  this.userOl.filter( val => val.key === this.userCompetition.userId);
-    this.userCompetition.connectionId = myConnectedId[0].value;
-    if (!!competitorConnectedId){
-      this.connection.invoke('SendRequestCompetitor', `${competitorConnectedId}`, this.userCompetition).catch(err => console.error(err));
-    }else{
-      // TODO CHECK IF  userDirective = null NOT USER OL
-      console.log('not found competitor');
+
+  sendRequestCompetition(email): void {
+    const userCompetitor = this.userOl.filter(val => val.key !== this.userCompetition.userId);
+    const myConnectedId = this.userOl.filter(val => val.key === this.userCompetition.userId);
+    this.userCompetition.connectionId = myConnectedId[0].value.connectionId;
+    if (!!email) {
+      const emailCompetitor = userCompetitor.filter(u => {
+        return u.value.email === email;
+      });
+      if (emailCompetitor.length > 0) {
+        const competitorConnectedId = emailCompetitor[0].value.connectionId;
+        this.connection.invoke('SendRequestCompetitor', `${competitorConnectedId}`, this.userCompetition)
+          .catch(err => console.error(err));
+      } else {
+        AppNotify.error('User not found');
+      }
+    } else {
+      const index = _.random(userCompetitor.length - 1);
+      const competitorConnectedId = userCompetitor[index]?.value.connectionId;
+      if (!!competitorConnectedId) {
+        this.connection.invoke('SendRequestCompetitor', `${competitorConnectedId}`, this.userCompetition)
+          .catch(err => console.error(err));
+      } else {
+        AppNotify.warning('Not user online now');
+      }
     }
-    }
+  }
 }

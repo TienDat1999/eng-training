@@ -1,0 +1,11 @@
+<!-- The Modal -->
+<div *ngIf="isOpenCountdown" class="modal-cus">
+  <!-- Modal content -->
+  <div class="modal-content">
+
+    <div *ngIf="showCountDownNumber; else isShowFightIcon" class="count-down-number">{{countDownNumber}}</div>
+    <ng-template #isShowFightIcon>
+      <i class="sword-icon fal fa-swords"></i>
+    </ng-template>
+  </div>
+</div>

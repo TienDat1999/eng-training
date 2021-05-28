@@ -12,7 +12,6 @@ import {LoginComponent} from './modules/auth/components/login';
 import {HeaderComponent} from './theme/layouts/header/header.component';
 import {DefaultLayoutComponent} from '@app/theme/layouts/default-layout/default-layout.component';
 import {AdminModule} from '@app/modules/admin/admin.module';
-
 @NgModule({
   imports: [
     UserModule,

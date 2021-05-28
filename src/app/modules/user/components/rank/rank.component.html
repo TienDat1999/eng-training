@@ -1,7 +1,6 @@
+
 <div class="ranking__wrap">
-  <div class="title">
-    Ranking
-  </div>
+  <div class="space-height-rank" style="height: 71px" ></div>
   <div class="ranking-table mt-2">
     <table class="table">
       <thead class="thead-light">
@@ -12,11 +11,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let member of members">
-        <th scope="row" class="text-center">{{member.rank}}</th>
-        <td>{{member.fullName}}</td>
-        <td>{{member.score}}</td>
-      </tr>
+      <ng-container  *ngIf="members.length > 0">
+        <tr *ngFor="let member of members; let index = index">
+          <th scope="row" class="text-center">{{index+1}}</th>
+          <td>{{member.userName}}</td>
+          <td>{{member.score}}</td>
+        </tr>
+      </ng-container>
       </tbody>
     </table>
   </div>

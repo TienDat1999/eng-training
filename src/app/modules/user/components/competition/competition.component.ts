@@ -4,8 +4,8 @@ import {CrawWordModel} from '@app/modules/user/models/word.model';
 import {SignalrService} from '@app/modules/user/services/signalr.service';
 import {RoomData, RoomUpdated, UserCompetition} from '@app/modules/user/models/competition.model';
 import {RoomService} from '@app/modules/user/services/room/room.service';
-import {Router} from "@angular/router";
-import Swal from "sweetalert2";
+import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -16,11 +16,8 @@ import Swal from "sweetalert2";
 export class CompetitionComponent implements OnInit, OnDestroy {
   words: CrawWordModel[] = [];
   word: CrawWordModel;
-  indexWord: 0;
-  numberQuestion: number;
+ // indexWord: 0;
   roomData: RoomData;
-  competitor: UserCompetition = new UserCompetition();
-  myId: string;
   A: UserCompetition;
   B: UserCompetition;
 
@@ -79,9 +76,8 @@ export class CompetitionComponent implements OnInit, OnDestroy {
           if (value.indexWord === value.words.length){
             if (this.roomData.userA.resultCorrect > this.roomData.userB.resultCorrect){
               Swal.fire(
-                'Competition!',
                 'You win!',
-                'success'
+                '<i class="far fa-smile-wink" style="font-size: 120px; color: #0d7324"></i>',
               );
               const roomUpdated = new RoomUpdated({
                 roomName: this.roomName,
@@ -90,9 +86,8 @@ export class CompetitionComponent implements OnInit, OnDestroy {
               this.roomS.updateRoomData(roomUpdated).subscribe();
             }else {
               Swal.fire(
-                'Competition!',
                 'You lose!',
-                'warning'
+                '<i class="fas fa-tired" style="font-size: 120px; color: red"></i>',
               );
             }
             setTimeout(() => {
@@ -110,8 +105,7 @@ export class CompetitionComponent implements OnInit, OnDestroy {
   }
 
   // Chosen correct
-  callBackNextWordHandel(userId): void {
-    console.log(userId);
+  callBackNextWordHandel(): void {
     this.roomData.userA.resultCorrect += 1;
     this.roomData.indexWord += 1;
     // // send result

@@ -31,7 +31,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   senderCompetitor: UserInfoCompetition = new UserInfoCompetition();
   userCompetitor: UserInfoCompetition = new UserInfoCompetition();
   competitionWords: CrawWordModel[] = [];
-
+  competitorInput: string;
   constructor(private courseService: CourseCardService,
               private authenticationService: AuthenticationService,
               private signal: SignalrService,
@@ -119,7 +119,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   }
 
   onFindCompetitor(): void {
-    this.signal.sendRequestCompetition();
+    this.signal.sendRequestCompetition(this.competitorInput);
   }
 
   get idUser(): string {
@@ -132,7 +132,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     if (val) {
       this.userCompetitor = this.signal.userCompetition;
       const myIdConnected = this.signal.userOl.filter(id => id.key === this.userCompetitor.userId);
-      this.userCompetitor.connectionId = myIdConnected[0].value;
+      this.userCompetitor.connectionId = myIdConnected[0].value.connectionId;
       this.userCompetitions.push(this.senderCompetitor, this.userCompetitor);
       const newRoomName = this.userCompetitor.userName + this.senderCompetitor.userName + new Date().getTime();
       const resultCompetition = new ResultRoomCompetition({

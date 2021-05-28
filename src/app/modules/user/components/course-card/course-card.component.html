@@ -7,8 +7,8 @@
     <app-rank></app-rank>
     <div class="wrap-mid-content" *ngIf="courseCard.length>0; else loading">
       <div class="wrap-course-item">
-        <button (click)="isCreatCourse = true " class="btn btn-add-course btn-primary">create course</button>
-        <div class="space"></div>
+          <button (click)="isCreatCourse = true " class="btn btn-add-course btn-primary">create course</button>
+          <div class="space"></div>
         <div *ngIf="isCreatCourse" class="new-card-course">
           <div class="d-flex">
             <img
@@ -62,8 +62,13 @@
         </div>
       </div>
     </div>
-    <div class="competition">
-      <button class="btn btn-primary" (click)="onFindCompetitor()">send <i class="fas fa-dragon"></i></button>
+    <div class="competition d-flex" style="height: 40px; width: 380px">
+      <dx-text-box [(value)]="competitorInput" valueChangeEvent="input" width="100%">
+      </dx-text-box>
+      <button class="btn-competitor btn btn-primary" (click)="onFindCompetitor()">
+        {{competitorInput? 'Find competitor' : 'Auto find competitor'}}
+        <i class="fas fa-users"></i>
+      </button>
     </div>
   </div>
 </div>

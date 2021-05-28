@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Member} from '@app/modules/user/models/class.model';
 import {ClassService} from '@app/modules/user/services/class.service';
 
@@ -20,8 +20,11 @@ export class RankComponent implements OnInit {
 
   private getMembers(): void {
     this.classService.getRankingMember().subscribe((res) => {
-      this.members = res.data;
+      if (!!res) {
+        this.members = res.filter(val => val.userName !== null).sort((a, b) => {
+          return b.score - a.score;
+        });
+      }
     });
   }
-
 }

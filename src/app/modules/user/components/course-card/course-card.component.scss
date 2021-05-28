@@ -1,45 +1,64 @@
 ::ng-deep app-course-card {
   font-family: 'Itim', cursive;
   overflow-x: hidden;
+
   .space {
     padding-top: 20px;
   }
-  .course-container{
+
+  .course-container {
     //max-width: 1440px;
     margin: 0 auto;
-    .wrap-course-content{
+
+    .wrap-course-content {
       display: flex;
       justify-content: center;
     }
-    .wrap-mid-content{
+
+    .wrap-mid-content {
       margin: 0px 50px;
     }
   }
-  .wrap-course-item{
+
+  .competition {
+    .btn-competitor {
+      background-color: #FFC312;
+      color: black;
+      border-color: #FFC312;
+      margin-left: 20px;
+    }
+  }
+
+  .wrap-course-item {
     margin: auto;
-    .img-course{
+
+    .img-course {
       border-radius: 50%;
       display: flex;
       justify-content: center;
       width: 80px;
       height: 80px;
     }
-    .btn-add-course{
+
+    .btn-add-course {
       background-color: #037588 !important;
       border-color: #037588 !important;
     }
-    .new-card-course{
+
+    .new-card-course {
       padding: 10px;
       display: flex;
       justify-content: space-between;
       box-shadow: 3px -1px 15px -5px rgb(3 5 20 / 34%);
     }
-    .btn-create-course{
+
+    .btn-create-course {
       position: absolute;
       bottom: 0;
       right: 0;
     }
-    .status-course{
+
+    .status-course {
       background: #ffc107;
       padding: 5px;
       border-radius: 10px;
@@ -48,13 +67,15 @@
       font-family: 'Itim', cursive;
     }
   }
+
   .learn-word {
     margin-top: 25px;
     display: flex;
     padding: 15px;
     border-radius: 7px;
-    -webkit-box-shadow: 3px -1px 15px -5px rgba(3,5,20,0.34);
-    box-shadow: 3px -1px 15px -5px rgba(3,5,20,0.34);
+    -webkit-box-shadow: 3px -1px 15px -5px rgba(3, 5, 20, 0.34);
+    box-shadow: 3px -1px 15px -5px rgba(3, 5, 20, 0.34);
+
     .user-info .avatar {
       display: flex;
       justify-content: center;
@@ -69,6 +90,7 @@
         height: 80px;
       }
     }
+
     .learn-target {
       padding-left: 10px;
       width: 100%;
@@ -102,8 +124,10 @@
             color: #0085ff;
             font-weight: bold;
           }
+
           &.frequency {
           }
+
           &.continuity {
           }
         }
@@ -119,7 +143,8 @@
 ::ng-deep .complete .dx-progressbar-range {
   background-color: green;
 }
-::ng-deep #modalTarget .grid-column-110px-1fr{
+
+::ng-deep #modalTarget .grid-column-110px-1fr {
   display: grid;
   grid-template-columns: 120px 1fr;
 }

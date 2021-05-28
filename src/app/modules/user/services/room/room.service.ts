@@ -14,18 +14,18 @@ export class RoomService {
     if (environment.production){
       console.log('get room data');
     }
-    return this.http.get(`${environment.apiUrl}/api/Room?name=${roomName}`);
+    return this.http.get(`${environment.apiUrl}/api/room?name=${roomName}`);
   }
   removeRoomData(roomName: string): Observable<any>{
     if (environment.production){
       console.log('remove room data');
     }
-    return this.http.delete(`${environment.apiUrl}/api/Room?name=${roomName}`);
+    return this.http.delete(`${environment.apiUrl}/api/room?name=${roomName}`);
   }
   updateRoomData(roomUpdated: RoomUpdated ): Observable<any>{
     if (environment.production){
       console.log('update room data');
     }
-    return this.http.put(`${environment.apiUrl}/api/Room`, roomUpdated);
+    return this.http.put(`${environment.apiUrl}/api/room`, roomUpdated);
   }
 }
