@@ -9,7 +9,6 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {UserModule} from '@app/modules/user/user.module';
 import {LoginComponent} from './modules/auth/components/login';
-import {HeaderComponent} from './theme/layouts/header/header.component';
 import {DefaultLayoutComponent} from '@app/theme/layouts/default-layout/default-layout.component';
 import {AdminModule} from '@app/modules/admin/admin.module';
 @NgModule({
@@ -24,7 +23,6 @@ import {AdminModule} from '@app/modules/admin/admin.module';
   declarations: [
     AppComponent,
     LoginComponent,
-    HeaderComponent,
     DefaultLayoutComponent,
   ],
   exports: [AppComponent],

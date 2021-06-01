@@ -4,8 +4,7 @@ import {CrawWordModel} from '@app/modules/user/models/word.model';
 import {CrawWordsService} from '@app/modules/user/services/craw-words.service';
 import {TopicService} from '@app/modules/user/services/topics/topic.service';
 import {AddTopicModel} from '@app/modules/user/models/topic.model';
-import Swal from 'sweetalert2';
-import {TopicStatusModel} from '@app/modules/user/models/user.model';
+import {AppNotify} from '@app/share/AppNotify';
 
 @Component({
   selector: 'app-modal-topic',
@@ -19,9 +18,9 @@ export class ModalTopicComponent implements OnInit {
   wordRecord: CrawWordModel[] = [];
   topicName: string;
   courseId: number;
+  isWaitLoad: boolean;
 
-
-  constructor( private getWordService: CrawWordsService, private topicService: TopicService,
+  constructor(private getWordService: CrawWordsService, private topicService: TopicService,
   ) {
   }
 
@@ -58,10 +57,10 @@ export class ModalTopicComponent implements OnInit {
     readXlsxFile(e.target.files[0], {schema}).then((data) => {
       if (data.rows) {
         data.rows.forEach(elm => {
-          console.log(elm)
+          // console.log(elm);
           this.wordRecord.push(elm);
         });
-        //console.log(this.wordRecord)
+        // console.log(this.wordRecord)
       }
     });
   }
@@ -83,6 +82,7 @@ export class ModalTopicComponent implements OnInit {
   onHandelFillWord(): void {
     this.wordRecord.forEach(wordItem => {
       if (!!wordItem.wordEng) {
+        this.isWaitLoad = true;
         this.getWordService.fillWord(wordItem.wordEng).subscribe(value => {
           if (!wordItem.wordType) {
             wordItem.wordType = value?.wordType;
@@ -95,6 +95,9 @@ export class ModalTopicComponent implements OnInit {
           }
           wordItem.ipa = value?.ipa;
           wordItem.audioUrl = value?.audioUrl;
+        }, error => {
+        }, () => {
+          this.isWaitLoad = false;
         });
       }
     });
@@ -108,40 +111,22 @@ export class ModalTopicComponent implements OnInit {
       words: newWords,
       courseId: this.courseId,
     });
-    if (!!topic.topicName){
-      if (newWords.length > 0){
-        this.topicService.addTopics(topic).subscribe( result => {
-          if (result.isSuccess){
+    if (!!topic.topicName) {
+      if (newWords.length > 0) {
+        this.topicService.addTopics(topic).subscribe(result => {
+          if (result.isSuccess) {
             this.isOpenTopicChange.emit(false);
             this.reloadTopic.emit(null);
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Add topic success fully',
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            AppNotify.success('Add topic successfully');
           }
           this.topicName = '';
           this.wordRecord = [];
         }, error => console.log(error));
-      }else{
-        Swal.fire({
-          position: 'center',
-          icon: 'warning',
-          title: 'Please enter all fields',
-          showConfirmButton: false,
-          timer: 2000,
-        });
+      } else {
+        AppNotify.alert('Please enter all fields', 'Notify');
       }
-    }else{
-      Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'Please input the topic name',
-        showConfirmButton: false,
-        timer: 2000,
-      });
+    } else {
+      AppNotify.warning('Please input the topic name');
     }
   }
 

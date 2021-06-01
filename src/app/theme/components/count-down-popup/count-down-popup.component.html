@@ -5,7 +5,7 @@
 
     <div *ngIf="showCountDownNumber; else isShowFightIcon" class="count-down-number">{{countDownNumber}}</div>
     <ng-template #isShowFightIcon>
-      <i class="sword-icon fal fa-swords"></i>
+      <i *ngIf="isShowIConFight" class="sword-icon fal fa-swords"></i>
     </ng-template>
   </div>
 </div>

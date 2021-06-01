@@ -32,6 +32,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   userCompetitor: UserInfoCompetition = new UserInfoCompetition();
   competitionWords: CrawWordModel[] = [];
   competitorInput: string;
+
   constructor(private courseService: CourseCardService,
               private authenticationService: AuthenticationService,
               private signal: SignalrService,
@@ -48,14 +49,12 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     if (this.authenticationService.userValue) {
       this.isLogin = true;
     }
-   // this.signal.startConnection();
     setTimeout(() => {
-      this.signal.askServer();
-      this.signal.askServerListener();
-    }, 1000);
-    this.ReceiveNotifyCompetition();
-    this.OnShowNotifyRefuse();
-    this.onGetWordCompetition();
+      this.ReceiveNotifyCompetition();
+      this.OnShowNotifyRefuse();
+      this.onGetWordCompetition();
+    }, 2000);
+
   }
 
   ngOnDestroy(): void {
@@ -136,7 +135,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
       this.userCompetitions.push(this.senderCompetitor, this.userCompetitor);
       const newRoomName = this.userCompetitor.userName + this.senderCompetitor.userName + new Date().getTime();
       const resultCompetition = new ResultRoomCompetition({
-        result : true,
+        result: true,
         roomName: newRoomName,
       });
       localStorage.setItem('RoomName', newRoomName);

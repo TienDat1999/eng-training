@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 
 import {AuthenticationService} from '../../services';
+import {Role} from '@app/modules/auth/models';
 
 @Component({selector: 'app-login', templateUrl: 'login.component.html', styleUrls: ['./login.component.scss']})
 export class LoginComponent implements OnInit {
@@ -48,14 +49,16 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (user) => {
-           if (user.result) {
-            // get return url from query parameters or default to home page
-            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-            this.router.navigateByUrl(returnUrl);
-          } else {
-             this.error = user.errors[0];
+          if (!user.result) {
+            this.error = user.errors[0];
+          }else{
+            if (user.role[0] === Role.Admin) {
+              this.router.navigate(['/admin/course']);
+            } else {
+              const returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+              this.router.navigateByUrl(returnUrl);
+            }
           }
-
         },
         error: error => {
           this.error = error;

@@ -9,7 +9,9 @@ export class AppComponent implements OnDestroy{
     this.authenticationService.user.subscribe((x) => {
       this.isLogged = x;
       if (!!x){
-       this.signal.startConnection();
+        setTimeout(() => {
+          this.signal.startConnection();
+        }, 1000);
      }
     });
   }

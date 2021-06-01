@@ -29,7 +29,7 @@ export class SignalrService {
       // .withHubProtocol(new signalR.JsonHubProtocol())
       .build();
     this.connection.start().then(() => {
-      console.log('hub connection Started!');
+        this.askServer();
     }).catch((e) => {
       console.log('There was an error connecting to the hub. Please check the configuration.', e);
     });
@@ -43,7 +43,7 @@ export class SignalrService {
 
   askServer(): void {
     //  console.log(this.connection)
-    this.connection.invoke('GetListUserConnected').catch(err => console.error(err));
+    this.connection.invoke('GetListUserConnected').catch(err => console.error(err)).then(this.askServerListener());
   }
 
   stopConnection(): void {

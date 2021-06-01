@@ -22,6 +22,7 @@ export class ReviewWordComponent implements OnInit {
   totalNumberWord;
   interval: any;
   isOpenTopic = false;
+  isOpenReview = false;
   constructor(private wordReviewService: WordLearnedService, private router: Router) {
   }
 
@@ -35,55 +36,64 @@ export class ReviewWordComponent implements OnInit {
     }, error => {
       console.log(error);
     }, () => {
-      this.onProcessWord();
-      this.initRandom();
+      setTimeout(() => {
+        this.onProcessWord();
+        this.initRandom();
+        this.isOpenReview = true;
+      }, 4000);
     });
   }
-  handleCountDownTimer(): void{
+
+  handleCountDownTimer(): void {
     this.interval = setInterval(() => {
       this.countDown -= 2;
-      if (this.countDown === 0){
+      if (this.countDown === 0) {
         const index = this.words.findIndex(word => word.wordEng === this.wordIem.wordEng);
         this.words.splice(index, 1);
         clearInterval(this.interval);
-        if (index !== -1){
-        this.onProcessWord();
-        this.initRandom();
+        if (index !== -1) {
+          this.onProcessWord();
+          this.initRandom();
+        }else{
+          clearInterval(this.interval);
         }
         this.countDown = 100;
       }
-      if (this.countDown < 0){
+      if (this.countDown < 0) {
         clearInterval(this.interval);
       }
     }, 100);
 
-    if (this.words.length === 0){
+    if (this.words.length === 0) {
       this.countDown = 0;
       this.isOpenTopic = true;
       clearInterval(this.interval);
     }
   }
+
   onProcessWord(): void {
     const indexWord = _.random(this.words.length - 1);
     this.wordIem = this.words[indexWord];
   }
+
   chooseWord(event): void {
 
-    if (this.words.length > 0){
-     // debugger
+    if (this.words.length > 0) {
+      // debugger
       const value = event.target.firstChild.data;
-      if (value.trim() === this.wordIem.wordEng.trim()){
+      if (value.trim() === this.wordIem.wordEng.trim()) {
         this.handleCorrectAnswer(event, value, 'is-correct');
         this.answerCorrect += 1;
-      }
-      else {
+      } else {
         this.handleCorrectAnswer(event, value, 'incorrect');
       }
-    }else{
+    } else {
       this.countDown = 0;
+      clearInterval(this.interval);
     }
   }
-  handleCorrectAnswer(event, value, text: string): void{
+
+  handleCorrectAnswer(event, value, text: string): void {
     document.getElementById(event.target.id).classList.add(text);
     setTimeout(() => {
       document.getElementById(event.target.id).classList.remove(text);
@@ -93,26 +103,27 @@ export class ReviewWordComponent implements OnInit {
       this.initRandom();
       clearInterval(this.interval);
       this.countDown = 100;
-    } , 500);
+    }, 500);
   }
+
   initRandom(): void {
     this.handleCountDownTimer();
-    if (this.words.length <= 0){
-     clearInterval(this.interval);
+    if (this.words.length <= 0) {
+      clearInterval(this.interval);
     }
     const randomWords = this.listRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
-    if (!!this.wordIem?.wordEng){
-      const isExist  = randomWords.filter(item => item.wordEng !== this.wordIem.wordEng);
-      if ( isExist.length === 4){
+    if (!!this.wordIem?.wordEng) {
+      const isExist = randomWords.filter(item => item.wordEng !== this.wordIem.wordEng);
+      if (isExist.length === 4) {
         const newRandom = [];
         newRandom.push(...isExist.slice(1, 4), this.wordIem);
         this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
-      }else{
+      } else {
         const newRandom = [];
         newRandom.push(...isExist, this.wordIem);
         this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
       }
-    }else{
+    } else {
       setInterval(this.interval);
     }
   }

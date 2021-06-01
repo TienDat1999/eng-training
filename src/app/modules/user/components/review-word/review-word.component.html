@@ -1,4 +1,4 @@
-<div class="choose-word">
+<div *ngIf="isOpenReview" class="choose-word">
   <div style="display: flex; justify-content: space-between">
     <div class="label-suggest">Choose the correct word</div>
     <i (click)="closeReview()" style="font-size: 20px" class="fas fa-times"></i>
@@ -22,3 +22,7 @@
   </div>
 </div>
 <app-complete-review-model [scored]="answerCorrect" [totalNumberWord] = "totalNumberWord" [(isOpenTopic)]="isOpenTopic"></app-complete-review-model>
+<app-count-down-popup [countDownNumber]="3"
+                      [isOpenCountdown]="true"
+                      [isShowIConFight] = "false">
+</app-count-down-popup>

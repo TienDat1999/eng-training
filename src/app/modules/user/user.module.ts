@@ -9,6 +9,7 @@ import {CommonModule} from '@angular/common';
 import {PracticeWordComponent} from './components/practice-word/practice-word.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import {HttpClientModule} from '@angular/common/http';
+import {HeaderComponent} from '@app/theme/layouts/header/header.component';
 import {
   ChooseWordTypeComponent,
   DefaultWordTypeComponent,
@@ -27,7 +28,7 @@ import {
   CompetitionComponent,
 } from '@app/modules/user/components';
 import {UserComponent} from './components/user/user.component';
-import {DxTextBoxModule} from "devextreme-angular";
+import {DxLoadPanelModule, DxTextBoxModule} from 'devextreme-angular';
 
 
 const COMPONENTS = [
@@ -37,57 +38,58 @@ const COMPONENTS = [
   TopicComponent, WordLessonComponent, PracticeWordComponent,
   ChooseWordTypeComponent, DefaultWordTypeComponent, InputWordTypeComponent,
   ListenWordTypeComponent, CompetitionComponent,
- ModalTopicComponent, RankComponent,
+ ModalTopicComponent, RankComponent, HeaderComponent,
 ];
 
 @NgModule({
   declarations: [...COMPONENTS, UserComponent],
-  imports: [
-    HttpClientModule,
-    ProgressBarModule,
-    FormsModule,
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: UserComponent,
-        children: [
-          {
-            path: '', redirectTo: 'course', pathMatch: 'full',
-          },
-          {
-            path: 'explore',
-            component: HomeComponent,
-          },
-          {
-            path: 'course',
-            component: CourseCardComponent,
-          },
-          {
-            path: 'course/:name',
-            component: TopicComponent,
-          },
-          {
-            path: 'practice',
-            component: PracticeWordComponent,
-          },
-          {
-            path: 'course/:name/:id',
-            component: WordLessonComponent,
-          },
-          {
-            path: 'review-word',
-            component: ReviewWordComponent,
-          },
-          {
-            path: 'competition',
-            component: CompetitionComponent,
-          },
-        ]
-      },
-    ]),
-    DxTextBoxModule,
-  ],
+    imports: [
+        HttpClientModule,
+        ProgressBarModule,
+        FormsModule,
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: UserComponent,
+                children: [
+                    {
+                        path: '', redirectTo: 'course', pathMatch: 'full',
+                    },
+                    {
+                        path: 'explore',
+                        component: HomeComponent,
+                    },
+                    {
+                        path: 'course',
+                        component: CourseCardComponent,
+                    },
+                    {
+                        path: 'course/:name',
+                        component: TopicComponent,
+                    },
+                    {
+                        path: 'practice',
+                        component: PracticeWordComponent,
+                    },
+                    {
+                        path: 'course/:name/:id',
+                        component: WordLessonComponent,
+                    },
+                    {
+                        path: 'review-word',
+                        component: ReviewWordComponent,
+                    },
+                    {
+                        path: 'competition',
+                        component: CompetitionComponent,
+                    },
+                ]
+            },
+        ]),
+        DxTextBoxModule,
+        DxLoadPanelModule,
+    ],
 })
 export class UserModule {
 }

@@ -68,3 +68,10 @@
     <my-custom-alert type="notificationData.type"> {{ notificationData.message }} </my-custom-alert>
   </ng-template>
 </div>
+<dx-load-panel *ngIf="isWaitLoad"
+               [visible]="true"
+               shadingColor="#ffffffcc"
+               [showIndicator]="true"
+               [shading]="false"
+               [showPane]="false">
+</dx-load-panel>
