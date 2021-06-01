@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Member} from '@app/modules/user/models/class.model';
-import {ClassService} from '@app/modules/user/services/class.service';
 import {UserClass, UserInCourse} from '@app/modules/user/models/course.model';
 import {UserCourseService} from '@app/modules/user/services/user-course/user-course.service';
-import Swal from 'sweetalert2';
 import {MessageModel} from '@app/modules/user/models/message.model';
+import {AppNotify} from '@app/share/AppNotify';
 
 @Component({
   selector: 'app-course-member',
@@ -15,7 +14,6 @@ export class CourseMemberComponent implements OnInit {
 
   count: number;
   members: UserInCourse[] = [];
-  inputNameMember: string;
   userClassCourse: UserClass = new UserClass();
   constructor(private classService: UserCourseService) {
   }
@@ -30,17 +28,9 @@ export class CourseMemberComponent implements OnInit {
     this.classService.addUserToClass(this.userClassCourse).subscribe((res: MessageModel<any>) => {
       if (res.isSuccess) {
        this.getMembers();
-       Swal.fire(
-          'Notification',
-          `${res.message}`,
-          'success'
-        );
+       AppNotify.success(res.message);
       } else {
-        Swal.fire(
-          'Notification!',
-          `${res.message}`,
-          'error'
-        );
+        AppNotify.error(res.message);
       }
     });
   }
@@ -50,18 +40,10 @@ export class CourseMemberComponent implements OnInit {
     this.classService.removeUserFromClass(member.userId, course.course.id).subscribe((res) => {
       if (res) {
         // Todo: show notification remove member
-        Swal.fire(
-          'Notification',
-          `Remove fail`,
-          'success'
-        );
+        AppNotify.error('Remove successfully');
         this.members = this.members.filter(item => item.userId !== member.userId);
       } else {
-        Swal.fire(
-          'Notification!',
-          `Remove fail`,
-          'error'
-        );
+        AppNotify.error('Remove fail');
       }
     });
   }
@@ -69,7 +51,7 @@ export class CourseMemberComponent implements OnInit {
   private getMembers(): void {
     const course = JSON.parse(localStorage.getItem('courseEng'));
     this.classService.getUserClass(course.course.id).subscribe((res) => {
-      this.members = res;
+      this.members = res.filter(user => user.userName !== course.course.authorName);
     });
   }
 

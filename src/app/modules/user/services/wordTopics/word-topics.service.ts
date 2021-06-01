@@ -16,5 +16,7 @@ export class WordTopicsService {
     }
     return this.http.get(`${environment.apiUrl}/api/Word?CourseId=${courseId}&TopicId=${topicId}`);
   }
-
+  getWordRandom(): Observable<any>{
+    return this.http.get(`${environment.apiUrl}/api/word/random`);
+  }
 }

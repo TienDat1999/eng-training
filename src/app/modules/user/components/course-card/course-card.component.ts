@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 import {CrawWordModel} from '@app/modules/user/models/word.model';
 import {CompetitionService} from '@app/modules/user/services/competition/competition.service';
 import {InitCompetition, ResultRoomCompetition, UserInfoCompetition} from '@app/modules/user/models/competition.model';
+import {AppNotify} from '@app/share/AppNotify';
 
 @Component({
   selector: 'app-course-card',
@@ -84,11 +85,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     this.newCourse.dateCreated = new Date();
     this.courseService.createCourseCard(this.newCourse).subscribe((result: MessageModel<CourseModel>) => {
       if (result.isSuccess) {
-        Swal.fire(
-          'Created!',
-          'You are created success!',
-          'success'
-        );
+        AppNotify.success('You are created successfully!');
         this.courseCard.push(new CourseModel({
           course: result.data.course,
           totalWord: result.data.totalWord,
@@ -96,18 +93,10 @@ export class CourseCardComponent implements OnInit, OnDestroy {
           // isEdit: result.data.isEdit,
         }));
       } else {
-        Swal.fire(
-          'Created!',
-          'Created fail',
-          'error'
-        );
+        AppNotify.error('Created fail');
       }
     }, error => {
-      Swal.fire(
-        'Created!',
-        'Created fail',
-        'error'
-      );
+      AppNotify.error('Created fail');
     });
   }
 

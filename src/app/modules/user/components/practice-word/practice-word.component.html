@@ -42,13 +42,16 @@
                              [wordDefault]="wordItem">
 
       </app-default-word-type>
-      <app-choose-word-type (callBackChooseNextWordHandel)="callBackNextWordHandel()"
-                            *ngSwitchCase="options.ChooseOption"
-                            [(isCorrect)] ="typeIconClick"
-                            [(optionChooseWord)] = "option"
-                            [word]="wordItem"
-                            [wordList]="wordPractice">
-      </app-choose-word-type>
+      <ng-container *ngIf="randomWords.length>0">
+        <app-choose-word-type  (callBackChooseNextWordHandel)="callBackNextWordHandel()"
+                               *ngSwitchCase="options.ChooseOption"
+                               [(isCorrect)] ="typeIconClick"
+                               [(optionChooseWord)] = "option"
+                               [word]="wordItem"
+                               [wordList]="randomWords">
+        </app-choose-word-type>
+      </ng-container>
+
     </div>
 
 

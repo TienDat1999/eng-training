@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import {WordTopicsService} from '@app/modules/user/services/wordTopics/word-topics.service';
 import {Router} from '@angular/router';
 import {IconType} from '@app/share/enum';
+import {CrawWordModel} from '@app/modules/user/models/word.model';
 
 @Component({
   selector: 'app-practice-word',
@@ -33,8 +34,12 @@ export class PracticeWordComponent implements OnInit {
   completeWord: WordLearnedModel [] = [];
   typeIconClick: number;
   iconType = IconType;
+  randomWords: CrawWordModel[] = [];
+  topicId: any;
   constructor(private courserService: CourseCardService,
-              private wordsS: WordTopicsService, private router: Router) {
+              private wordsS: WordTopicsService,
+              private router: Router,
+  ) {
   }
 
   // Listen ENTER
@@ -51,13 +56,14 @@ export class PracticeWordComponent implements OnInit {
       localStorage.setItem('paramTopicID', value);
       this.paramIdl = value;
     });
+    this.topicId = localStorage.getItem('paramTopicID');
     this.initWordItem();
+    this.wordsS.getWordRandom().subscribe(value => this.randomWords = value);
   }
 
   initWordItem(): void {
-    const id = localStorage.getItem('paramTopicID');
     const course = JSON.parse(localStorage.getItem('courseEng'));
-    const param = !!this.paramIdl ?  this.paramIdl : id;
+    const param = !!this.paramIdl ?  this.paramIdl :   this.topicId;
     this.wordsS.getWordList(course.course.id, Number(param)).subscribe(value => {
       // console.log('get', value);
       this.scoreTurn = 90 / (value.words.length * (this.repeatNumber + 1));

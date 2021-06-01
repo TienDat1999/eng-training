@@ -27,8 +27,6 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
     this.isCorrectChange.emit(val);
   }
 
-
-
   constructor() { }
 
   ngOnInit(): void {
@@ -37,17 +35,10 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
     this.userId = value?.userId;
   }
   initWordRandom(): void{
-    const randomArray = this.wordList.sort(() => Math.random() - Math.random()).slice(0, 4);
-    const wordExist  = randomArray.filter(item => item.wordEng !== this.word.wordEng);
-    if ( wordExist.length === 4){
-      const newRandom = [];
-      newRandom.push(...wordExist.slice(1, 4), this.word);
-      this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
-    }else{
-      const newRandom = [];
-      newRandom.push(...wordExist, this.word);
-      this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
-    }
+    const randomArray = this.wordList.sort(() => Math.random() - Math.random()).slice(0, 3);
+    const newRandom = [];
+    newRandom.push(...randomArray, this.word);
+    this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.word){

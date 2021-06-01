@@ -20,19 +20,18 @@ export class TopicComponent implements OnInit, OnDestroy  {
   constructor(private router: Router,
               private route: ActivatedRoute, private topicsS: TopicService,
              ) {
+    this.course = JSON.parse(localStorage.getItem('courseEng'));
   }
   topics: TopicStatusModel[] = [];
   ngOnInit(): void {
     this.onGetTopic();
     const user = JSON.parse(localStorage.getItem('userEnglishTraining'));
-    const course = JSON.parse(localStorage.getItem('courseEng'));
-    this.isCanEdit(user.userId, course.course.authorId);
+    this.isCanEdit(user.userId, this.course.course.authorId);
   }
   ngOnDestroy(): void {
     // this.sub.unsubscribe();
   }
   onGetTopic(): void {
-    this.course = JSON.parse(localStorage.getItem('courseEng'));
     this.topicsS.getTopics(this.course.course.id).subscribe(value => {
       this.topics = value;
     });
