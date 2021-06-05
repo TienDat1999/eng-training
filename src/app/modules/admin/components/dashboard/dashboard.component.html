@@ -1,12 +1,36 @@
-<div style="height: 50px"></div>
-<div class="container dashboard-admin">
-  <nav>
-    <div class="menu-link">
-      <a routerLink="course">Manager course</a>
-      <a routerLink="user">Manager users</a>
-    </div>
-  </nav>
+<div class="container-fluid dashboard-admin">
+  <div class="msb">
+    <nav class="navbar navbar-wrap">
+      <!--    header-->
+      <div class="navbar-header">
+        <div class="brand-wrapper">
+          <div class="brand-name-wrapper">
+            <a routerLink="/" class="navbar-brand"><i class="fa fa-dashboard"></i> Admin</a>
+          </div>
+        </div>
+      </div>
+      <!-- Main Menu -->
+      <div class="side-menu-container">
+        <ul class="nav navbar-nav">
+          <li>
+            <a routerLink="course"><i class="fas fa-graduation-cap"></i> Manager course</a>
+          </li>
+          <li>
+            <a routerLink="user"><i class="fas fa-users"></i> Manager users</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
   <main>
     <router-outlet></router-outlet>
   </main>
 </div>
+
+<!--<nav>-->
+<!--  <div class="menu-link">-->
+<!--    <a routerLink="course">Manager course</a>-->
+<!--    <a routerLink="user">Manager users</a>-->
+<!--  </div>-->
+<!--</nav>-->

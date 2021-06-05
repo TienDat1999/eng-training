@@ -20,7 +20,7 @@ export class CourseManagerComponent implements OnInit {
   private initDataSource(): void {
     this.dataSource = new DataSource({
       load: (loadOptions) => {
-        return this.service.getData(loadOptions)
+        return this.service.getCoursers(loadOptions)
           .toPromise()
           .then(res => res)
           .catch(error => console.error(error));
