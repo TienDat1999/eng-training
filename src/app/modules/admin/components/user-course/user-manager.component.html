@@ -1,1 +1,35 @@
-<p>user-course works!</p>
+<div class="course-admin">
+  <div class="title">
+    <h2>Manager Users</h2>
+  </div>
+  <div class="content">
+    <div class="table">
+      <dx-data-grid id="gridContainer"
+                    [dataSource]="dataSource"
+                    [showBorders]="true"
+                    [remoteOperations]="false"
+                    mode="row">
+        <dxo-editing
+          [allowAdding]="true"
+          [allowUpdating]="true"
+          [allowDeleting]="true"
+          mode="row"> <!-- 'batch' | 'cell' | 'form' | 'popup' -->
+        </dxo-editing>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[5, 10, 15]"
+          [showInfo]="true">
+        </dxo-pager>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+
+        <dxi-column dataField="id" width="75" caption="No" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="code" caption="Course Code" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="name" caption="Course Name" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="author" caption="Course Name" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="type" caption="Type" [allowSorting]="false"></dxi-column>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+

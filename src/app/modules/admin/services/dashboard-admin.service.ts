@@ -101,11 +101,14 @@ export class DashboardAdminService {
   ];
   constructor(private  http: HttpClient) { }
 
-  getData(loadOptions: LoadOptions): Observable<any>{debugger;
+  getCoursers(loadOptions: LoadOptions): Observable<any>{
+    return of(this.data);
+  }
+  getUsers(loadOptions: LoadOptions): Observable<any>{
     return of(this.data);
   }
 
-  removeDate(row: any): Observable<any>{debugger;
+  removeDate(row: any): Observable<any>{
     return of(true);
   }
 }
