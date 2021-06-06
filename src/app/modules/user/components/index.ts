@@ -7,3 +7,4 @@ export * from './review-word/review-word.component';
 export * from './course-member/course-member.component';
 export * from './rank/rank.component';
 export * from './competition/competition.component';
+export * from './course-detail/course-detail.component';

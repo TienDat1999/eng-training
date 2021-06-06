@@ -21,6 +21,7 @@ export class WordLessonComponent implements OnInit {
   topicName: string;
   defineTranslate: string;
   isTranslate = false;
+  isWaitLoad= true;
   // tslint:disable-next-line:max-line-length
   constructor(private wordService: CourseCardService, private route: ActivatedRoute,
               private router: Router, private wordsS: WordTopicsService, private translateS: TranslateVnService) {
@@ -60,7 +61,8 @@ export class WordLessonComponent implements OnInit {
     setTimeout(() => this.wordsS.getWordList(course.course.id, this.levelParam).subscribe(value => {
       this.topicName = value.topicName;
       this.words = value.words;
-    }), 100);
+    },  (err: Error) => console.error('Observer got an error: ' + err),
+    () => this.isWaitLoad = false), 100);
   }
 
   onPlayAudio(audioUrl: string): void {

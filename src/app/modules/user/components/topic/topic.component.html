@@ -29,26 +29,29 @@
             <div style="font-weight: 600; margin-bottom: 5px">Add new topic</div>
           </div>
         </div>
-        <div *ngFor="let topic of topics; let indexNumber = index">
-          <div class="wrap-topic-item wrap-topic--position ">
-        <span *ngIf="!!isEdit" class="wrap-eraser-icon" (click)="onRemoveTopic(topic, indexNumber)">
-            <i class="fas fa-trash"></i>
-        </span>
-            <div (click)="goToListWord(topic.topic.id)" [ngClass]="topic.status?'topic-bg-success':''" class="inner-topic-container">
-              <div class="wrap-number-topic">
-                <div class="wrap-number-topic-item">{{indexNumber+1}}</div>
+        <ng-container *ngIf="!isEdit">
+          <div *ngFor="let topic of topics; let indexNumber = index">
+            <div class="wrap-topic-item wrap-topic--position ">
+          <span *ngIf="!!isEdit" class="wrap-eraser-icon" (click)="onRemoveTopic(topic, indexNumber)">
+              <i class="fas fa-trash"></i>
+          </span>
+              <div (click)="goToListWord(topic.topic.id)" [ngClass]="topic.status?'topic-bg-success':''" class="inner-topic-container">
+                <div class="wrap-number-topic">
+                  <div class="wrap-number-topic-item">{{indexNumber+1}}</div>
+                </div>
+                <div *ngIf="!topic.status ; else isComplete" class="topic-item-icon">
+                  <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:60px"></i>
+                </div>
+                <ng-template #isComplete>
+                  <i class="fas fa-flower-daffodil topic-icon-success"></i>
+                  <i class="fas fa-check topic-icon-check" aria-hidden="true" style="font-size:30px"></i>
+                </ng-template>
+                <div [ngClass]="topic.status?'topic-item-name-success':''" class="topic-item-name">{{topic.topic.topicName}}</div>
               </div>
-              <div *ngIf="!topic.status ; else isComplete" class="topic-item-icon">
-                <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:60px"></i>
-              </div>
-              <ng-template #isComplete>
-                <i class="fas fa-flower-daffodil topic-icon-success"></i>
-                <i class="fas fa-check topic-icon-check" aria-hidden="true" style="font-size:30px"></i>
-              </ng-template>
-              <div [ngClass]="topic.status?'topic-item-name-success':''" class="topic-item-name">{{topic.topic.topicName}}</div>
             </div>
           </div>
-        </div>
+        </ng-container>
+     
       </div>
     </div>
     <ng-container *ngIf="isEdit">
@@ -59,3 +62,10 @@
 <div>
   <app-modal-topic (reloadTopic) ="onHandelReload()" [(isOpenTopic)]="isOpenTopic"></app-modal-topic>
 </div>
+<dx-load-panel *ngIf="isWaitLoad"
+               [visible]="true"
+               shadingColor="#ffffffcc"
+               [showIndicator]="true"
+               [shading]="false"
+               [showPane]="false">
+</dx-load-panel>

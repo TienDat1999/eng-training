@@ -8,7 +8,7 @@ import {SimpleCourseModel, Course, PublicCourse, } from '@app/modules/user/model
 import {UserCourseService} from '@app/modules/user/services/user-course/user-course.service';
 import {MessageModel} from '@app/modules/user/models/message.model';
 import Swal from 'sweetalert2';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,12 +16,15 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private userCourseS: UserCourseService, private courseS: CourseCardService, private translateS: TranslateVnService) {
+  constructor(private userCourseS: UserCourseService, 
+    private courseS: CourseCardService, 
+    private router: Router,
+    private translateS: TranslateVnService) {
   }
   publicCourser: PublicCourse[] = [];
   ngOnInit(): void {
     this.courseS.getPublicCourseCard().subscribe((value) => {
-     this.publicCourser = value;
+     this.publicCourser = value;  
     });
   }
   onChooseCourse(id: number): void {
@@ -40,5 +43,8 @@ export class HomeComponent implements OnInit {
         );
       }
     });
+  }
+  goDetailcourse(e){
+    this.router.navigate(['/course-detail']);
   }
 }

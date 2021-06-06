@@ -17,6 +17,7 @@ export class TopicComponent implements OnInit, OnDestroy  {
   private sub: any;
   isOpenTopic = false;
   isEdit: boolean;
+  isWaitLoad = true;
   constructor(private router: Router,
               private route: ActivatedRoute, private topicsS: TopicService,
              ) {
@@ -34,7 +35,8 @@ export class TopicComponent implements OnInit, OnDestroy  {
   onGetTopic(): void {
     this.topicsS.getTopics(this.course.course.id).subscribe(value => {
       this.topics = value;
-    });
+    }, (err: Error) => console.error('Observer got an error: ' + err),
+    () => this.isWaitLoad = false,);
     if (this.course?.totalWord === 0){
       this.progress = 0;
     }else {

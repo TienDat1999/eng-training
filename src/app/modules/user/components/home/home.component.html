@@ -5,7 +5,7 @@
 <div class="container">
   <div class="space-height"></div>
   <div class="card-course">
-    <div *ngFor="let course of publicCourser" class="course-item">
+    <div *ngFor="let course of publicCourser" class="course-item" (click)="goDetailcourse(course.course)" >
       <div class="course-item-header">
         <div class="wrap-img-course">
           <img src="{{course.course.imgUrl}}" class="course-image">

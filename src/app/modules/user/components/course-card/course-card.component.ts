@@ -33,7 +33,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   userCompetitor: UserInfoCompetition = new UserInfoCompetition();
   competitionWords: CrawWordModel[] = [];
   competitorInput: string;
-
+  isWaitLoad = true;
   constructor(private courseService: CourseCardService,
               private authenticationService: AuthenticationService,
               private signal: SignalrService,
@@ -46,7 +46,8 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     // this.competitorName = this.signal.competitor?.userName;
     this.courseService.getCourseCard().subscribe(value => {
       this.courseCard = value;
-    });
+    }, (err: Error) => console.error('Observer got an error: ' + err),
+    () => this.isWaitLoad = false,);
     if (this.authenticationService.userValue) {
       this.isLogin = true;
     }
