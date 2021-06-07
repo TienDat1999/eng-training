@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {WordModel} from '@app/modules/user/models/user.model';
 import {IconType} from '@app/share/enum';
+import { WordTopicsService } from '@app/modules/user/services/wordTopics/word-topics.service';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
   @Input() optionChooseWord;
   @Input() word: WordModel;
   @Input() wordList: WordModel[];
+  words: WordModel[] = [];
   @Output() callBackChooseNextWordHandel = new  EventEmitter<any>();
   randomWordList = [];
   userId: string;
@@ -27,18 +29,26 @@ export class ChooseWordTypeComponent implements OnInit, OnChanges {
     this.isCorrectChange.emit(val);
   }
 
-  constructor() { }
+  constructor( private wordsS: WordTopicsService) { }
 
   ngOnInit(): void {
     this.initWordRandom();
     const value = JSON.parse(localStorage.getItem('userEnglishTraining')) ;
     this.userId = value?.userId;
+    this.wordsS.getWordRandom().subscribe(result => this.words = result);
   }
   initWordRandom(): void{
-    const randomArray = this.wordList.sort(() => Math.random() - Math.random()).slice(0, 3);
-    const newRandom = [];
-    newRandom.push(...randomArray, this.word);
-    this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
+    if (this.wordList?.length > 0){
+      const randomArray = this.wordList.sort(() => Math.random() - Math.random()).slice(0, 3);
+      const newRandom = [];
+      newRandom.push(...randomArray, this.word);
+      this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
+    }else{
+      const randomArray = this.words.sort(() => Math.random() - Math.random()).slice(0, 3);
+      const newRandom = [];
+      newRandom.push(...randomArray, this.word);
+      this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
+    }
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.word){

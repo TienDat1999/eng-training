@@ -1,4 +1,4 @@
-<div class="choose-word">
+<div *ngIf="randomWordList.length > 1" class="choose-word">
   <div class="label-suggest">Choose the correct word</div>
   <div class="wrap-word-name">
     <div class="wrap-word-name-item">
@@ -9,7 +9,7 @@
     <div class="wrap-word-type-item">{{word.wordType}}</div>
   </div>
   <div>
-    <div class="wrap-word">
+    <div  class="wrap-word">
       <div id="answer-{{i}}" class="word-item" (click)="chooseWord($event)" *ngFor="let word of randomWordList; let i = index">
         {{word.wordEng}}
       </div>

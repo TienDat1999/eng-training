@@ -1,28 +1,12 @@
-<div *ngIf="isOpenReview" class="choose-word">
-  <div style="display: flex; justify-content: space-between">
-    <div class="label-suggest">Choose the correct word</div>
-    <i (click)="closeReview()" style="font-size: 20px" class="fas fa-times"></i>
-  </div>
-  <div class="wrap-word-name">
-    <div class="wrap-word-name-item">
-      {{wordIem?.define}}
-    </div>
-  </div>
-  <div class="wrap-word-type">
-    <div class="wrap-word-type-item">{{wordIem?.wordType}}</div>
-  </div>
-  <progress-bar  [progress]="countDown" [color]="'#488aff'">
-  </progress-bar>
-  <div class="mt-4">
-    <div class="wrap-word">
-      <div id="answer-{{i}}" class="word-item" (click)="chooseWord($event)" *ngFor="let word of randomWordList; let i = index">
-        {{word.wordEng}}
-      </div>
-    </div>
-  </div>
+<div class="choose-word container">
+    <div class="count-down-number"><span>{{this.countDown}}</span></div>
+  <div class="current-index">{{this.currentIndex}} / {{this.totalNumberWord}}</div>
+  <ng-container *ngIf="word">
+    <app-choose-word-type
+      [word]="word"
+      (callBackChooseNextWordHandel)="callBackNextWordHandel()">
+    </app-choose-word-type>
+  </ng-container>
+
 </div>
 <app-complete-review-model [scored]="answerCorrect" [totalNumberWord] = "totalNumberWord" [(isOpenTopic)]="isOpenTopic"></app-complete-review-model>
-<app-count-down-popup [countDownNumber]="3"
-                      [isOpenCountdown]="true"
-                      [isShowIConFight] = "false">
-</app-count-down-popup>

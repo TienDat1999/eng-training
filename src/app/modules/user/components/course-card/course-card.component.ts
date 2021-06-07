@@ -47,7 +47,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
     this.courseService.getCourseCard().subscribe(value => {
       this.courseCard = value;
     }, (err: Error) => console.error('Observer got an error: ' + err),
-    () => this.isWaitLoad = false,);
+    () => this.isWaitLoad = false);
     if (this.authenticationService.userValue) {
       this.isLogin = true;
     }

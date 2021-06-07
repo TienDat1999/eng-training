@@ -1,73 +1,16 @@
 .choose-word{
   font-family: 'Itim', cursive;
-  height: 100vh;
-  padding-top: 50px;
-  margin: auto;
-  max-width: 1000px;
-  .label-suggest{
-    margin-top: 20px;
-    margin-left: 40px;
-    font-size: 24px;
-    color: rgb(73, 74, 76);
-  }
-  .wrap-word-name{
-    display: flex;
-    width: 100%;
-    &-item{
-      margin: 10px auto 10px auto;
-      font-size: 20px;
-      max-width: 70%;
-    }
-  }
-  .wrap-word-type{
-    display: flex;
-    margin: 20px 0px;
-    &-item{
-      margin: 0 auto;
-      padding: 15px;
-      text-align: center;
-      font-weight: 500;
+  .count-down-number{
+  text-align: center;
+    margin: 50px 20px 20px 20px;
+    span{
+      font-size: 40px;
+      padding: 10px 40px;
+      background-color: #FFC312;
       border-radius: 10px;
-      background-color: #79adaf;
     }
   }
-  .wrap-word{
-    margin: auto;
-  //  width: 50%;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 50px 50px;
-    .word-item{
-      //&:hover{
-      //  background-color: #FFC312;
-      //  color: white;
-      //}
-      // width: 20px;
-      text-align: center;
-      font-size: 30px;
-      box-shadow: 0px 3px 8px 2px rgb(0 0 0 / 24%);
-      border-radius: 10px;
-      height: 100px;
-      cursor: pointer;
-      max-width: 400px;
-      line-height: 98px;
-      margin-left: 62px;
-    }
-  }
-  .is-correct{
-    background-color: #48b360;
-  }
-  .incorrect{
-    background-color: #e30202;
-  }
-  ::ng-deep .progress-outer{
-    border: none;
-    max-width: 50%;
-    margin: auto;
-    .progress-inner{
-      font-size: 0px;
-      min-width: 0px;
-      background-color: #FFC312 !important;
-    }
+  .current-index{
+   text-align: center;
   }
 }

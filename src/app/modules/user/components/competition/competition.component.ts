@@ -29,20 +29,8 @@ export class CompetitionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.onGetWordCompetition();
-   // this.handleReloadGroup();
     this.onRoomData();
-    // this.signalS.connection.on('GetResultCompetition', result => {
-    //   console.log(result);
     this.onGetWordCompetition();
-  }
-
-  handleReloadGroup(): void {
-    debugger
-    const roomData = JSON.parse(localStorage.getItem('RoomData'));
-    if (!!roomData) {
-     this.signalS.connection.invoke('AddToGroup', this.roomName, null, null).then();
-    }
   }
 
   get roomName(): string {
@@ -57,8 +45,6 @@ export class CompetitionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.signalS.connection.invoke('RemoveFromGroup', 'name1').then();
-    console.log('destroy');
     this.roomS.removeRoomData(this.roomName).subscribe();
     localStorage.removeItem('RoomData');
     localStorage.removeItem('RoomName');

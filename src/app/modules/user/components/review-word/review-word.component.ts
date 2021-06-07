@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import {TranslateVnService} from '@app/modules/user/services/translate-vn.service';
 import {TranslateOption} from '@app/modules/user/models/translate.option';
 import {Router} from '@angular/router';
+import {CrawWordModel} from '@app/modules/user/models/word.model';
 
 @Component({
   selector: 'app-review-word',
@@ -12,120 +13,58 @@ import {Router} from '@angular/router';
   styleUrls: ['./review-word.component.scss']
 })
 export class ReviewWordComponent implements OnInit {
-  data: TranslateOption;
-  words: WordModel[] = [];
-  listRandom = [];
-  wordIem: WordModel;
-  randomWordList = [];
-  countDown = 100;
+  words: CrawWordModel[] = [];
+  word: CrawWordModel;
+  countDown = 5;
   answerCorrect = 0;
   totalNumberWord;
   interval: any;
   isOpenTopic = false;
-  isOpenReview = false;
+  isOpenReview = true;
+  currentIndex = 0;
   constructor(private wordReviewService: WordLearnedService, private router: Router) {
   }
 
   ngOnInit(): void {
     const course = JSON.parse(localStorage.getItem('courseEng'));
+    this.onGetWords(course);
+  }
+  onGetWords(course): void{
     this.wordReviewService.getWordReview(course.course.id).subscribe(val => {
-      this.words = val.filter(elm => elm !== null);
-      const newVal = val.filter(elm => elm !== null);
-      this.listRandom = [...newVal];
-      this.totalNumberWord = this.listRandom.length;
+      if (!!val) {
+        this.words = val;
+        this.totalNumberWord = val.length;
+      }
     }, error => {
       console.log(error);
     }, () => {
-      setTimeout(() => {
-        this.onProcessWord();
-        this.initRandom();
-        this.isOpenReview = true;
-      }, 4000);
+      this.handleCountDownTimer();
+      this.onProcessWord();
     });
   }
-
   handleCountDownTimer(): void {
     this.interval = setInterval(() => {
-      this.countDown -= 2;
+      this.countDown -= 1;
       if (this.countDown === 0) {
-        const index = this.words.findIndex(word => word.wordEng === this.wordIem.wordEng);
-        this.words.splice(index, 1);
+        this.currentIndex += 1;
         clearInterval(this.interval);
-        if (index !== -1) {
-          this.onProcessWord();
-          this.initRandom();
-        }else{
-          clearInterval(this.interval);
-        }
-        this.countDown = 100;
+        this.onProcessWord();
+        this.countDown = 5;
+        this.handleCountDownTimer();
       }
-      if (this.countDown < 0) {
-        clearInterval(this.interval);
-      }
-    }, 100);
+    }, 1000);
 
     if (this.words.length === 0) {
+      clearInterval(this.interval);
       this.countDown = 0;
       this.isOpenTopic = true;
-      clearInterval(this.interval);
     }
   }
 
   onProcessWord(): void {
     const indexWord = _.random(this.words.length - 1);
-    this.wordIem = this.words[indexWord];
-  }
-
-  chooseWord(event): void {
-
-    if (this.words.length > 0) {
-      // debugger
-      const value = event.target.firstChild.data;
-      if (value.trim() === this.wordIem.wordEng.trim()) {
-        this.handleCorrectAnswer(event, value, 'is-correct');
-        this.answerCorrect += 1;
-      } else {
-        this.handleCorrectAnswer(event, value, 'incorrect');
-      }
-    } else {
-      this.countDown = 0;
-      clearInterval(this.interval);
-    }
-  }
-
-  handleCorrectAnswer(event, value, text: string): void {
-    document.getElementById(event.target.id).classList.add(text);
-    setTimeout(() => {
-      document.getElementById(event.target.id).classList.remove(text);
-      const index = this.words.findIndex(word => word.wordEng === value.trim());
-      this.words.splice(index, 1);
-      this.onProcessWord();
-      this.initRandom();
-      clearInterval(this.interval);
-      this.countDown = 100;
-    }, 500);
-  }
-
-  initRandom(): void {
-    this.handleCountDownTimer();
-    if (this.words.length <= 0) {
-      clearInterval(this.interval);
-    }
-    const randomWords = this.listRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
-    if (!!this.wordIem?.wordEng) {
-      const isExist = randomWords.filter(item => item.wordEng !== this.wordIem.wordEng);
-      if (isExist.length === 4) {
-        const newRandom = [];
-        newRandom.push(...isExist.slice(1, 4), this.wordIem);
-        this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
-      } else {
-        const newRandom = [];
-        newRandom.push(...isExist, this.wordIem);
-        this.randomWordList = newRandom.sort(() => Math.random() - Math.random()).slice(0, 4);
-      }
-    } else {
-      setInterval(this.interval);
-    }
+    this.word = this.words[indexWord];
+    this.words.splice(indexWord, 1);
   }
 
   closeReview(): void {
@@ -133,5 +72,14 @@ export class ReviewWordComponent implements OnInit {
     const course = JSON.parse(localStorage.getItem('courseEng'));
     const param = course.course.courseName.toLowerCase().trim().split(/\s+/).join('-');
     this.router.navigate(['/course', param]);
+  }
+
+  callBackNextWordHandel(): void {
+    clearInterval(this.interval);
+    this.countDown = 5;
+    this.currentIndex += 1;
+    this.answerCorrect += 1;
+    this.onProcessWord();
+    this.handleCountDownTimer();
   }
 }
