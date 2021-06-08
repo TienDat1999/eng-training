@@ -36,7 +36,10 @@ export class TopicComponent implements OnInit, OnDestroy  {
     this.topicsS.getTopics(this.course.course.id).subscribe(value => {
       this.topics = value;
     }, (err: Error) => console.error('Observer got an error: ' + err),
-    () => this.isWaitLoad = false,);
+    () => {
+      this.isWaitLoad = false;
+      console.log(this.topics);
+    });
     if (this.course?.totalWord === 0){
       this.progress = 0;
     }else {

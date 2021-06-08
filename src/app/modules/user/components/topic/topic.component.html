@@ -1,11 +1,11 @@
-
 <div class="wrap-topic">
   <div class="space-height"></div>
   <div class="wrap-content-topic">
     <div class="mr-5">
       <div class="card-header-topic">
         <div class="course-name">{{course?.course.courseName| titlecase}}</div>
-        <div class="progress-topics-score"><span class="score-achieved">{{course.wordLearned}}</span>/<span style="font-weight: bold"> {{course.totalWord}}</span>
+        <div class="progress-topics-score"><span class="score-achieved">{{course.wordLearned}}</span>/<span
+          style="font-weight: bold"> {{course.totalWord}}</span>
           <span> words learned</span>
         </div>
         <div class="mb-4">
@@ -14,13 +14,13 @@
         </div>
         <div class="d-flex">
           <div (click)="onReviewWord()" class="review-word">
-            Review<span>({{course.wordLearned}})</span>
+            Review<span>({{course.wordLearned -1 }})</span>
             <i class="ml-2 fas fa-wand-magic"></i>
           </div>
         </div>
       </div>
       <div class="wrap-topic-container">
-        <div  *ngIf="!!isEdit" class="wrap-topic-item " (click)="openModalTopic()">
+        <div *ngIf="!!isEdit" class="wrap-topic-item " (click)="openModalTopic()">
           <div class="inner-topic-container">
             <div class="wrap-number-topic">
               <div class="wrap-number-topic-item">0</div>
@@ -29,29 +29,28 @@
             <div style="font-weight: 600; margin-bottom: 5px">Add new topic</div>
           </div>
         </div>
-        <ng-container *ngIf="!isEdit">
-          <div *ngFor="let topic of topics; let indexNumber = index">
-            <div class="wrap-topic-item wrap-topic--position ">
+        <div *ngFor="let topic of topics; let indexNumber = index">
+          <div class="wrap-topic-item wrap-topic--position ">
           <span *ngIf="!!isEdit" class="wrap-eraser-icon" (click)="onRemoveTopic(topic, indexNumber)">
               <i class="fas fa-trash"></i>
           </span>
-              <div (click)="goToListWord(topic.topic.id)" [ngClass]="topic.status?'topic-bg-success':''" class="inner-topic-container">
-                <div class="wrap-number-topic">
-                  <div class="wrap-number-topic-item">{{indexNumber+1}}</div>
-                </div>
-                <div *ngIf="!topic.status ; else isComplete" class="topic-item-icon">
-                  <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:60px"></i>
-                </div>
-                <ng-template #isComplete>
-                  <i class="fas fa-flower-daffodil topic-icon-success"></i>
-                  <i class="fas fa-check topic-icon-check" aria-hidden="true" style="font-size:30px"></i>
-                </ng-template>
-                <div [ngClass]="topic.status?'topic-item-name-success':''" class="topic-item-name">{{topic.topic.topicName}}</div>
+            <div (click)="goToListWord(topic.topic.id)" [ngClass]="topic.status?'topic-bg-success':''"
+                 class="inner-topic-container">
+              <div class="wrap-number-topic">
+                <div class="wrap-number-topic-item">{{indexNumber + 1}}</div>
               </div>
+              <div *ngIf="!topic.status ; else isComplete" class="topic-item-icon">
+                <i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:60px"></i>
+              </div>
+              <ng-template #isComplete>
+                <i class="fas fa-flower-daffodil topic-icon-success"></i>
+                <i class="fas fa-check topic-icon-check" aria-hidden="true" style="font-size:30px"></i>
+              </ng-template>
+              <div [ngClass]="topic.status?'topic-item-name-success':''"
+                   class="topic-item-name">{{topic.topic.topicName}}</div>
             </div>
           </div>
-        </ng-container>
-     
+        </div>
       </div>
     </div>
     <ng-container *ngIf="isEdit">
@@ -60,7 +59,7 @@
   </div>
 </div>
 <div>
-  <app-modal-topic (reloadTopic) ="onHandelReload()" [(isOpenTopic)]="isOpenTopic"></app-modal-topic>
+  <app-modal-topic (reloadTopic)="onHandelReload()" [(isOpenTopic)]="isOpenTopic"></app-modal-topic>
 </div>
 <dx-load-panel *ngIf="isWaitLoad"
                [visible]="true"

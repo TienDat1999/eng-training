@@ -33,7 +33,7 @@ export class ReviewWordComponent implements OnInit {
     this.wordReviewService.getWordReview(course.course.id).subscribe(val => {
       if (!!val) {
         this.words = val;
-        this.totalNumberWord = val.length;
+        this.totalNumberWord = val.length - 1;
       }
     }, error => {
       console.log(error);
