@@ -1,0 +1,51 @@
+::ng-deep app-user-course {
+  .course-admin {
+    padding: 10px;
+    position: relative;
+
+    .title {
+      padding: 24px 10px;
+      color: white;
+    }
+
+    .content {
+      background-color: white;
+      padding: 5px;
+      border-radius: 8px;
+
+      .table {
+        width: 100%;
+
+        .dx-datagrid .dx-link {
+          cursor: pointer;
+          color: #337ab7;
+          padding: 5px 3px;
+          border-radius: 4px;
+          text-decoration: none;
+          font-weight: 500;
+
+          //&-edit {
+          //  background: #0e879a;
+          //  padding: 5px;
+          //}
+          //
+          //&-delete {
+          //  background: red;
+          //}
+        }
+
+        tr.dx-row.dx-column-lines.dx-header-row {
+          background-color: #f6f9fc;
+        }
+
+        .dx-datagrid-borders > .dx-datagrid-header-panel {
+          border-bottom: 0;
+        }
+
+        .dx-datagrid-borders .dx-datagrid-rowsview, .dx-datagrid-headers + .dx-datagrid-rowsview {
+          height: calc(100vh - 360px);
+        }
+      }
+    }
+  }
+}

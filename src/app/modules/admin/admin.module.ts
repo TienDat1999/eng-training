@@ -1,14 +1,17 @@
 import {NgModule} from '@angular/core';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {RouterModule} from '@angular/router';
-import {CourseManagerComponent, UserManagerComponent} from '@app/modules/admin/components';
+import {CourseManagerComponent, UserManagerComponent, SidebarComponent, FooterComponent} from '@app/modules/admin/components';
 import {DxDataGridModule} from 'devextreme-angular';
 import {DashboardAdminService} from '@app/modules/admin/services';
+import {CommonModule} from '@angular/common';
 
 const COMPONENTS = [
   DashboardComponent,
   CourseManagerComponent,
-  UserManagerComponent
+  UserManagerComponent,
+  SidebarComponent,
+  FooterComponent,
 ];
 
 @NgModule({
@@ -26,6 +29,7 @@ const COMPONENTS = [
       },
     ]),
     DxDataGridModule,
+    CommonModule,
   ],
   providers: [DashboardAdminService],
 })

@@ -1,36 +1,12 @@
-<div class="container-fluid dashboard-admin">
-  <div class="msb">
-    <nav class="navbar navbar-wrap">
-      <!--    header-->
-      <div class="navbar-header">
-        <div class="brand-wrapper">
-          <div class="brand-name-wrapper">
-            <a routerLink="/" class="navbar-brand"><i class="fa fa-dashboard"></i> Admin</a>
-          </div>
-        </div>
-      </div>
-      <!-- Main Menu -->
-      <div class="side-menu-container">
-        <ul class="nav navbar-nav">
-          <li>
-            <a routerLink="course"><i class="fas fa-graduation-cap"></i> Manager course</a>
-          </li>
-          <li>
-            <a routerLink="user"><i class="fas fa-users"></i> Manager users</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-
+<div class="dashboard-admin">
+  <nav>
+    <app-sidebar></app-sidebar>
+  </nav>
   <main>
+    <div class="highlights"></div>
     <router-outlet></router-outlet>
+    <footer>
+      <app-footer></app-footer>
+    </footer>
   </main>
 </div>
-
-<!--<nav>-->
-<!--  <div class="menu-link">-->
-<!--    <a routerLink="course">Manager course</a>-->
-<!--    <a routerLink="user">Manager users</a>-->
-<!--  </div>-->
-<!--</nav>-->

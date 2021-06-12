@@ -30,7 +30,7 @@ export class CourseManagerComponent implements OnInit {
             dateCreated: _.dateCreated,
             type: _.type,
             })))
-          .catch(error => console.error(error));
+          .catch(error => console.log(error));
       }, insert: row => {
         console.log(row);
         return [];

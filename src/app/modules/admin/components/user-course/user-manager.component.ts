@@ -22,7 +22,7 @@ export class UserManagerComponent implements OnInit {
         return this.service.getUsers(loadOptions)
           .toPromise()
           .then(res => res)
-          .catch(error => console.error(error));
+          .catch(error => console.log(error));
       }, insert: row => {
         console.log(row);
         return [];
