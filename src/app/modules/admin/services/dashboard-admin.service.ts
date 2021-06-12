@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {LoadOptions} from 'devextreme/data/load_options';
+import {environment} from '@environments/environment';
+import {tap} from 'rxjs/operators';
+import {log} from 'util';
 
 @Injectable()
 export class DashboardAdminService {
@@ -102,7 +105,7 @@ export class DashboardAdminService {
   constructor(private  http: HttpClient) { }
 
   getCoursers(loadOptions: LoadOptions): Observable<any>{
-    return of(this.data);
+    return this.http.get(`${environment.apiUrl}/api/admin/course`);
   }
   getUsers(loadOptions: LoadOptions): Observable<any>{
     return of(this.data);

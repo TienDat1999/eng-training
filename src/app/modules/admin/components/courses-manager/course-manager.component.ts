@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DashboardAdminService} from '@app/modules/admin/services';
 import DataSource from 'devextreme/data/data_source';
+import {AdminCourse} from '@app/modules/admin/models/course-admin.model';
 
 @Component({
   selector: 'app-admin-course',
@@ -15,6 +16,7 @@ export class CourseManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.initDataSource();
+    console.log(this.dataSource);
   }
 
   private initDataSource(): void {
@@ -22,7 +24,12 @@ export class CourseManagerComponent implements OnInit {
       load: (loadOptions) => {
         return this.service.getCoursers(loadOptions)
           .toPromise()
-          .then(res => res)
+          .then(res =>  res.map( _ => new AdminCourse({
+            courseName: _.courseName,
+            creator: _.authorName,
+            dateCreated: _.dateCreated,
+            type: _.type,
+            })))
           .catch(error => console.error(error));
       }, insert: row => {
         console.log(row);

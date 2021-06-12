@@ -13,7 +13,7 @@
           [allowAdding]="true"
           [allowUpdating]="true"
           [allowDeleting]="true"
-          mode="row"> 
+          mode="row">
         </dxo-editing>
         <dxo-paging [pageSize]="10"></dxo-paging>
         <dxo-pager
@@ -24,10 +24,13 @@
         <dxo-search-panel [visible]="true"></dxo-search-panel>
 
         <dxi-column dataField="id" width="75" caption="No" [allowSorting]="false"></dxi-column>
-        <dxi-column dataField="name" caption="Course Name" [allowSorting]="false"></dxi-column>
-        <dxi-column dataField="code" caption="Date created" [allowSorting]="false"></dxi-column>
-        <dxi-column dataField="author" caption="Creator" [allowSorting]="false"></dxi-column>
-        <dxi-column dataField="type" caption="Type" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="courseName" caption="Course Name" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="dateCreated" caption="Date created" dataType="date" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="creator" caption="Creator" [allowSorting]="false"></dxi-column>
+        <dxi-column dataField="type" cellTemplate="typeCustom" caption="Type" [allowSorting]="false"></dxi-column>
+        <div *dxTemplate="let data of 'typeCustom'">
+         <span>{{data.value?'public' : 'private'}}</span>
+        </div>
       </dx-data-grid>
     </div>
   </div>

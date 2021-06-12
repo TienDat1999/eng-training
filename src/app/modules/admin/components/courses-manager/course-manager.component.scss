@@ -1,7 +1,26 @@
 ::ng-deep app-admin-course{
+  font-family: 'Itim', cursive;
   .course-admin{
     .content .table{
       width: 100%;
+      .dx-datagrid .dx-link{
+        cursor: pointer;
+        color: #337ab7;
+        padding: 5px 3px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 500;
+        color: black;
+        &-edit{
+          background: #0e879a;
+          padding: 5px;
+        }
+        &-delete{
+          background: red;
+        }
+
+      }
+
     }
   }
 }
