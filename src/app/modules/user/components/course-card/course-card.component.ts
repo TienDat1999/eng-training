@@ -60,7 +60,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.signal.connection.off('userConnected');
+    // this.signal.connection.off('userConnected');
     // this.signal.stopConnection();
   }
 
@@ -123,7 +123,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
       const myIdConnected = this.signal.userOl.filter(id => id.key === this.userCompetitor.userId);
       this.userCompetitor.connectionId = myIdConnected[0].value.connectionId;
       this.userCompetitions.push(this.senderCompetitor, this.userCompetitor);
-      const newRoomName = this.userCompetitor.userName + this.senderCompetitor.userName + new Date().getTime();
+      const newRoomName = 'room' + new Date().getTime();
       const resultCompetition = new ResultRoomCompetition({
         result: true,
         roomName: newRoomName,

@@ -109,7 +109,6 @@ export class CompetitionComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         if (!!this.roomName){
           this.roomS.getRoomData(this.roomName).subscribe(value => {
-            console.log(value);
             value.users[0].forEach(user => {
               if (user.userId === this.getMyId) {
                 this.A = new UserCompetition({
@@ -131,7 +130,7 @@ export class CompetitionComponent implements OnInit, OnDestroy {
               userA: this.A,
               userB: this.B,
             });
-            console.log(this.roomData);
+            //console.log(this.roomData);
             this.word = this.initWordItem(this.roomData.words[0]);
             localStorage.setItem('RoomData', JSON.stringify(this.roomData));
           });

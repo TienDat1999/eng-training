@@ -26,6 +26,7 @@
   <div class="competition-body">
     <ng-container *ngIf="!!word">
       <app-choose-word-type
+        [isCompetition]="true"
         [word]="word"
         [wordList]="roomData.words"
         (callBackChooseNextWordHandel)="callBackNextWordHandel()"
