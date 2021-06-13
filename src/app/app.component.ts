@@ -11,7 +11,7 @@ export class AppComponent implements OnDestroy{
       if (!!x){
         setTimeout(() => {
           this.signal.startConnection();
-        }, 1000);
+        }, 2000);
      }
     });
   }

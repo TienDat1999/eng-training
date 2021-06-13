@@ -17,7 +17,7 @@ export class TranslateVnService {
     return new HttpHeaders({
       'content-type': 'application/x-www-form-urlencoded',
       'accept-encoding': 'application/gzip',
-      'x-rapidapi-key': 'cbe3e44599msh34729be0a59be8bp1e2ac3jsn4df01ace57fe',
+      'x-rapidapi-key': 'ae7febf184msh698d0a035b9741fp10f93bjsnf09c9a6f73f4',
       'x-rapidapi-host': 'google-translate1.p.rapidapi.com',
     });
   }

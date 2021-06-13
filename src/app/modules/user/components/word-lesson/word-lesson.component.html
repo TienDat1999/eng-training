@@ -23,7 +23,7 @@
       </button>
     </div>
     <div class="mt-5">
-      <div style="cursor: pointer" (click)="onPlayAudio(word.audioUrl)" *ngFor="let word of words">
+      <div style="cursor: pointer" (click)="onPlayAudio(word.audioUrl)" *ngFor="let word of words; let id = index">
         <div class="word-line">
           <div class="word-line-item word-item">
             {{word.wordEng}}
@@ -32,8 +32,8 @@
             {{word.ipa}}
           </div>
           <div class="word-line-item ex-item">
-            <span (click)="TranslateDefineWord(word.define)" class="mr-2"><i class="far fa-language"></i></span>
-           <span>{{isTranslate? defineTranslate : word.define}}</span>
+            <span (click)="TranslateDefineWord(word.define, id)" class="mr-2"><i class="far fa-language"></i></span>
+           <span>{{word.define}}</span>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ export class WordLessonComponent implements OnInit {
   topicName: string;
   defineTranslate: string;
   isTranslate = false;
-  isWaitLoad= true;
+  isWaitLoad = true;
   // tslint:disable-next-line:max-line-length
   constructor(private wordService: CourseCardService, private route: ActivatedRoute,
               private router: Router, private wordsS: WordTopicsService, private translateS: TranslateVnService) {
@@ -72,16 +72,16 @@ export class WordLessonComponent implements OnInit {
     audio.play();
   }
 
-  TranslateDefineWord(define: string): void {
+  TranslateDefineWord(define: string, index): void {
     const data = new TranslateOption({
       data: define,
       target: 'vi',
       source: 'en',
     });
     this.translateS.translateWord(data).subscribe( value => {
-      this.defineTranslate = value.data.translations[0].translatedText;
+      this.words[index].define = value.data.translations[0].translatedText;
     }, error => {
-      console.log(error) }, () => {
+      console.log(error); }, () => {
       this.isTranslate = true;
     });
   }

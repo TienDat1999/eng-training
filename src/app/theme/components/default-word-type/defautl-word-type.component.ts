@@ -35,7 +35,7 @@ export class DefaultWordTypeComponent implements OnInit {
     this.translateS.translateWord(data).subscribe( value => {
       this.defineTranslate = value.data.translations[0].translatedText;
     }, error => {
-      console.log(error) }, () => {
+      console.log(error); }, () => {
       this.isTranslate = true;
     });
   }
