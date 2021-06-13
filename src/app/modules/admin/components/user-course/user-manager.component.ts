@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import DataSource from 'devextreme/data/data_source';
 import {DashboardAdminService} from '@app/modules/admin/services';
+import {AdminCourse, AdminUser} from '@app/modules/admin/models/course-admin.model';
 
 @Component({
   selector: 'app-user-course',
@@ -21,7 +22,10 @@ export class UserManagerComponent implements OnInit {
       load: (loadOptions) => {
         return this.service.getUsers(loadOptions)
           .toPromise()
-          .then(res => res)
+          .then(res => res.map( _ => new AdminUser({
+            userName: _.userName,
+            gmail: _.gmail
+          })))
           .catch(error => console.log(error));
       }, insert: row => {
         console.log(row);
